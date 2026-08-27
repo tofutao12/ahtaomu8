@@ -38,18 +38,18 @@
             100% { background-position: 0% 50%; }
         }
 
-        .bg-sparkle {
+        /* พื้นหลังไอคอนรูปทรงเรขาคณิตและเวทมนตร์สีทึบ */
+        .bg-shape-icon {
             position: fixed;
-            animation: floatSparkle linear infinite;
-            opacity: 0.35;
             pointer-events: none;
+            opacity: 0.18;
             z-index: 0;
+            animation: floatShape linear infinite;
         }
-        @keyframes floatSparkle {
-            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
-            20% { opacity: 0.5; }
-            80% { opacity: 0.5; }
-            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+        @keyframes floatShape {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); }
+            50% { opacity: 0.25; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); }
         }
 
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
@@ -182,7 +182,7 @@
         }
 
         .modal-overlay {
-            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(3px); 
+            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-blur:blur(3px); 
             z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center;
         }
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -199,11 +199,12 @@
 </head>
 <body class="antialiased text-center relative">
 
-    <div class="bg-sparkle text-3xl" style="left: 10%; animation-duration: 8s;">✨</div>
-    <div class="bg-sparkle text-2xl" style="left: 80%; animation-duration: 12s; animation-delay: 2s;">💖</div>
-    <div class="bg-sparkle text-4xl" style="left: 50%; animation-duration: 10s; animation-delay: 5s;">🔮</div>
-    <div class="bg-sparkle text-2xl" style="left: 20%; animation-duration: 14s; animation-delay: 1s;">🌟</div>
-    <div class="bg-sparkle text-3xl" style="left: 70%; animation-duration: 9s; animation-delay: 4s;">🌙</div>
+    <!-- พื้นหลังไอคอนรูปทรงเรขาคณิตและเวทมนตร์สีทึบ -->
+    <div class="bg-shape-icon text-3xl text-purple-300" style="left: 10%; animation-duration: 9s;">✦</div>
+    <div class="bg-shape-icon text-2xl text-pink-300" style="left: 80%; animation-duration: 12s; animation-delay: 2s;">▲</div>
+    <div class="bg-shape-icon text-4xl text-blue-300" style="left: 45%; animation-duration: 10s; animation-delay: 4s;">●</div>
+    <div class="bg-shape-icon text-2xl text-purple-200" style="left: 20%; animation-duration: 14s; animation-delay: 1s;">■</div>
+    <div class="bg-shape-icon text-3xl text-pink-200" style="left: 70%; animation-duration: 8s; animation-delay: 3s;">★</div>
 
     <div class="floating-cart" onclick="openCheckoutModal()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
@@ -512,6 +513,7 @@
         </div>
     </div>
 
+    <!-- Admin Modal: ระบบ Accordion เปิด-ปิดย่อหน้า (ตามบรีฟข้อ 2) -->
     <div id="admin-modal" class="modal-overlay">
         <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#9333ea] shadow-xl relative max-h-[90vh] flex flex-col text-left">
             <div class="flex justify-between items-center border-b-2 dashed border-[#d8b4fe] pb-3 mb-4">
@@ -519,13 +521,15 @@
                 <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-500 text-3xl cursor-pointer hover:text-red-500">&times;</button>
             </div>
             
-            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-6">
+            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-4">
                 
-                <div class="bg-[#f3e8ff] p-5 rounded-2xl border-2 border-[#d8b4fe] shadow-sm">
-                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[17px] font-bold border-b border-[#d8b4fe] pb-2 flex items-center gap-2">
-                        <span>📝</span> 1. ตั้งค่าข้อมูลร้านทั่วไป
-                    </h4>
-                    <div class="space-y-3.5">
+                <!-- ส่วนที่ 1: ตั้งค่าร้านทั่วไป (มีปุ่มเปิด-ปิดย่อหน้า) -->
+                <div class="bg-[#f3e8ff] rounded-2xl border-2 border-[#d8b4fe] overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('acc-settings')" class="w-full p-4 flex justify-between items-center bg-[#f3e8ff] hover:bg-[#e9d5ff] transition-colors cursor-pointer border-none font-bold text-[#7e22ce] text-[16px]">
+                        <span>📝 1. ตั้งค่าข้อมูลร้านทั่วไป</span>
+                        <i id="icon-acc-settings" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div id="acc-settings" class="p-4 bg-white border-t border-[#d8b4fe] space-y-3" style="display:none;">
                         <div class="form-group mb-0"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2"></div>
@@ -541,11 +545,15 @@
                     </div>
                 </div>
 
-                <div class="bg-[#f3e8ff] p-5 rounded-2xl border-2 border-[#d8b4fe] shadow-sm">
-                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[17px] font-bold border-b border-[#d8b4fe] pb-2 flex items-center gap-2">
-                        <span>📦</span> 2. จัดการสินค้าและราคา
-                    </h4>
-                    <div id="admin-products-list" class="space-y-4"></div>
+                <!-- ส่วนที่ 2: จัดการสินค้าและราคา (มีปุ่มเปิด-ปิดย่อหน้า) -->
+                <div class="bg-[#f3e8ff] rounded-2xl border-2 border-[#d8b4fe] overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('acc-products')" class="w-full p-4 flex justify-between items-center bg-[#f3e8ff] hover:bg-[#e9d5ff] transition-colors cursor-pointer border-none font-bold text-[#7e22ce] text-[16px]">
+                        <span>📦 2. จัดการสินค้าและราคา</span>
+                        <i id="icon-acc-products" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div id="acc-products" class="p-4 bg-white border-t border-[#d8b4fe] space-y-4" style="display:none;">
+                        <div id="admin-products-list" class="space-y-4"></div>
+                    </div>
                 </div>
 
             </div>
@@ -579,6 +587,7 @@
         sampleWebLink: ""
     };
 
+    // ปรับลำดับสินค้า: ให้กล่อง "โทรดูดวง" ขึ้นมาอยู่เป็นกล่องที่ 2 ทันทีตามบรีฟ
     const defaultData = [
         { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
             { name: "Yes or No!! (1 คำถาม)", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
@@ -632,15 +641,16 @@
     let wallAddCount = 0;
 
     document.addEventListener('DOMContentLoaded', async () => {
-        const today = new Date();
-        const dateStr = today.toISOString().split('T')[0];
-        const timeStr = today.toTimeString().substring(0, 5);
-        if(document.getElementById('f-appt-date')) document.getElementById('f-appt-date').value = dateStr;
-        if(document.getElementById('f-transfer-time')) document.getElementById('f-transfer-time').value = timeStr;
-        
-        const savedData = localStorage.getItem('muSpaceUserData');
-        if (savedData) {
-            try {
+        try {
+            const today = new Date();
+            const dateStr = today.toISOString().split('T')[0];
+            const timeStr = today.toTimeString().substring(0, 5);
+            if(document.getElementById('f-appt-date')) document.getElementById('f-appt-date').value = dateStr;
+            if(document.getElementById('f-transfer-date')) document.getElementById('f-transfer-date').value = dateStr;
+            if(document.getElementById('f-transfer-time')) document.getElementById('f-transfer-time').value = timeStr;
+            
+            const savedData = localStorage.getItem('muSpaceUserData');
+            if (savedData) {
                 const p = JSON.parse(savedData);
                 if(p.name) document.getElementById('f-name').value = p.name;
                 if(p.age) document.getElementById('f-age').value = p.age;
@@ -648,48 +658,65 @@
                 if(p.day) document.getElementById('f-day').value = p.day;
                 if(p.month) document.getElementById('f-month').value = p.month;
                 if(p.year) document.getElementById('f-year').value = p.year;
-            } catch(e){}
-        }
-
-        const localSettings = localStorage.getItem('muSpaceSettingsV3');
-        if (localSettings) shopSettings = JSON.parse(localSettings);
-
-        const localProd = localStorage.getItem('muSpaceProductsV3');
-        if (localProd) productData = JSON.parse(localProd);
-        
-        applySettingsToDOM();
-
-        fetch(API_URL + "?action=getData").then(res => res.json()).then(result => {
-            if (result) {
-                if(result.settings) {
-                    shopSettings = result.settings;
-                    if(!shopSettings.sampleWallLink) shopSettings.sampleWallLink = "";
-                    if(!shopSettings.sampleWebLink) shopSettings.sampleWebLink = "";
-                    if(!shopSettings.igLink) shopSettings.igLink = "https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr";
-                    if(!shopSettings.reviewLink) shopSettings.reviewLink = "#";
-                }
-                if(result.products && result.products.length > 0 && result.products[0].hasOwnProperty('tab')) {
-                    productData = result.products;
-                }
-                applySettingsToDOM();
-                if(activeTab > 0) renderProducts(); 
             }
-        }).catch(e => console.log("Offline mode or API error"));
 
-        switchTab(0);
+            const localSettings = localStorage.getItem('muSpaceSettingsV3');
+            if (localSettings) shopSettings = JSON.parse(localSettings);
+
+            const localProd = localStorage.getItem('muSpaceProductsV3');
+            if (localProd) productData = JSON.parse(localProd);
+            
+            applySettingsToDOM();
+
+            fetch(API_URL + "?action=getData").then(res => res.json()).then(result => {
+                if (result) {
+                    if(result.settings) {
+                        shopSettings = result.settings;
+                        if(!shopSettings.sampleWallLink) shopSettings.sampleWallLink = "";
+                        if(!shopSettings.sampleWebLink) shopSettings.sampleWebLink = "";
+                        if(!shopSettings.igLink) shopSettings.igLink = "https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr";
+                        if(!shopSettings.reviewLink) shopSettings.reviewLink = "#";
+                    }
+                    if(result.products && result.products.length > 0 && result.products[0].hasOwnProperty('tab')) {
+                        productData = result.products;
+                    }
+                    applySettingsToDOM();
+                    if(activeTab > 0) renderProducts(); 
+                }
+            }).catch(e => console.log("Offline mode or API error"));
+
+            switchTab(0);
+        } catch (err) {
+            console.error("Init Error Protected:", err);
+        }
     });
 
+    // ระบบ Accordion เปิด-ปิดย่อหน้าหลังบ้าน (ตามบรีฟ)
+    function toggleAccordion(id) {
+        const el = document.getElementById(id);
+        const icon = document.getElementById('icon-' + id);
+        if (el.style.display === 'none') {
+            el.style.display = 'block';
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            el.style.display = 'none';
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
     function applySettingsToDOM() {
-        document.getElementById('display-shop-name').textContent = shopSettings.shopName;
-        document.getElementById('display-slogan').textContent = shopSettings.slogan;
-        document.getElementById('display-marquee').textContent = shopSettings.marquee;
-        document.getElementById('link-fb').href = shopSettings.fbLink;
-        document.getElementById('link-line').href = shopSettings.lineLink;
-        if(document.getElementById('link-ig')) document.getElementById('link-ig').href = shopSettings.igLink || '#';
-        if(document.getElementById('link-review')) document.getElementById('link-review').href = shopSettings.reviewLink || '#';
-        document.getElementById('display-kbank-name').textContent = shopSettings.kbankName;
-        document.getElementById('display-kbank-num').textContent = shopSettings.kbankNum;
-        document.getElementById('display-wallet-num').textContent = shopSettings.walletNum;
+        try {
+            document.getElementById('display-shop-name').textContent = shopSettings.shopName;
+            document.getElementById('display-slogan').textContent = shopSettings.slogan;
+            document.getElementById('display-marquee').textContent = shopSettings.marquee;
+            document.getElementById('link-fb').href = shopSettings.fbLink;
+            document.getElementById('link-line').href = shopSettings.lineLink;
+            if(document.getElementById('link-ig')) document.getElementById('link-ig').href = shopSettings.igLink || '#';
+            if(document.getElementById('link-review')) document.getElementById('link-review').href = shopSettings.reviewLink || '#';
+            document.getElementById('display-kbank-name').textContent = shopSettings.kbankName;
+            document.getElementById('display-kbank-num').textContent = shopSettings.kbankNum;
+            document.getElementById('display-wallet-num').textContent = shopSettings.walletNum;
+        } catch(e) {}
     }
 
     function switchTab(tabId) {
@@ -873,7 +900,7 @@
         const chatOptionsBox = document.getElementById('form-chat-options');
         if (hasChat) {
             chatOptionsBox.style.display = 'block';
-            checkDeliveryPriceLock(); // ตรวจสอบเงื่อนไขราคาล็อกตามบรีฟข้อ 1
+            checkDeliveryPriceLock();
         } else {
             chatOptionsBox.style.display = 'none';
         }
@@ -909,13 +936,11 @@
         }
     }
 
-    // --- ระบบล็อกการเลือกรูปแบบดูดวงตามราคา (บรีฟข้อ 1) ---
     function checkDeliveryPriceLock() {
         const audioLabel = document.getElementById('audio-option-label');
         const lockNote = document.getElementById('delivery-lock-note');
         const printRadio = document.querySelector('input[name="delivery_type"][value="พิมพ์"]');
 
-        // ถ้ามีสินค้าดูดวงตัวใดตัวหนึ่งต่ำกว่า 69 บาท จะล็อกให้เลือกได้แค่แบบพิมพ์
         if (minChatPrice < 69) {
             if(audioLabel) audioLabel.style.display = 'none';
             if(lockNote) lockNote.style.display = 'block';
@@ -1159,7 +1184,7 @@
         setTimeout(() => t.classList.remove('on'), 3000); 
     }
 
-    // --- Admin System (มีย่อหน้าและจัดระเบียบเรียบร้อย) ---
+    // --- Admin System ---
     function openAdmin() {
         const pass = prompt("🔒 กรุณากรอกรหัสผ่านหลังบ้าน:");
         if (pass === ADMIN_PASS) {
@@ -1171,57 +1196,63 @@
     function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
 
     function renderAdminPanel() {
-        document.getElementById('cfg-shopName').value = shopSettings.shopName;
-        document.getElementById('cfg-slogan').value = shopSettings.slogan;
-        document.getElementById('cfg-marquee').value = shopSettings.marquee;
-        document.getElementById('cfg-reviewLink').value = shopSettings.reviewLink || "#";
-        document.getElementById('cfg-fbLink').value = shopSettings.fbLink;
-        document.getElementById('cfg-lineLink').value = shopSettings.lineLink;
-        document.getElementById('cfg-igLink').value = shopSettings.igLink || "";
-        document.getElementById('cfg-kbankName').value = shopSettings.kbankName;
-        document.getElementById('cfg-kbankNum').value = shopSettings.kbankNum;
-        document.getElementById('cfg-walletNum').value = shopSettings.walletNum;
-        document.getElementById('cfg-sampleWall').value = shopSettings.sampleWallLink || "";
-        document.getElementById('cfg-sampleWeb').value = shopSettings.sampleWebLink || "";
+        try {
+            document.getElementById('cfg-shopName').value = shopSettings.shopName;
+            document.getElementById('cfg-slogan').value = shopSettings.slogan;
+            document.getElementById('cfg-marquee').value = shopSettings.marquee;
+            document.getElementById('cfg-reviewLink').value = shopSettings.reviewLink || "#";
+            document.getElementById('cfg-fbLink').value = shopSettings.fbLink;
+            document.getElementById('cfg-lineLink').value = shopSettings.lineLink;
+            document.getElementById('cfg-igLink').value = shopSettings.igLink || "";
+            document.getElementById('cfg-kbankName').value = shopSettings.kbankName;
+            document.getElementById('cfg-kbankNum').value = shopSettings.kbankNum;
+            document.getElementById('cfg-walletNum').value = shopSettings.walletNum;
+            document.getElementById('cfg-sampleWall').value = shopSettings.sampleWallLink || "";
+            document.getElementById('cfg-sampleWeb').value = shopSettings.sampleWebLink || "";
 
-        let html = ``;
-        productData.forEach((group, gIdx) => {
-            html += `<div class="bg-white p-4 rounded-xl mb-3.5 border-2 border-[#d8b4fe] shadow-sm">
-                        <h5 class="m-0 mb-3 text-[14px] font-bold text-[#7e22ce] border-b border-[#f3e8ff] pb-1.5">หมวด ${group.tab}: ${group.title}</h5>`;
-            group.items.forEach((item, iIdx) => {
-                html += `<div class="flex gap-2 mb-2.5 items-center">
-                            <input type="text" class="form-control py-1.5 px-2.5 flex-[2] text-[13px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
-                            <input type="number" class="form-control py-1.5 px-2.5 flex-1 text-[13px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
-                            <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0 flex items-center justify-center">X</button>
-                        </div>`;
+            let html = ``;
+            productData.forEach((group, gIdx) => {
+                html += `<div class="bg-white p-4 rounded-xl mb-3.5 border-2 border-[#d8b4fe] shadow-sm">
+                            <h5 class="m-0 mb-3 text-[14px] font-bold text-[#7e22ce] border-b border-[#f3e8ff] pb-1.5">หมวด ${group.tab}: ${group.title}</h5>`;
+                group.items.forEach((item, iIdx) => {
+                    html += `<div class="flex gap-2 mb-2.5 items-center">
+                                <input type="text" class="form-control py-1.5 px-2.5 flex-[2] text-[13px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
+                                <input type="number" class="form-control py-1.5 px-2.5 flex-1 text-[13px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
+                                <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0 flex items-center justify-center">X</button>
+                            </div>`;
+                });
+                html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#f3e8ff] border border-dashed border-[#9333ea] text-[#7e22ce] py-2 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#e9d5ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
             });
-            html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#f3e8ff] border border-dashed border-[#9333ea] text-[#7e22ce] py-2 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#e9d5ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
-        });
-        document.getElementById('admin-products-list').innerHTML = html;
+            document.getElementById('admin-products-list').innerHTML = html;
+        } catch(e) {
+            console.error("Admin Render Error:", e);
+        }
     }
 
     function updateDataFromDOM() {
-        shopSettings.shopName = document.getElementById('cfg-shopName').value;
-        shopSettings.slogan = document.getElementById('cfg-slogan').value;
-        shopSettings.marquee = document.getElementById('cfg-marquee').value;
-        shopSettings.reviewLink = document.getElementById('cfg-reviewLink').value;
-        shopSettings.fbLink = document.getElementById('cfg-fbLink').value;
-        shopSettings.lineLink = document.getElementById('cfg-lineLink').value;
-        shopSettings.igLink = document.getElementById('cfg-igLink').value;
-        shopSettings.kbankName = document.getElementById('cfg-kbankName').value;
-        shopSettings.kbankNum = document.getElementById('cfg-kbankNum').value;
-        shopSettings.walletNum = document.getElementById('cfg-walletNum').value;
-        shopSettings.sampleWallLink = document.getElementById('cfg-sampleWall').value;
-        shopSettings.sampleWebLink = document.getElementById('cfg-sampleWeb').value;
+        try {
+            shopSettings.shopName = document.getElementById('cfg-shopName').value;
+            shopSettings.slogan = document.getElementById('cfg-slogan').value;
+            shopSettings.marquee = document.getElementById('cfg-marquee').value;
+            shopSettings.reviewLink = document.getElementById('cfg-reviewLink').value;
+            shopSettings.fbLink = document.getElementById('cfg-fbLink').value;
+            shopSettings.lineLink = document.getElementById('cfg-lineLink').value;
+            shopSettings.igLink = document.getElementById('cfg-igLink').value;
+            shopSettings.kbankName = document.getElementById('cfg-kbankName').value;
+            shopSettings.kbankNum = document.getElementById('cfg-kbankNum').value;
+            shopSettings.walletNum = document.getElementById('cfg-walletNum').value;
+            shopSettings.sampleWallLink = document.getElementById('cfg-sampleWall').value;
+            shopSettings.sampleWebLink = document.getElementById('cfg-sampleWeb').value;
 
-        productData.forEach((group, gIdx) => {
-            group.items.forEach((item, iIdx) => {
-                const n = document.getElementById(`name-${gIdx}-${iIdx}`);
-                const p = document.getElementById(`price-${gIdx}-${iIdx}`);
-                if(n) item.name = n.value;
-                if(p) item.price = parseInt(p.value) || 0;
+            productData.forEach((group, gIdx) => {
+                group.items.forEach((item, iIdx) => {
+                    const n = document.getElementById(`name-${gIdx}-${iIdx}`);
+                    const p = document.getElementById(`price-${gIdx}-${iIdx}`);
+                    if(n) item.name = n.value;
+                    if(p) item.price = parseInt(p.value) || 0;
+                });
             });
-        });
+        } catch(e) {}
     }
 
     function addItem(gIdx) { updateDataFromDOM(); productData[gIdx].items.push({name: "บริการใหม่", price: 0}); renderAdminPanel(); }
