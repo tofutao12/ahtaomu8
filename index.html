@@ -54,7 +54,6 @@
 
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
         
-        /* ชื่อร้านไล่สีวิ่งตลอดเวลา (Animated Gradient Text ตามบรีฟ) */
         .animated-gradient-text {
             background: linear-gradient(270deg, #c084fc, #f472b6, #38bdf8, #a855f7, #c084fc);
             background-size: 300% 300%;
@@ -78,7 +77,6 @@
             z-index: 10;
         }
 
-        /* โลโก้มีขอบเรืองแสง ไม่ให้กลืนกับพื้นขาว */
         .logo-glow {
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), inset 0 0 10px rgba(236, 72, 153, 0.3);
             border: 2px solid #d8b4fe;
@@ -201,21 +199,18 @@
 </head>
 <body class="antialiased text-center relative">
 
-    <!-- พื้นหลังฟรุ้งฟริ้ง -->
     <div class="bg-sparkle text-3xl" style="left: 10%; animation-duration: 8s;">✨</div>
     <div class="bg-sparkle text-2xl" style="left: 80%; animation-duration: 12s; animation-delay: 2s;">💖</div>
     <div class="bg-sparkle text-4xl" style="left: 50%; animation-duration: 10s; animation-delay: 5s;">🔮</div>
     <div class="bg-sparkle text-2xl" style="left: 20%; animation-duration: 14s; animation-delay: 1s;">🌟</div>
     <div class="bg-sparkle text-3xl" style="left: 70%; animation-duration: 9s; animation-delay: 4s;">🌙</div>
 
-    <!-- Floating Cart -->
     <div class="floating-cart" onclick="openCheckoutModal()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
         <span style="font-size:24px; margin-bottom:2px;">🛒</span>
         <span style="font-size: 12px; font-weight: bold;">ตะกร้า</span>
     </div>
 
-    <!-- Loading Screen -->
     <div id="loading-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99999] hidden flex-col items-center justify-center">
         <div class="text-6xl animate-spin mb-5">🪄</div>
         <div class="text-white font-bold text-xl tracking-wide">กำลังเตรียมตะกร้าเวทมนตร์...</div>
@@ -223,10 +218,8 @@
 
     <main class="max-w-[480px] mx-auto pt-6 pb-24 relative px-4">
         
-        <!-- ปุ่ม Admin -->
         <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
 
-        <!-- 1. Profile Card (โลโก้มีขอบเรืองแสง + ชื่อร้านไล่สีวิ่ง) -->
         <div class="card-main p-6 mb-5 relative">
             <div class="flex items-center gap-4 mb-3 text-left">
                 <div class="w-[75px] h-[75px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden logo-glow">
@@ -240,10 +233,8 @@
                 </div>
             </div>
 
-            <!-- สโลแกน -->
             <p class="text-[14px] mb-4 font-seasons font-bold text-[#7e22ce] text-center" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
 
-            <!-- ช่องทางติดต่อ (ปรับสีให้เข้ากับธีมม่วง-พาสเทล) -->
             <div class="grid grid-cols-3 gap-2">
                 <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#0284c7] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
                     <i class="fa-brands fa-facebook-messenger text-[18px]"></i> Facebook
@@ -257,14 +248,12 @@
             </div>
         </div>
 
-        <!-- 2. กรอบข้อความวิ่ง -->
         <div class="purple-pill-dashed mb-5 max-w-[400px] mx-auto shadow-md">
             <div class="border-2 border-dashed border-white rounded-[1rem] py-1.5 px-3">
                 <marquee id="display-marquee" scrollamount="4" class="text-white text-[16px] font-bold mt-1">✨ ยินดีต้อนรับสู่ AhTao Mu-Space ✨</marquee>
             </div>
         </div>
 
-        <!-- 3. Tabs Navigation -->
         <div class="flex gap-2 justify-center mb-6">
             <button class="tab-btn w-1/3 active" id="btn-tab-1" onclick="switchTab(1)">
                 <span class="text-[26px] mb-0 leading-none">🔮</span>
@@ -283,9 +272,7 @@
             </button>
         </div>
 
-        <!-- Content Area -->
         <div id="content-area">
-            <!-- 4. ส่วนแสดง กฎและวิธีใช้งาน -->
             <div id="rules-view">
                 <div class="purple-pill-dashed max-w-[260px] mx-auto shadow-md mb-[-15px] relative z-10 hover:scale-105 transition-transform">
                     <div class="purple-pill-inner text-[18px]">📖 วิธีใช้งาน</div>
@@ -340,7 +327,6 @@
         </div>
     </main>
 
-    <!-- 🔮 ป๊อปอัป (Modal) ตะกร้าสินค้าและการชำระเงิน -->
     <div id="checkout-modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
         <div class="checkout-popup bg-[#fdfcff] w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-2xl">
             <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-[#f3e8ff] text-[#9333ea] border-2 border-[#d8b4fe] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#9333ea] hover:text-white hover:border-[#9333ea] transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
@@ -399,15 +385,15 @@
                         <input type="text" id="f-name" class="form-control req-field" placeholder="เช่น น้องฟ้า / IG: fah_sky">
                     </div>
 
-                    <!-- Dynamic Forms inside Modal -->
                     <div id="form-chat-options" style="display:none; background:#f3e8ff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
                         <div class="form-group" id="delivery-type-group">
                             <label>เลือกรูปแบบการรับงาน *</label>
-                            <div class="flex gap-4 mt-2">
+                            <div class="flex gap-4 mt-2" id="delivery-radio-container">
                                 <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบพิมพ์</label>
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบอัดเสียง</label>
+                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบอัดเสียง</label>
                             </div>
+                            <div id="delivery-lock-note" class="text-[13px] text-pink-600 font-bold mt-2" style="display:none;">🔒 รายการนี้จำกัดเฉพาะ "แบบพิมพ์" เท่านั้นค่ะ</div>
                         </div>
                         <div class="form-group" id="card-option-group" style="margin-bottom:0; background:#fff; padding:12px; border-radius:10px; border:1px solid #d8b4fe;">
                             <label class="flex items-center gap-2 cursor-pointer text-[#7e22ce] mb-0 font-bold">
@@ -502,7 +488,6 @@
                     <button id="btn-submit-order" class="btn-action mt-4 py-4 w-full" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป ✨</button>
                 </div>
 
-                <!-- ส่วนแสดงผลสรุป -->
                 <div id="summary-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left" style="display:none;">
                     <div class="text-[24px] text-[var(--c-purple-dark)] font-bold mb-2 text-center">🎉 สรุปยอดเรียบร้อย!</div>
                     
@@ -527,7 +512,6 @@
         </div>
     </div>
 
-    <!-- Admin Modal (ปรับ UI หลังบ้านให้มีสัดส่วน ย่อหน้า อ่านง่าย ไม่ยาวพรืด) -->
     <div id="admin-modal" class="modal-overlay">
         <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#9333ea] shadow-xl relative max-h-[90vh] flex flex-col text-left">
             <div class="flex justify-between items-center border-b-2 dashed border-[#d8b4fe] pb-3 mb-4">
@@ -535,30 +519,32 @@
                 <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-500 text-3xl cursor-pointer hover:text-red-500">&times;</button>
             </div>
             
-            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-5">
+            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-6">
                 
-                <!-- กล่องที่ 1: ตั้งค่าร้านค้า -->
-                <div class="bg-[#f3e8ff] p-4 rounded-2xl border border-[#d8b4fe] shadow-sm">
-                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[16px] font-bold border-b border-[#d8b4fe] pb-2">📝 1. ตั้งค่าข้อมูลร้านทั่วไป</h4>
-                    <div class="space-y-3">
+                <div class="bg-[#f3e8ff] p-5 rounded-2xl border-2 border-[#d8b4fe] shadow-sm">
+                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[17px] font-bold border-b border-[#d8b4fe] pb-2 flex items-center gap-2">
+                        <span>📝</span> 1. ตั้งค่าข้อมูลร้านทั่วไป
+                    </h4>
+                    <div class="space-y-3.5">
                         <div class="form-group mb-0"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
-                        <div class="form-group mb-0"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2" placeholder="ใส่ลิงก์เว็บรีวิว (ถ้ามี)"></div>
+                        <div class="form-group mb-0"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-2"></div>
-                        <div class="form-group mb-0"><label>ลิงก์ Instagram</label><input type="text" id="cfg-igLink" class="form-control py-2" placeholder="ใส่ URL ของหน้า IG"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ Instagram</label><input type="text" id="cfg-igLink" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>ชื่อบัญชี กสิกร</label><input type="text" id="cfg-kbankName" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>เลขบัญชี กสิกร</label><input type="text" id="cfg-kbankNum" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>เบอร์ TrueMoney</label><input type="text" id="cfg-walletNum" class="form-control py-2"></div>
-                        <div class="form-group mb-0"><label>ลิงก์ตัวอย่าง วอลเปเปอร์</label><input type="text" id="cfg-sampleWall" class="form-control py-2" placeholder="ใส่ลิงก์ Google Drive"></div>
-                        <div class="form-group mb-0"><label>ลิงก์ตัวอย่าง เว็บไซต์</label><input type="text" id="cfg-sampleWeb" class="form-control py-2" placeholder="ใส่ลิงก์ Google Drive"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ตัวอย่าง วอลเปเปอร์</label><input type="text" id="cfg-sampleWall" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ตัวอย่าง เว็บไซต์</label><input type="text" id="cfg-sampleWeb" class="form-control py-2"></div>
                     </div>
                 </div>
 
-                <!-- กล่องที่ 2: จัดการสินค้าและราคา -->
-                <div class="bg-[#f3e8ff] p-4 rounded-2xl border border-[#d8b4fe] shadow-sm">
-                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[16px] font-bold border-b border-[#d8b4fe] pb-2">📦 2. จัดการสินค้าและราคา</h4>
+                <div class="bg-[#f3e8ff] p-5 rounded-2xl border-2 border-[#d8b4fe] shadow-sm">
+                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[17px] font-bold border-b border-[#d8b4fe] pb-2 flex items-center gap-2">
+                        <span>📦</span> 2. จัดการสินค้าและราคา
+                    </h4>
                     <div id="admin-products-list" class="space-y-4"></div>
                 </div>
 
@@ -650,7 +636,6 @@
         const dateStr = today.toISOString().split('T')[0];
         const timeStr = today.toTimeString().substring(0, 5);
         if(document.getElementById('f-appt-date')) document.getElementById('f-appt-date').value = dateStr;
-        if(document.getElementById('f-transfer-date')) document.getElementById('f-transfer-date').value = dateStr;
         if(document.getElementById('f-transfer-time')) document.getElementById('f-transfer-time').value = timeStr;
         
         const savedData = localStorage.getItem('muSpaceUserData');
@@ -888,7 +873,7 @@
         const chatOptionsBox = document.getElementById('form-chat-options');
         if (hasChat) {
             chatOptionsBox.style.display = 'block';
-            toggleDeliveryOptions();
+            checkDeliveryPriceLock(); // ตรวจสอบเงื่อนไขราคาล็อกตามบรีฟข้อ 1
         } else {
             chatOptionsBox.style.display = 'none';
         }
@@ -921,6 +906,23 @@
                     <input type="text" class="form-control dyn-req wall-extra-inp" placeholder="เช่น การเงิน, เสน่ห์เมตตา">
                 </div>`;
             }
+        }
+    }
+
+    // --- ระบบล็อกการเลือกรูปแบบดูดวงตามราคา (บรีฟข้อ 1) ---
+    function checkDeliveryPriceLock() {
+        const audioLabel = document.getElementById('audio-option-label');
+        const lockNote = document.getElementById('delivery-lock-note');
+        const printRadio = document.querySelector('input[name="delivery_type"][value="พิมพ์"]');
+
+        // ถ้ามีสินค้าดูดวงตัวใดตัวหนึ่งต่ำกว่า 69 บาท จะล็อกให้เลือกได้แค่แบบพิมพ์
+        if (minChatPrice < 69) {
+            if(audioLabel) audioLabel.style.display = 'none';
+            if(lockNote) lockNote.style.display = 'block';
+            if(printRadio) printRadio.checked = true;
+        } else {
+            if(audioLabel) audioLabel.style.display = 'flex';
+            if(lockNote) lockNote.style.display = 'none';
         }
     }
 
@@ -1157,7 +1159,7 @@
         setTimeout(() => t.classList.remove('on'), 3000); 
     }
 
-    // --- Admin System ---
+    // --- Admin System (มีย่อหน้าและจัดระเบียบเรียบร้อย) ---
     function openAdmin() {
         const pass = prompt("🔒 กรุณากรอกรหัสผ่านหลังบ้าน:");
         if (pass === ADMIN_PASS) {
@@ -1184,16 +1186,16 @@
 
         let html = ``;
         productData.forEach((group, gIdx) => {
-            html += `<div class="bg-white p-3.5 rounded-xl mb-3 border border-[#d8b4fe] shadow-sm">
-                        <h5 class="m-0 mb-2 text-[14px] font-bold text-[#7e22ce] border-b border-[#f3e8ff] pb-1">หมวด ${group.tab}: ${group.title}</h5>`;
+            html += `<div class="bg-white p-4 rounded-xl mb-3.5 border-2 border-[#d8b4fe] shadow-sm">
+                        <h5 class="m-0 mb-3 text-[14px] font-bold text-[#7e22ce] border-b border-[#f3e8ff] pb-1.5">หมวด ${group.tab}: ${group.title}</h5>`;
             group.items.forEach((item, iIdx) => {
-                html += `<div class="flex gap-2 mb-2 items-center">
-                            <input type="text" class="form-control py-1 px-2 flex-[2] text-[13px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
-                            <input type="number" class="form-control py-1 px-2 flex-1 text-[13px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
+                html += `<div class="flex gap-2 mb-2.5 items-center">
+                            <input type="text" class="form-control py-1.5 px-2.5 flex-[2] text-[13px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
+                            <input type="number" class="form-control py-1.5 px-2.5 flex-1 text-[13px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
                             <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0 flex items-center justify-center">X</button>
                         </div>`;
             });
-            html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#f3e8ff] border border-dashed border-[#9333ea] text-[#7e22ce] py-1.5 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#e9d5ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
+            html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#f3e8ff] border border-dashed border-[#9333ea] text-[#7e22ce] py-2 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#e9d5ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
         });
         document.getElementById('admin-products-list').innerHTML = html;
     }
