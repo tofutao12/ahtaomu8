@@ -14,13 +14,15 @@
         @font-face { font-family: 'The Seasons'; src: local('The Seasons'); font-display: swap; }
 
         :root {
-            --c-purple-dark: #8e3dae; 
-            --c-text-main: #2e1065;   
+            --c-purple-dark: #6b21a8; 
+            --c-text-main: #3b1159;   
         }
 
         body {
             font-family: 'Cloud', 'Kanit', sans-serif; 
-            background: #fdfcff;
+            background: linear-gradient(135deg, #2e1065, #4c1d95, #6b21a8, #3b1159);
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite;
             color: var(--c-text-main);
             margin: 0;
             padding: 0;
@@ -30,61 +32,81 @@
             font-size: 16px;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .bg-sparkle {
             position: fixed;
             animation: floatSparkle linear infinite;
-            opacity: 0.25;
+            opacity: 0.35;
             pointer-events: none;
             z-index: 0;
         }
         @keyframes floatSparkle {
             0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
-            20% { opacity: 0.4; }
-            80% { opacity: 0.4; }
+            20% { opacity: 0.5; }
+            80% { opacity: 0.5; }
             100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
         }
 
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
         
-        /* สไตล์ไล่สีฟอยล์พรีเมียมแบบสมุดบัญชีล่าสุด */
-        .gradient-text {
-            background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 50%, #db74fa 100%);
+        /* ชื่อร้านไล่สีวิ่งตลอดเวลา (Animated Gradient Text ตามบรีฟ) */
+        .animated-gradient-text {
+            background: linear-gradient(270deg, #c084fc, #f472b6, #38bdf8, #a855f7, #c084fc);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: textGradientShift 6s ease infinite;
+        }
+        @keyframes textGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .card-main {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
             border-radius: 1.5rem;
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.08);
-            border: 1px solid #f3e8ff;
+            box-shadow: 0 10px 30px rgba(76, 29, 149, 0.25);
+            border: 2px solid #e9d5ff;
             position: relative;
             z-index: 10;
         }
 
+        /* โลโก้มีขอบเรืองแสง ไม่ให้กลืนกับพื้นขาว */
+        .logo-glow {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), inset 0 0 10px rgba(236, 72, 153, 0.3);
+            border: 2px solid #d8b4fe;
+        }
+
         .tab-btn {
             background: #fff;
-            border: 2px dashed #ca52ed;
-            color: #8e3dae;
+            border: 2px dashed #c084fc;
+            color: #7e22ce;
             border-radius: 1.2rem;
             padding: 12px 6px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             line-height: 1.3; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .tab-btn.active {
-            background: linear-gradient(135deg, #ca52ed, #db74fa);
+            background: linear-gradient(135deg, #9333ea, #c084fc);
             border: 2px dashed #fff;
             color: #fff;
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 15px rgba(202, 82, 237, 0.3);
+            box-shadow: 0 8px 15px rgba(147, 51, 234, 0.4);
         }
         .tab-btn.active .price-badge {
             background-color: #fff;
-            color: #ca52ed;
+            color: #7e22ce;
         }
 
         .purple-pill {
-            background: linear-gradient(90deg, #ca52ed, #db74fa);
+            background: linear-gradient(90deg, #9333ea, #c084fc);
             color: white;
             border-radius: 1rem;
             padding: 8px 15px;
@@ -92,7 +114,7 @@
             font-weight: bold;
         }
         .purple-pill-dashed {
-            background: linear-gradient(90deg, #ca52ed, #db74fa);
+            background: linear-gradient(90deg, #9333ea, #c084fc);
             padding: 3px;
             border-radius: 1.2rem;
             position: relative;
@@ -109,13 +131,13 @@
         }
 
         .btn-add {
-            background: #5bc2e7; color: #fff; 
+            background: #38bdf8; color: #fff; 
             border: none; border-radius: 8px;
             width: 32px; height: 32px; font-size: 20px; cursor: pointer; display: inline-flex;
             align-items: center; justify-content: center; transition: all 0.2s; font-weight: bold;
             line-height: 1;
         }
-        .btn-add:hover { transform: scale(1.15) rotate(5deg); background: #3caeda; }
+        .btn-add:hover { transform: scale(1.15) rotate(5deg); background: #0ea5e9; }
 
         @keyframes wiggleCart {
             0%, 100% { transform: rotate(0deg); }
@@ -127,42 +149,42 @@
             position: fixed; bottom: 30px; right: 20px; z-index: 990;
             background: #fff; color: var(--c-purple-dark); border-radius: 50%;
             width: 70px; height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15); border: 3px solid #ca52ed; cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25); border: 3px solid #c084fc; cursor: pointer; transition: all 0.3s;
         }
         .floating-cart:hover { transform: scale(1.1) translateY(-5px); animation: wiggleCart 0.6s ease-in-out; }
         .cart-count {
-            position: absolute; top: -6px; right: -6px; background: #f8a2f5; color: #fff;
+            position: absolute; top: -6px; right: -6px; background: #f472b6; color: #fff;
             font-size: 13px; font-weight: bold; width: 26px; height: 26px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .form-group { margin-bottom: 16px; text-align: left; }
         .form-group label { display: block; font-size: 15px; color: var(--c-purple-dark); margin-bottom: 6px; font-weight: bold; }
         .form-control {
-            width: 100%; padding: 12px 14px; background: #fff; border: 2px solid #eab8f5; border-radius: 1rem;
+            width: 100%; padding: 12px 14px; background: #fff; border: 2px solid #e9d5ff; border-radius: 1rem;
             color: var(--c-text-main); font-family: 'Cloud', 'Kanit', sans-serif; font-size: 15px; outline: none; transition: all 0.2s;
         }
-        .form-control:focus { border-color: #ca52ed; box-shadow: 0 0 0 4px rgba(202, 82, 237, 0.15); transform: translateY(-1px); }
+        .form-control:focus { border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2); transform: translateY(-1px); }
         
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
             font-family: 'Cloud', 'Kanit', sans-serif; font-size: 18px; color: #fff; font-weight: bold;
-            background: linear-gradient(90deg, #ca52ed, #db74fa); box-shadow: 0 4px 10px rgba(202,82,237,0.3); transition: all 0.2s; margin-top: 10px;
+            background: linear-gradient(90deg, #9333ea, #c084fc); box-shadow: 0 4px 10px rgba(147, 51, 234, 0.3); transition: all 0.2s; margin-top: 10px;
         }
-        .btn-action:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(202,82,237,0.4); }
+        .btn-action:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(147, 51, 234, 0.4); }
 
         @keyframes spin-pause { 0% { transform: rotate(0deg); } 15% { transform: rotate(360deg); } 100% { transform: rotate(360deg); } }
         .btn-admin {
             position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
             background: #fff; font-size: 20px; cursor: pointer; border:none;
             z-index: 99; display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1); animation: spin-pause 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15); animation: spin-pause 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .modal-overlay {
-            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(3px); 
+            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(3px); 
             z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center;
         }
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -170,8 +192,8 @@
 
         .toast {
             position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px);
-            background: #4a3b52; color: white; padding: 14px 28px; border-radius: 40px; 
-            font-size: 16px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.2);
+            background: #3b1159; color: white; padding: 14px 28px; border-radius: 40px; 
+            font-size: 16px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.3);
             transition: transform .4s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff; font-weight: bold;
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
@@ -194,7 +216,7 @@
     </div>
 
     <!-- Loading Screen -->
-    <div id="loading-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] hidden flex-col items-center justify-center">
+    <div id="loading-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99999] hidden flex-col items-center justify-center">
         <div class="text-6xl animate-spin mb-5">🪄</div>
         <div class="text-white font-bold text-xl tracking-wide">กำลังเตรียมตะกร้าเวทมนตร์...</div>
     </div>
@@ -204,33 +226,32 @@
         <!-- ปุ่ม Admin -->
         <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
 
-        <!-- 1. Profile Card (ดีไซน์ใหม่ ซ้าย-ขวา แบบนามบัตรพรีเมียม สโลแกนอยู่ล่าง) -->
+        <!-- 1. Profile Card (โลโก้มีขอบเรืองแสง + ชื่อร้านไล่สีวิ่ง) -->
         <div class="card-main p-6 mb-5 relative">
-            <!-- จัดวางเลย์เอาต์ ซ้าย (โลโก้) ขวา (ชื่อร้าน) -->
             <div class="flex items-center gap-4 mb-3 text-left">
-                <div class="w-[75px] h-[75px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden shadow-sm border-2 border-[#f3e8ff]">
+                <div class="w-[75px] h-[75px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden logo-glow">
                     <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
                 </div>
                 <div class="flex-1 min-w-0">
-                    <h1 class="text-[28px] sm:text-[32px] mb-0 gradient-text font-seasons font-bold truncate leading-tight" id="display-shop-name">Ah Tao Mu-space</h1>
-                    <a href="#" id="link-review" target="_blank" class="inline-block text-[#8e3dae] font-bold text-[12px] bg-[#fbf3fc] border border-[#eab8f5] px-3 py-0.5 rounded-full mt-1 hover:bg-[#f6e6f9] transition-colors">
+                    <h1 class="text-[28px] sm:text-[32px] mb-0 animated-gradient-text font-seasons font-bold truncate leading-tight" id="display-shop-name">Ah Tao Mu-space</h1>
+                    <a href="#" id="link-review" target="_blank" class="inline-block text-[#7e22ce] font-bold text-[12px] bg-[#f3e8ff] border border-[#d8b4fe] px-3 py-0.5 rounded-full mt-1 hover:bg-[#e9d5ff] transition-colors shadow-sm">
                         ✨ ดูรีวิวทั้งหมด
                     </a>
                 </div>
             </div>
 
-            <!-- สโลแกนอยู่ด้านล่าง ตรงกลาง -->
-            <p class="text-[14px] mb-4 font-seasons font-bold text-[#6b21a8] text-center" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
+            <!-- สโลแกน -->
+            <p class="text-[14px] mb-4 font-seasons font-bold text-[#7e22ce] text-center" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
 
-            <!-- ปุ่มติดต่อแนวนอนแถวเดียว 3 ปุ่ม -->
+            <!-- ช่องทางติดต่อ (ปรับสีให้เข้ากับธีมม่วง-พาสเทล) -->
             <div class="grid grid-cols-3 gap-2">
-                <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#5bc2e7] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
+                <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#0284c7] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
                     <i class="fa-brands fa-facebook-messenger text-[18px]"></i> Facebook
                 </a>
-                <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#8cc63f] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
+                <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#16a34a] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
                     <i class="fa-brands fa-line text-[18px]"></i> Line
                 </a>
-                <a href="#" id="link-ig" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
+                <a href="#" id="link-ig" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-tr from-[#9333ea] via-[#db2777] to-[#f97316] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
                     <i class="fa-brands fa-instagram text-[18px]"></i> Instagram
                 </a>
             </div>
@@ -243,22 +264,22 @@
             </div>
         </div>
 
-        <!-- 3. Tabs Navigation (รวมราคาเริ่มต้นไว้ในปุ่มแล้ว) -->
+        <!-- 3. Tabs Navigation -->
         <div class="flex gap-2 justify-center mb-6">
             <button class="tab-btn w-1/3 active" id="btn-tab-1" onclick="switchTab(1)">
                 <span class="text-[26px] mb-0 leading-none">🔮</span>
                 <span class="font-bold text-[16px] mt-1">ดูดวง</span>
-                <span class="price-badge text-[11px] font-bold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mt-1.5 border border-pink-100">เริ่ม 29.-</span>
+                <span class="price-badge text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full mt-1.5 border border-purple-200">เริ่ม 29.-</span>
             </button>
             <button class="tab-btn w-1/3" id="btn-tab-2" onclick="switchTab(2)">
                 <span class="text-[22px] mb-0 leading-none mt-1">📱</span>
                 <span class="font-bold text-[16px] mt-1">วอลเปเปอร์</span>
-                <span class="price-badge text-[11px] font-bold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mt-1.5 border border-pink-100">เริ่ม 189.-</span>
+                <span class="price-badge text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full mt-1.5 border border-purple-200">เริ่ม 189.-</span>
             </button>
             <button class="tab-btn w-1/3" id="btn-tab-3" onclick="switchTab(3)">
                 <span class="text-[22px] mb-0 leading-none mt-1">💻</span>
                 <span class="font-bold text-[16px] mt-1">เว็บไซต์</span>
-                <span class="price-badge text-[11px] font-bold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mt-1.5 border border-pink-100">เริ่ม 99.-</span>
+                <span class="price-badge text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full mt-1.5 border border-purple-200">เริ่ม 99.-</span>
             </button>
         </div>
 
@@ -269,48 +290,48 @@
                 <div class="purple-pill-dashed max-w-[260px] mx-auto shadow-md mb-[-15px] relative z-10 hover:scale-105 transition-transform">
                     <div class="purple-pill-inner text-[18px]">📖 วิธีใช้งาน</div>
                 </div>
-                <div class="card-main p-6 pt-8 mb-8 text-left text-[#8e3dae] text-[15px] leading-relaxed relative">
+                <div class="card-main p-6 pt-8 mb-8 text-left text-[#7e22ce] text-[15px] leading-relaxed relative">
                     <div class="mb-3">1. กดเลือกหมวดหมู่สินค้าด้านบน <br><span class="text-[13px] opacity-80">(ดูดวง, วอลเปเปอร์, เว็บไซต์)</span></div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
-                    <div class="mb-3">2. กดปุ่ม <span class="bg-[#5bc2e7] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
+                    <div class="mb-3">2. กดปุ่ม <span class="bg-[#38bdf8] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
                     <div class="mb-3">3. เมื่อเลือกครบแล้วกด <span class="font-bold">ไอคอนตะกร้า</span> มุมขวาล่าง จะมีหน้าต่างเด้งขึ้นมาให้กรอกข้อมูล</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
                     <div class="mb-3">4. โอนเงินตามยอดรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
                     <div class="mb-3">5. กด "สร้างข้อความสรุป"</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
                     <div>6. กดปุ่มส่งทาง Line/FB/IG ข้อความจะถูกก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖</div>
                 </div>
 
                 <div class="purple-pill-dashed max-w-[260px] mx-auto shadow-md mb-[-15px] relative z-10 hover:scale-105 transition-transform">
                     <div class="purple-pill-inner text-[18px]">📌 กฎของร้าน</div>
                 </div>
-                <div class="card-main p-6 pt-8 mb-4 text-left text-[#8e3dae] text-[15px] leading-relaxed relative">
+                <div class="card-main p-6 pt-8 mb-4 text-left text-[#7e22ce] text-[15px] leading-relaxed relative">
                     <div class="text-center mb-4 text-[14px]">(อ่านก่อนน้า เพื่อความสบายใจทั้งสองฝ่ายค่ะ)</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-4"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
 
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6e289c]">กฎทั่วไป :</div>
-                    <div class="mb-4 pl-1">ชำระเงินแล้วขอสงวนสิทธิ์ไม่คืนเงินทุกกรณี<br>รบกวน <span class="font-bold text-[#6e289c]">งดจิก งดเร่งน้า</span> เราตั้งใจทำทุกคิว จะรีบส่งมอบให้เร็วที่สุดค่ะ</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-4"></div>
+                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">กฎทั่วไป :</div>
+                    <div class="mb-4 pl-1">ชำระเงินแล้วขอสงวนสิทธิ์ไม่คืนเงินทุกกรณี<br>รบกวน <span class="font-bold text-[#6b21a8]">งดจิก งดเร่งน้า</span> เราตั้งใจทำทุกคิว จะรีบส่งมอบให้เร็วที่สุดค่ะ</div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
 
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6e289c]">โทรดูดวง & ฮีลใจ :</div>
+                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">โทรดูดวง & ฮีลใจ :</div>
                     <div class="mb-4 pl-1">รบกวนตรงต่อเวลาคิวนะคะ หากต้องการเลื่อนต้องแจ้งล่วงหน้า <span class="text-[13px] opacity-80">(หากเลื่อนกะทันหันก่อนเวลาโทรจริง ขออนุญาตปรับครั้งละ 100 บาทค่า)</span></div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-4"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
 
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6e289c]">ดูดวงแบบพิมพ์ :</div>
-                    <div class="mb-4 pl-1">รบกวนเช็กข้อมูลให้ครบถ้วน โดยเฉพาะ <span class="font-bold text-[#6e289c]">"เดือนเกิด"</span> นะคะ เพื่อป้องกันระบบแจ้งเตือนว่ากรอกข้อมูลไม่ครบค่ะ</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-4"></div>
+                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">ดูดวงแบบพิมพ์ :</div>
+                    <div class="mb-4 pl-1">รบกวนเช็กข้อมูลให้ครบถ้วน โดยเฉพาะ <span class="font-bold text-[#6b21a8]">"เดือนเกิด"</span> นะคะ เพื่อป้องกันระบบแจ้งเตือนว่ากรอกข้อมูลไม่ครบค่ะ</div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
 
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6e289c]">วอลเปเปอร์ :</div>
+                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">วอลเปเปอร์ :</div>
                     <div class="mb-4 pl-1">ระยะเวลาจัดทำ 3-7 วัน <span class="text-[13px] opacity-80">(หากต้องการงานด่วน +ค่าเร่ง รับงานได้ภายใน 1-2 วันค่า)</span><br>รบกวนส่งบรีฟให้ครบก่อนเริ่มงานนะคะ</div>
-                    <div class="border-b-2 border-dashed border-[#eab8f5] mb-4"></div>
+                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
 
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6e289c]">เว็บไซต์ :</div>
+                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">เว็บไซต์ :</div>
                     <div class="mb-2 pl-1">รบกวนส่งข้อมูลและรูปให้ครบก่อนเริ่มงาน สามารถแก้ดีไซน์ได้ตามจำนวนครั้งที่ตกลงกันไว้ค่ะ</div>
                 </div>
                 
-                <div class="text-[#4c1d95] text-center font-bold mt-2 text-[16px] animate-pulse">
+                <div class="text-white text-center font-bold mt-2 text-[16px] animate-pulse">
                     👇 กดเลือกหมวดหมู่สินค้าด้านบนเพื่อเริ่มสั่งซื้อได้เลยค่ะ 👇
                 </div>
             </div>
@@ -320,47 +341,45 @@
     </main>
 
     <!-- 🔮 ป๊อปอัป (Modal) ตะกร้าสินค้าและการชำระเงิน -->
-    <div id="checkout-modal-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
+    <div id="checkout-modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
         <div class="checkout-popup bg-[#fdfcff] w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-2xl">
-            <!-- ปุ่มปิด Modal -->
-            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-[#fbf3fc] text-[#ca52ed] border-2 border-[#eab8f5] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#ca52ed] hover:text-white hover:border-[#ca52ed] transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-[#f3e8ff] text-[#9333ea] border-2 border-[#d8b4fe] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#9333ea] hover:text-white hover:border-[#9333ea] transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
             
             <div id="checkout-scroll-area">
                 <div class="purple-pill text-[18px] mb-5 mr-8 inline-block px-6">📦 รายการในตะกร้า</div>
                 <div id="cart-items-list" class="text-[15px] mb-4 text-left px-2"></div>
                 
-                <div class="mb-5 bg-[#fbf3fc] p-3 rounded-2xl border-2 dashed border-[#eab8f5] transition-colors hover:border-[#ca52ed] text-left">
-                    <label class="text-[15px] text-[#8e3dae] cursor-pointer flex items-center gap-2 font-bold">
-                        <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#ca52ed; width:20px; height:20px;"> 
+                <div class="mb-5 bg-[#f3e8ff] p-3 rounded-2xl border-2 dashed border-[#d8b4fe] transition-colors hover:border-[#9333ea] text-left">
+                    <label class="text-[15px] text-[#7e22ce] cursor-pointer flex items-center gap-2 font-bold">
+                        <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#9333ea; width:20px; height:20px;"> 
                         ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
                     </label>
                 </div>
 
-                <div class="border-2 border-[#ca52ed] rounded-xl text-[18px] text-[var(--c-text-main)] mb-6 text-center p-4 bg-white font-bold shadow-md transform hover:scale-[1.02] transition-transform">
-                    ยอดรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#ca52ed] text-[32px]">0</span> บาท
+                <div class="border-2 border-[#9333ea] rounded-xl text-[18px] text-[var(--c-text-main)] mb-6 text-center p-4 bg-white font-bold shadow-md transform hover:scale-[1.02] transition-transform">
+                    ยอดรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#9333ea] text-[32px]">0</span> บาท
                 </div>
 
-                <!-- ส่วนฟอร์มโอนเงิน -->
-                <div id="checkout-form-area" class="border-t-2 border-dashed border-[#eab8f5] pt-6 mt-2 text-left">
+                <div id="checkout-form-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left">
                     <div class="purple-pill text-[18px] mb-5 inline-block px-6">💳 โอนเงิน & กรอกข้อมูล</div>
                     
-                    <div class="border-2 border-[#5bc2e7] rounded-xl shadow-[3px_3px_0px_#5bc2e7] p-5 text-center mb-4 bg-white hover:-translate-y-1 transition-transform">
+                    <div class="border-2 border-[#38bdf8] rounded-xl shadow-[3px_3px_0px_#38bdf8] p-5 text-center mb-4 bg-white hover:-translate-y-1 transition-transform">
                         <div class="text-[14px] text-[var(--c-text-sub)]">ธนาคารกสิกรไทย (KBank)</div>
-                        <div class="text-[17px] text-[#8e3dae] font-bold my-1" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
-                        <span class="block text-[30px] tracking-widest text-[#5bc2e7] font-bold my-2" id="display-kbank-num">1961933834</span>
-                        <button class="bg-[#5bc2e7] text-white px-5 py-2.5 rounded-xl text-[15px] font-bold hover:bg-[#3caeda] transition-colors shadow-sm" onclick="copyNum('kbank')">📋 คัดลอกเลขบัญชี</button>
+                        <div class="text-[17px] text-[#7e22ce] font-bold my-1" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
+                        <span class="block text-[30px] tracking-widest text-[#0284c7] font-bold my-2" id="display-kbank-num">1961933834</span>
+                        <button class="bg-[#38bdf8] text-white px-5 py-2.5 rounded-xl text-[15px] font-bold hover:bg-[#0ea5e9] transition-colors shadow-sm" onclick="copyNum('kbank')">📋 คัดลอกเลขบัญชี</button>
                     </div>
 
-                    <div class="border-2 border-[#f39c12] rounded-xl shadow-[3px_3px_0px_#f39c12] p-5 text-center mb-6 bg-white hover:-translate-y-1 transition-transform">
+                    <div class="border-2 border-[#f59e0b] rounded-xl shadow-[3px_3px_0px_#f59e0b] p-5 text-center mb-6 bg-white hover:-translate-y-1 transition-transform">
                         <div class="text-[14px] text-[var(--c-text-sub)]">TrueMoney Wallet</div>
-                        <span class="block text-[30px] tracking-widest text-[#f39c12] font-bold my-2" id="display-wallet-num">0800172584</span>
-                        <button class="bg-[#f39c12] text-white px-5 py-2.5 rounded-xl text-[15px] font-bold hover:bg-[#d68910] transition-colors shadow-sm" onclick="copyNum('wallet')">📋 คัดลอกเบอร์</button>
+                        <span class="block text-[30px] tracking-widest text-[#d97706] font-bold my-2" id="display-wallet-num">0800172584</span>
+                        <button class="bg-[#f59e0b] text-white px-5 py-2.5 rounded-xl text-[15px] font-bold hover:bg-[#d97706] transition-colors shadow-sm" onclick="copyNum('wallet')">📋 คัดลอกเบอร์</button>
                     </div>
 
-                    <div class="form-group bg-[#fbf3fc] p-3 rounded-xl border border-[#eab8f5] transition-colors hover:border-[#ca52ed]">
-                        <label class="text-[14px] text-[#8e3dae] cursor-pointer flex items-start gap-2 leading-relaxed mb-0 font-bold">
-                            <input type="checkbox" id="confirm-pay" class="req-check" style="accent-color:#ca52ed; width:22px; height:22px; margin-top:2px;">
-                            <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว<br><span class="text-pink-500">(ต้องแนบสลิปในแชทให้แอดมินด้วยนะคะ) *</span></span>
+                    <div class="form-group bg-[#f3e8ff] p-3 rounded-xl border border-[#d8b4fe] transition-colors hover:border-[#9333ea]">
+                        <label class="text-[14px] text-[#7e22ce] cursor-pointer flex items-start gap-2 leading-relaxed mb-0 font-bold">
+                            <input type="checkbox" id="confirm-pay" class="req-check" style="accent-color:#9333ea; width:22px; height:22px; margin-top:2px;">
+                            <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว<br><span class="text-pink-600">(ต้องแนบสลิปในแชทให้แอดมินด้วยนะคะ) *</span></span>
                         </label>
                     </div>
 
@@ -370,7 +389,7 @@
                             <label>เวลาที่โอน *</label>
                             <div class="flex items-center gap-2">
                                 <input type="time" id="f-transfer-time" class="form-control req-field text-sm" style="flex:1;">
-                                <button type="button" onclick="setNowTime()" class="bg-white text-[#ca52ed] border-2 border-[#ca52ed] px-3 py-[10px] rounded-xl text-[14px] font-bold shadow-sm hover:bg-[#ca52ed] hover:text-white transition-colors whitespace-nowrap">⏳ โอนเมื่อกี้</button>
+                                <button type="button" onclick="setNowTime()" class="bg-white text-[#9333ea] border-2 border-[#9333ea] px-3 py-[10px] rounded-xl text-[14px] font-bold shadow-sm hover:bg-[#9333ea] hover:text-white transition-colors whitespace-nowrap">⏳ โอนเมื่อกี้</button>
                             </div>
                         </div>
                     </div>
@@ -381,23 +400,23 @@
                     </div>
 
                     <!-- Dynamic Forms inside Modal -->
-                    <div id="form-chat-options" style="display:none; background:#fbf3fc; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
+                    <div id="form-chat-options" style="display:none; background:#f3e8ff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
                         <div class="form-group" id="delivery-type-group">
                             <label>เลือกรูปแบบการรับงาน *</label>
                             <div class="flex gap-4 mt-2">
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#8e3dae]"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#ca52ed; width:20px; height:20px;"> แบบพิมพ์</label>
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#8e3dae]"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#ca52ed; width:20px; height:20px;"> แบบอัดเสียง</label>
+                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบพิมพ์</label>
+                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบอัดเสียง</label>
                             </div>
                         </div>
-                        <div class="form-group" id="card-option-group" style="margin-bottom:0; background:#fff; padding:12px; border-radius:10px; border:1px solid #eab8f5;">
-                            <label class="flex items-center gap-2 cursor-pointer text-[#8e3dae] mb-0 font-bold">
-                                <input type="checkbox" id="f-card-opt" style="width:20px; height:20px; accent-color:#ca52ed;"> รับหน้าไพ่ด้วย
+                        <div class="form-group" id="card-option-group" style="margin-bottom:0; background:#fff; padding:12px; border-radius:10px; border:1px solid #d8b4fe;">
+                            <label class="flex items-center gap-2 cursor-pointer text-[#7e22ce] mb-0 font-bold">
+                                <input type="checkbox" id="f-card-opt" style="width:20px; height:20px; accent-color:#9333ea;"> รับหน้าไพ่ด้วย
                             </label>
                         </div>
                     </div>
 
-                    <div id="form-personal" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
+                    <div id="form-personal" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
                         <div class="form-group" id="field-status-box">
                             <label>สถานะความสัมพันธ์ *</label>
@@ -424,12 +443,12 @@
                         </div>
                     </div>
 
-                    <div id="form-questions" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
+                    <div id="form-questions" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">💬 คำถามดูดวง</div>
                         <div id="dynamic-questions"></div>
                     </div>
 
-                    <div id="form-wall" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
+                    <div id="form-wall" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">🎨 ข้อมูลทำวอลเปเปอร์</div>
                         <div class="form-group">
                             <label>ชื่อที่ใส่ในวอล (ไม่บังคับ)</label>
@@ -463,16 +482,16 @@
                         <div id="wall-extra-container"></div>
                     </div>
 
-                    <div id="form-appt" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
+                    <div id="form-appt" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">📅 จองเวลา (สำหรับคอล)</div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="form-group mb-0"><label>วันที่จอง *</label><input type="date" id="f-appt-date" class="form-control text-sm"></div>
                             <div class="form-group mb-0"><label>เวลาที่จอง *</label><input type="time" id="f-appt-time" class="form-control text-sm" onchange="calculateEndTime()"></div>
                         </div>
-                        <div id="end-time-display" class="mt-4 text-[15px] text-[var(--c-purple-dark)] font-bold text-center bg-[#fbf3fc] p-2.5 rounded-lg border border-[#eab8f5]" style="display:none;"></div>
+                        <div id="end-time-display" class="mt-4 text-[15px] text-[var(--c-purple-dark)] font-bold text-center bg-[#f3e8ff] p-2.5 rounded-lg border border-[#d8b4fe]" style="display:none;"></div>
                     </div>
 
-                    <div id="form-web" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
+                    <div id="form-web" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">💻 ข้อมูลรับทำเว็บไซต์</div>
                         <div class="form-group mb-0">
                             <label>ชื่อร้าน / รูปแบบเว็บไซต์คร่าวๆ *</label>
@@ -484,23 +503,23 @@
                 </div>
 
                 <!-- ส่วนแสดงผลสรุป -->
-                <div id="summary-area" class="border-t-2 border-dashed border-[#eab8f5] pt-6 mt-2 text-left" style="display:none;">
+                <div id="summary-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left" style="display:none;">
                     <div class="text-[24px] text-[var(--c-purple-dark)] font-bold mb-2 text-center">🎉 สรุปยอดเรียบร้อย!</div>
                     
-                    <div class="text-[16px] text-pink-500 font-bold mb-4 mt-4 text-center bg-[#fdf2f8] p-3 rounded-xl border border-pink-200 shadow-sm animate-pulse">
+                    <div class="text-[16px] text-pink-600 font-bold mb-4 mt-4 text-center bg-[#fdf2f8] p-3 rounded-xl border border-pink-200 shadow-sm animate-pulse">
                         🚨 อย่าลืมแนบสลิปให้แอดมินด้วยน้า 📸
                     </div>
 
-                    <div class="text-[14px] text-[#8e3dae] mb-4 text-center bg-[#fbf3fc] p-2 rounded-xl border border-[#eab8f5]">ตรวจสอบข้อมูลให้เป๊ะ แล้วกดส่งได้เลยค่ะ ✨</div>
+                    <div class="text-[14px] text-[#7e22ce] mb-4 text-center bg-[#f3e8ff] p-2 rounded-xl border border-[#d8b4fe]">ตรวจสอบข้อมูลให้เป๊ะ แล้วกดส่งได้เลยค่ะ ✨</div>
                     
                     <div class="form-group">
-                        <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:14px; background:#fff; border-color:#ca52ed; line-height:1.6;"></textarea>
+                        <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:14px; background:#fff; border-color:#9333ea; line-height:1.6;"></textarea>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <button class="bg-[#5bc2e7] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> ส่ง FB</button>
-                        <button class="bg-[#8cc63f] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> ส่ง LINE</button>
-                        <button class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> ส่ง IG</button>
+                        <button class="bg-[#0284c7] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> ส่ง FB</button>
+                        <button class="bg-[#16a34a] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> ส่ง LINE</button>
+                        <button class="bg-gradient-to-tr from-[#9333ea] via-[#db2777] to-[#f97316] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> ส่ง IG</button>
                     </div>
                 </div>
 
@@ -508,36 +527,44 @@
         </div>
     </div>
 
-    <!-- Admin Modal -->
+    <!-- Admin Modal (ปรับ UI หลังบ้านให้มีสัดส่วน ย่อหน้า อ่านง่าย ไม่ยาวพรืด) -->
     <div id="admin-modal" class="modal-overlay">
-        <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#ca52ed] shadow-xl relative max-h-[90vh] flex flex-col text-left">
-            <div class="flex justify-between items-center border-b-2 dashed border-[#eab8f5] pb-3 mb-4">
-                <h2 class="text-[#ca52ed] m-0 text-xl font-bold">🔮 ระบบหลังบ้าน (Admin)</h2>
-                <button onclick="closeAdmin()" class="bg-transparent border-none text-[var(--c-text-sub)] text-3xl cursor-pointer hover:text-red-500">&times;</button>
+        <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#9333ea] shadow-xl relative max-h-[90vh] flex flex-col text-left">
+            <div class="flex justify-between items-center border-b-2 dashed border-[#d8b4fe] pb-3 mb-4">
+                <h2 class="text-[#9333ea] m-0 text-xl font-bold">🔮 ระบบหลังบ้าน (Admin)</h2>
+                <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-500 text-3xl cursor-pointer hover:text-red-500">&times;</button>
             </div>
-            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4">
+            
+            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-5">
                 
-                <div class="bg-[#fbf3fc] p-4 rounded-2xl border border-[#eab8f5] mb-5">
-                    <h4 class="text-[#8e3dae] mt-0 mb-3 text-[16px] font-bold">📝 ตั้งค่าร้านค้าทั่วไป</h4>
-                    <div class="form-group"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
-                    <div class="form-group"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
-                    <div class="form-group"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2" placeholder="ใส่ลิงก์เว็บรีวิว (ถ้ามี)"></div>
-                    <div class="form-group"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-2"></div>
-                    <div class="form-group"><label>ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-2"></div>
-                    <div class="form-group"><label>ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-2"></div>
-                    <div class="form-group"><label>ลิงก์ Instagram</label><input type="text" id="cfg-igLink" class="form-control py-2" placeholder="ใส่ URL ของหน้า IG"></div>
-                    <div class="form-group"><label>ชื่อบัญชี กสิกร</label><input type="text" id="cfg-kbankName" class="form-control py-2"></div>
-                    <div class="form-group"><label>เลขบัญชี กสิกร</label><input type="text" id="cfg-kbankNum" class="form-control py-2"></div>
-                    <div class="form-group"><label>เบอร์ TrueMoney</label><input type="text" id="cfg-walletNum" class="form-control py-2"></div>
-                    <div class="form-group"><label>ลิงก์ตัวอย่าง วอลเปเปอร์</label><input type="text" id="cfg-sampleWall" class="form-control py-2" placeholder="ใส่ลิงก์ Google Drive"></div>
-                    <div class="form-group"><label>ลิงก์ตัวอย่าง เว็บไซต์</label><input type="text" id="cfg-sampleWeb" class="form-control py-2" placeholder="ใส่ลิงก์ Google Drive"></div>
+                <!-- กล่องที่ 1: ตั้งค่าร้านค้า -->
+                <div class="bg-[#f3e8ff] p-4 rounded-2xl border border-[#d8b4fe] shadow-sm">
+                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[16px] font-bold border-b border-[#d8b4fe] pb-2">📝 1. ตั้งค่าข้อมูลร้านทั่วไป</h4>
+                    <div class="space-y-3">
+                        <div class="form-group mb-0"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2" placeholder="ใส่ลิงก์เว็บรีวิว (ถ้ามี)"></div>
+                        <div class="form-group mb-0"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ Instagram</label><input type="text" id="cfg-igLink" class="form-control py-2" placeholder="ใส่ URL ของหน้า IG"></div>
+                        <div class="form-group mb-0"><label>ชื่อบัญชี กสิกร</label><input type="text" id="cfg-kbankName" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>เลขบัญชี กสิกร</label><input type="text" id="cfg-kbankNum" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>เบอร์ TrueMoney</label><input type="text" id="cfg-walletNum" class="form-control py-2"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ตัวอย่าง วอลเปเปอร์</label><input type="text" id="cfg-sampleWall" class="form-control py-2" placeholder="ใส่ลิงก์ Google Drive"></div>
+                        <div class="form-group mb-0"><label>ลิงก์ตัวอย่าง เว็บไซต์</label><input type="text" id="cfg-sampleWeb" class="form-control py-2" placeholder="ใส่ลิงก์ Google Drive"></div>
+                    </div>
                 </div>
 
-                <h4 class="text-[#8e3dae] mt-0 mb-3 text-[16px] font-bold">📦 จัดการสินค้าและราคา</h4>
-                <div id="admin-products-list"></div>
+                <!-- กล่องที่ 2: จัดการสินค้าและราคา -->
+                <div class="bg-[#f3e8ff] p-4 rounded-2xl border border-[#d8b4fe] shadow-sm">
+                    <h4 class="text-[#7e22ce] mt-0 mb-3 text-[16px] font-bold border-b border-[#d8b4fe] pb-2">📦 2. จัดการสินค้าและราคา</h4>
+                    <div id="admin-products-list" class="space-y-4"></div>
+                </div>
 
             </div>
-            <div class="flex gap-2 border-t-2 dashed border-[#eab8f5] pt-4">
+
+            <div class="flex gap-2 border-t-2 dashed border-[#d8b4fe] pt-4">
                 <button onclick="saveAdmin()" class="btn-action m-0 flex-[2]">💾 บันทึกทั้งหมด</button>
                 <button onclick="resetAdmin()" class="btn-action m-0 flex-1 !bg-red-400 !shadow-none">⚠️ รีเซ็ต</button>
             </div>
@@ -705,24 +732,24 @@
                         <div class="purple-pill text-[18px] mb-4">${group.title}</div>`;
             
             if (group.category === "วอลเปเปอร์" && shopSettings.sampleWallLink) {
-                html += `<a href="${shopSettings.sampleWallLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fbf3fc] border-2 border-dashed border-[#ca52ed] text-[#8e3dae] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#f6e6f9] text-[15px] transition-colors decoration-none">🖼️ ดูตัวอย่างวอลเปเปอร์คลิกที่นี่</a>`;
+                html += `<a href="${shopSettings.sampleWallLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#f3e8ff] border-2 border-dashed border-[#9333ea] text-[#7e22ce] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#e9d5ff] text-[15px] transition-colors decoration-none">🖼️ ดูตัวอย่างวอลเปเปอร์คลิกที่นี่</a>`;
             }
             if (group.category === "รับทำเว็บไซต์" && shopSettings.sampleWebLink) {
-                html += `<a href="${shopSettings.sampleWebLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fbf3fc] border-2 border-dashed border-[#ca52ed] text-[#8e3dae] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#f6e6f9] text-[15px] transition-colors decoration-none">💻 ดูตัวอย่างเว็บไซต์คลิกที่นี่</a>`;
+                html += `<a href="${shopSettings.sampleWebLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#f3e8ff] border-2 border-dashed border-[#9333ea] text-[#7e22ce] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#e9d5ff] text-[15px] transition-colors decoration-none">💻 ดูตัวอย่างเว็บไซต์คลิกที่นี่</a>`;
             }
 
             group.items.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 
                 let badgeHtml = '';
-                if (item.name.includes('15 นาที')) badgeHtml = '<span class="bg-red-100 text-red-500 border border-red-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">🔥 ขายดี</span>';
-                else if (item.name.includes('พื้นดวง')) badgeHtml = '<span class="bg-blue-100 text-blue-500 border border-blue-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">✨ มาใหม่</span>';
-                else if (item.name.includes('3 คำถาม')) badgeHtml = '<span class="bg-yellow-100 text-yellow-600 border border-yellow-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">⭐ แนะนำ</span>';
+                if (item.name.includes('15 นาที')) badgeHtml = '<span class="bg-red-100 text-red-600 border border-red-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">🔥 ขายดี</span>';
+                else if (item.name.includes('พื้นดวง')) badgeHtml = '<span class="bg-blue-100 text-blue-600 border border-blue-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">✨ มาใหม่</span>';
+                else if (item.name.includes('3 คำถาม')) badgeHtml = '<span class="bg-yellow-100 text-yellow-700 border border-yellow-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">⭐ แนะนำ</span>';
 
-                html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#eab8f5] hover:bg-[#fbf3fc] transition-colors rounded-lg px-2">
-                            <span class="text-[15px] text-[#8e3dae] flex-1 pr-2 leading-relaxed flex flex-wrap items-center">${item.name} ${badgeHtml}</span>
+                html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#d8b4fe] hover:bg-[#f3e8ff] transition-colors rounded-lg px-2">
+                            <span class="text-[15px] text-[#7e22ce] flex-1 pr-2 leading-relaxed flex flex-wrap items-center">${item.name} ${badgeHtml}</span>
                             <div class="flex items-center gap-3 shrink-0">
-                                <span class="text-[#8e3dae] font-bold text-[17px]">${item.price}.-</span>
+                                <span class="text-[#7e22ce] font-bold text-[17px]">${item.price}.-</span>
                                 <button class="btn-add shadow-sm" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">+</button>
                             </div>
                         </div>`;
@@ -796,9 +823,9 @@
 
         currentCart.forEach((item, index) => {
             subtotal += item.price;
-            html += `<div class="flex justify-between mb-2 border-b dashed border-[#eab8f5] pb-2 text-[15px] text-[#8e3dae] font-bold items-center hover:bg-gray-50 rounded-lg px-1">
+            html += `<div class="flex justify-between mb-2 border-b dashed border-[#d8b4fe] pb-2 text-[15px] text-[#7e22ce] font-bold items-center hover:bg-gray-50 rounded-lg px-1">
                 <span class="flex-1">- ${item.name}</span> 
-                <span class="text-[#ca52ed] font-bold whitespace-nowrap">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-400 cursor-pointer ml-1 hover:scale-125 transition-transform"><i class="fa-solid fa-circle-xmark"></i></button></span>
+                <span class="text-[#9333ea] font-bold whitespace-nowrap">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-400 cursor-pointer ml-1 hover:scale-125 transition-transform"><i class="fa-solid fa-circle-xmark"></i></button></span>
             </div>`;
             
             if (item.category === 'โทรดูดวง') hasPhone = true;
@@ -826,7 +853,7 @@
 
         if (document.getElementById('urgent-queue').checked) {
             subtotal += 59;
-            html += `<div class="flex justify-between mt-3 text-[#ca52ed] text-[15px] font-bold bg-[#fbf3fc] p-2 rounded-lg border border-[#eab8f5]"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div class="flex justify-between mt-3 text-[#9333ea] text-[15px] font-bold bg-[#f3e8ff] p-2 rounded-lg border border-[#d8b4fe]"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
 
         listEl.innerHTML = html; 
@@ -952,14 +979,14 @@
         baseReq.forEach(id => {
             const el = document.getElementById(id);
             if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; }
-            else { el.style.borderColor = '#eab8f5'; }
+            else { el.style.borderColor = '#d8b4fe'; }
         });
 
         const dynReqs = document.querySelectorAll('.dyn-req');
         dynReqs.forEach(el => {
             if (el.offsetWidth > 0 && el.offsetHeight > 0) {
                 if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; } 
-                else { el.style.borderColor = '#eab8f5'; }
+                else { el.style.borderColor = '#d8b4fe'; }
             }
         });
 
@@ -1157,16 +1184,16 @@
 
         let html = ``;
         productData.forEach((group, gIdx) => {
-            html += `<div class="bg-[#fbf3fc] p-3 rounded-xl mb-4 border border-[#eab8f5]">
-                        <h4 class="m-0 mb-3 text-[15px] font-bold text-[var(--c-purple-dark)]">หมวด ${group.tab}: ${group.title}</h4>`;
+            html += `<div class="bg-white p-3.5 rounded-xl mb-3 border border-[#d8b4fe] shadow-sm">
+                        <h5 class="m-0 mb-2 text-[14px] font-bold text-[#7e22ce] border-b border-[#f3e8ff] pb-1">หมวด ${group.tab}: ${group.title}</h5>`;
             group.items.forEach((item, iIdx) => {
-                html += `<div class="flex gap-2 mb-2">
-                            <input type="text" class="form-control py-1 px-2 flex-[2] text-[14px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
-                            <input type="number" class="form-control py-1 px-2 flex-1 text-[14px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
-                            <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg px-2 text-xs font-bold cursor-pointer hover:bg-red-500">X</button>
+                html += `<div class="flex gap-2 mb-2 items-center">
+                            <input type="text" class="form-control py-1 px-2 flex-[2] text-[13px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
+                            <input type="number" class="form-control py-1 px-2 flex-1 text-[13px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
+                            <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0 flex items-center justify-center">X</button>
                         </div>`;
             });
-            html += `<button onclick="addItem(${gIdx})" class="w-full bg-white border border-dashed border-[var(--c-purple-dark)] text-[var(--c-purple-dark)] py-2 rounded-lg text-[14px] font-bold mt-2 hover:bg-[#fbf3fc] cursor-pointer">+ เพิ่มรายการ</button></div>`;
+            html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#f3e8ff] border border-dashed border-[#9333ea] text-[#7e22ce] py-1.5 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#e9d5ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
         });
         document.getElementById('admin-products-list').innerHTML = html;
     }
