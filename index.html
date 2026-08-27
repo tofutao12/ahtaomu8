@@ -38,7 +38,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* อิโมจิลอยฟรุ้งฟริ้งเป็นฉากหลัง */
         .bg-sparkle {
             position: fixed;
             animation: floatSparkle linear infinite;
@@ -53,10 +52,7 @@
             100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
         }
 
-        .font-seasons {
-            font-family: 'The Seasons', 'Playfair Display', serif;
-        }
-
+        .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
         .gradient-text {
             background: linear-gradient(to right, #2b1d52, #5a349c, #a86cc2, #6db8e6);
             -webkit-background-clip: text;
@@ -72,21 +68,12 @@
             z-index: 10;
         }
 
-        .price-preview-box {
-            border: 2px solid #ca52ed;
-            border-radius: 0.8rem;
-            background-color: #fff;
-            position: relative;
-            transition: transform 0.3s;
-        }
-        .price-preview-box:hover { transform: translateY(-3px) scale(1.02); }
-
         .tab-btn {
             background: #fff;
             border: 2px dashed #ca52ed;
             color: #8e3dae;
-            border-radius: 1rem;
-            padding: 12px 4px;
+            border-radius: 1.2rem;
+            padding: 12px 6px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             line-height: 1.3; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -96,6 +83,10 @@
             color: #fff;
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 8px 15px rgba(202, 82, 237, 0.3);
+        }
+        .tab-btn.active .price-badge {
+            background-color: #fff;
+            color: #ca52ed;
         }
 
         .purple-pill {
@@ -139,7 +130,7 @@
             75% { transform: rotate(-4deg) scale(1.1); }
         }
         .floating-cart {
-            position: fixed; bottom: 30px; right: 20px; z-index: 999;
+            position: fixed; bottom: 30px; right: 20px; z-index: 990;
             background: #fff; color: var(--c-purple-dark); border-radius: 50%;
             width: 70px; height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center;
             box-shadow: 0 6px 20px rgba(0,0,0,0.25); border: 3px solid #ca52ed; cursor: pointer; transition: all 0.3s;
@@ -180,6 +171,11 @@
             display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(3px); 
             z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center;
         }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .checkout-popup {
+            animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
         .toast {
             position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px);
             background: #4a3b52; color: white; padding: 14px 28px; border-radius: 40px; 
@@ -199,57 +195,46 @@
     <div class="bg-sparkle text-3xl" style="left: 70%; animation-duration: 9s; animation-delay: 4s;">🌙</div>
 
     <!-- Floating Cart -->
-    <div class="floating-cart" onclick="scrollToCheckout()" id="cart-float" style="display:none;">
+    <div class="floating-cart" onclick="openCheckoutModal()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
         <span style="font-size:24px; margin-bottom:2px;">🛒</span>
         <span style="font-size: 12px; font-weight: bold;">ตะกร้า</span>
     </div>
 
+    <!-- Loading Screen ให้อารมณ์เวทมนตร์ -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99999] hidden flex-col items-center justify-center">
+        <div class="text-6xl animate-spin mb-5">🪄</div>
+        <div class="text-white font-bold text-xl tracking-wide">กำลังเตรียมตะกร้าเวทมนตร์...</div>
+    </div>
+
     <main class="max-w-[480px] mx-auto pt-6 pb-24 relative px-4">
         
-        <!-- ปุ่ม Admin ซ่อนอยู่ขวาบนสุดของจอ -->
+        <!-- ปุ่ม Admin -->
         <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
 
-        <!-- 1. Profile Card -->
+        <!-- 1. Profile Card (จัดระเบียบใหม่ มินิมอลขึ้น) -->
         <div class="card-main p-6 mb-5 relative">
-            <div class="w-[85px] h-[85px] mx-auto bg-white rounded-full flex items-center justify-center mb-3 relative overflow-hidden shadow-[0_0_15px_rgba(202,82,237,0.25)] border-2 border-white">
+            <div class="w-[90px] h-[90px] mx-auto bg-white rounded-full flex items-center justify-center mb-3 relative overflow-hidden shadow-[0_0_15px_rgba(202,82,237,0.25)] border-2 border-white">
                 <img src="Ahtao Mu-space พื้นขาว.png" alt="AhTao Mu-Space Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
             </div>
             
-            <h1 class="text-[34px] mb-0 gradient-text font-seasons font-bold" id="display-shop-name" style="line-height: 1.2;">Ah Tao Mu-space</h1>
+            <h1 class="text-[36px] mb-0 gradient-text font-seasons font-bold" id="display-shop-name" style="line-height: 1.2;">Ah Tao Mu-space</h1>
+            <p class="text-[15px] mb-3 font-seasons font-bold text-[#62439c]" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
             
-            <p class="text-[15px] mb-5 font-seasons font-bold text-[#62439c]" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
-            
-            <div class="flex justify-between gap-3 mb-6 px-1">
-                <div class="price-preview-box flex-1 py-2 shadow-sm">
-                    <div class="absolute -top-3 -left-3 text-[22px] drop-shadow-sm hover:scale-125 transition-transform cursor-default">🔮</div>
-                    <div class="text-[#8e3dae] text-[13px] font-bold">ดูดวง</div>
-                    <div class="text-[#8e3dae] text-[24px] font-bold leading-none my-1">29.-</div>
-                    <div class="text-[#8e3dae] text-[11px]">เริ่มต้น</div>
-                </div>
-                <div class="price-preview-box flex-1 py-2 shadow-sm">
-                    <div class="absolute -top-3 -left-3 text-[20px] drop-shadow-sm hover:scale-125 transition-transform cursor-default" style="transform: rotate(-10deg);">📱</div>
-                    <div class="text-[#8e3dae] text-[13px] font-bold">วอลเปเปอร์</div>
-                    <div class="text-[#8e3dae] text-[24px] font-bold leading-none my-1">189.-</div>
-                    <div class="text-[#8e3dae] text-[11px]">เริ่มต้น</div>
-                </div>
-                <div class="price-preview-box flex-1 py-2 shadow-sm">
-                    <div class="absolute -top-3 -left-3 text-[20px] drop-shadow-sm hover:scale-125 transition-transform cursor-default">💻</div>
-                    <div class="text-[#8e3dae] text-[13px] font-bold">เว็บไซต์</div>
-                    <div class="text-[#8e3dae] text-[24px] font-bold leading-none my-1">99.-</div>
-                    <div class="text-[#8e3dae] text-[11px]">เริ่มต้น</div>
-                </div>
-            </div>
+            <!-- ปุ่มลิงก์ไปหน้ารีวิว -->
+            <a href="#" id="link-review" target="_blank" class="inline-block bg-[#fbf3fc] border-2 border-[#eab8f5] text-[#8e3dae] font-bold text-[13px] px-5 py-2 rounded-full mb-3 hover:bg-[#f6e6f9] hover:scale-105 transition-all shadow-sm">
+                ✨ ดูรีวิวจากลูกค้าทั้งหมด ✨
+            </a>
 
-            <!-- ปุ่มติดต่อ (อัปเดตเพิ่ม Instagram) -->
-            <div class="flex flex-col gap-2 mt-1">
-                <a href="#" id="link-fb" target="_blank" class="flex items-center justify-center gap-2 bg-[#5bc2e7] text-white py-2.5 rounded-[12px] font-bold text-[17px] tracking-wide hover:scale-[1.02] transition-transform shadow-sm">
-                    <i class="fa-brands fa-facebook-messenger text-[20px]"></i> Messenger
+            <!-- ปุ่มติดต่อแนวนอน 3 ปุ่ม ประหยัดพื้นที่ -->
+            <div class="grid grid-cols-3 gap-2 mt-2 px-2">
+                <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#5bc2e7] text-white py-2 rounded-[14px] font-bold text-[13px] hover:scale-105 transition-transform shadow-sm">
+                    <i class="fa-brands fa-facebook-messenger text-[20px]"></i> Facebook
                 </a>
-                <a href="#" id="link-line" target="_blank" class="flex items-center justify-center gap-2 bg-[#8cc63f] text-white py-2.5 rounded-[12px] font-bold text-[17px] tracking-wide hover:scale-[1.02] transition-transform shadow-sm">
-                    <i class="fa-brands fa-line text-[20px]"></i> Line Official
+                <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#8cc63f] text-white py-2 rounded-[14px] font-bold text-[13px] hover:scale-105 transition-transform shadow-sm">
+                    <i class="fa-brands fa-line text-[20px]"></i> Line
                 </a>
-                <a href="#" id="link-ig" target="_blank" class="flex items-center justify-center gap-2 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white py-2.5 rounded-[12px] font-bold text-[17px] tracking-wide hover:scale-[1.02] transition-transform shadow-sm">
+                <a href="#" id="link-ig" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white py-2 rounded-[14px] font-bold text-[13px] hover:scale-105 transition-transform shadow-sm">
                     <i class="fa-brands fa-instagram text-[20px]"></i> Instagram
                 </a>
             </div>
@@ -262,22 +247,22 @@
             </div>
         </div>
 
-        <!-- 3. Tabs Navigation -->
-        <div class="flex gap-3 justify-center mb-6">
+        <!-- 3. Tabs Navigation (เอาราคามาใส่ไว้ในนี้เลย) -->
+        <div class="flex gap-2 justify-center mb-6">
             <button class="tab-btn w-1/3 active" id="btn-tab-1" onclick="switchTab(1)">
                 <span class="text-[26px] mb-0 leading-none">🔮</span>
                 <span class="font-bold text-[16px] mt-1">ดูดวง</span>
-                <span class="text-[11px] font-light">พิมพ์ / โทร</span>
+                <span class="price-badge text-[11px] font-bold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mt-1.5 border border-pink-100">เริ่ม 29.-</span>
             </button>
             <button class="tab-btn w-1/3" id="btn-tab-2" onclick="switchTab(2)">
                 <span class="text-[22px] mb-0 leading-none mt-1">📱</span>
                 <span class="font-bold text-[16px] mt-1">วอลเปเปอร์</span>
-                <span class="text-[11px] font-light">ฮีลใจ</span>
+                <span class="price-badge text-[11px] font-bold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mt-1.5 border border-pink-100">เริ่ม 189.-</span>
             </button>
             <button class="tab-btn w-1/3" id="btn-tab-3" onclick="switchTab(3)">
                 <span class="text-[22px] mb-0 leading-none mt-1">💻</span>
                 <span class="font-bold text-[16px] mt-1">เว็บไซต์</span>
-                <span class="text-[11px] font-light">รับทำเว็บ</span>
+                <span class="price-badge text-[11px] font-bold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full mt-1.5 border border-pink-100">เริ่ม 99.-</span>
             </button>
         </div>
 
@@ -293,7 +278,7 @@
                     <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
                     <div class="mb-3">2. กดปุ่ม <span class="bg-[#5bc2e7] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
                     <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
-                    <div class="mb-3">3. เมื่อเลือกครบแล้วกดตรงตะกร้ามุมขวาล่าง<br>ระบบจะ เลื่อนลงมาด้านล่าง</div>
+                    <div class="mb-3">3. เมื่อเลือกครบแล้วกด <span class="font-bold">ไอคอนตะกร้า</span> มุมขวาล่าง จะมีหน้าต่างเด้งขึ้นมาให้กรอกข้อมูล</div>
                     <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
                     <div class="mb-3">4. โอนเงินตามยอดรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)</div>
                     <div class="border-b-2 border-dashed border-[#eab8f5] mb-3"></div>
@@ -336,14 +321,19 @@
 
             <div id="products-wrapper" style="display:none; text-align:left;"></div>
         </div>
+    </main>
 
-        <!-- Checkout Section -->
-        <div id="checkout-section" style="display:none; scroll-margin-top: 20px;">
-            <div class="card-main p-6 mb-8 mt-6 text-left">
-                <div class="purple-pill text-[18px] mb-5">📦 รายการในตะกร้า</div>
-                <div id="cart-items-list" class="text-[15px] mb-4"></div>
+    <!-- 🔮 ป๊อปอัป (Modal) ตะกร้าสินค้าและการชำระเงิน -->
+    <div id="checkout-modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
+        <div class="checkout-popup bg-[#fdfcff] w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-2xl">
+            <!-- ปุ่มปิด Modal -->
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-[#fbf3fc] text-[#ca52ed] border-2 border-[#eab8f5] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#ca52ed] hover:text-white hover:border-[#ca52ed] transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div id="checkout-scroll-area">
+                <div class="purple-pill text-[18px] mb-5 mr-8 inline-block px-6">📦 รายการในตะกร้า</div>
+                <div id="cart-items-list" class="text-[15px] mb-4 text-left px-2"></div>
                 
-                <div class="mb-5 bg-[#fbf3fc] p-3 rounded-2xl border-2 dashed border-[#eab8f5] transition-colors hover:border-[#ca52ed]">
+                <div class="mb-5 bg-[#fbf3fc] p-3 rounded-2xl border-2 dashed border-[#eab8f5] transition-colors hover:border-[#ca52ed] text-left">
                     <label class="text-[15px] text-[#8e3dae] cursor-pointer flex items-center gap-2 font-bold">
                         <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#ca52ed; width:20px; height:20px;"> 
                         ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
@@ -354,8 +344,9 @@
                     ยอดรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#ca52ed] text-[32px]">0</span> บาท
                 </div>
 
-                <div id="checkout-form-area" class="border-t-2 border-dashed border-[#eab8f5] pt-6 mt-2">
-                    <div class="purple-pill text-[18px] mb-5">💳 โอนเงิน & กรอกข้อมูล</div>
+                <!-- ส่วนฟอร์มโอนเงิน -->
+                <div id="checkout-form-area" class="border-t-2 border-dashed border-[#eab8f5] pt-6 mt-2 text-left">
+                    <div class="purple-pill text-[18px] mb-5 inline-block px-6">💳 โอนเงิน & กรอกข้อมูล</div>
                     
                     <div class="border-2 border-[#5bc2e7] rounded-xl shadow-[3px_3px_0px_#5bc2e7] p-5 text-center mb-4 bg-white hover:-translate-y-1 transition-transform">
                         <div class="text-[14px] text-[var(--c-text-sub)]">ธนาคารกสิกรไทย (KBank)</div>
@@ -393,8 +384,9 @@
                         <input type="text" id="f-name" class="form-control req-field" placeholder="เช่น น้องฟ้า / IG: fah_sky">
                     </div>
 
+                    <!-- Dynamic Forms inside Modal -->
                     <div id="form-chat-options" style="display:none; background:#fbf3fc; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4">🔮 รูปแบบการรับคำทำนาย</div>
+                        <div class="purple-pill text-[16px] mb-4 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
                         <div class="form-group" id="delivery-type-group">
                             <label>เลือกรูปแบบการรับงาน *</label>
                             <div class="flex gap-4 mt-2">
@@ -410,34 +402,24 @@
                     </div>
 
                     <div id="form-personal" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
+                        <div class="purple-pill text-[16px] mb-4 inline-block">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
                         <div class="form-group" id="field-status-box">
                             <label>สถานะความสัมพันธ์ *</label>
                             <select id="f-status" class="form-control">
-                                <option value="">-- เลือกสถานะ --</option>
-                                <option value="โสด">โสด</option>
-                                <option value="มีแฟนแล้ว">มีแฟนแล้ว</option>
-                                <option value="คุยอยู่ / ดูใจ">คุยอยู่ / ดูใจ</option>
-                                <option value="แอบชอบ">แอบชอบ</option>
-                                <option value="มือที่III">มือที่ III</option>
-                                <option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
+                                <option value="">-- เลือกสถานะ --</option><option value="โสด">โสด</option><option value="มีแฟนแล้ว">มีแฟนแล้ว</option><option value="คุยอยู่ / ดูใจ">คุยอยู่ / ดูใจ</option><option value="แอบชอบ">แอบชอบ</option><option value="มือที่III">มือที่ III</option><option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
                             </select>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="form-group"><label>อายุ (ปี) *</label><input type="number" id="f-age" class="form-control" placeholder="เช่น 24"></div>
                             <div class="form-group">
                                 <label>เกิดวัน *</label>
-                                <select id="f-day" class="form-control">
-                                    <option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option>
-                                </select>
+                                <select id="f-day" class="form-control"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3" id="field-month-year-box">
                             <div class="form-group mb-0">
                                 <label>เดือนเกิด *</label>
-                                <select id="f-month" class="form-control">
-                                    <option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option>
-                                </select>
+                                <select id="f-month" class="form-control"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select>
                             </div>
                             <div class="form-group mb-0">
                                 <label>ปี พ.ศ. (ไม่บังคับ)</label>
@@ -447,12 +429,12 @@
                     </div>
 
                     <div id="form-questions" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4">💬 คำถามดูดวง</div>
+                        <div class="purple-pill text-[16px] mb-4 inline-block">💬 คำถามดูดวง</div>
                         <div id="dynamic-questions"></div>
                     </div>
 
                     <div id="form-wall" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4">🎨 ข้อมูลทำวอลเปเปอร์</div>
+                        <div class="purple-pill text-[16px] mb-4 inline-block">🎨 ข้อมูลทำวอลเปเปอร์</div>
                         <div class="form-group">
                             <label>ชื่อที่ใส่ในวอล (ไม่บังคับ)</label>
                             <input type="text" id="f-wall-name" class="form-control" placeholder="เช่น Mook / May / หรือเว้นว่าง">
@@ -471,26 +453,12 @@
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 mt-3">
-                            <div class="form-group mb-0">
-                                <label>เดือนเกิด *</label>
-                                <select id="f-wall-month" class="form-control dyn-req"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label>ปีเกิด (พ.ศ.) *</label>
-                                <input type="number" id="f-wall-year" class="form-control dyn-req" placeholder="เช่น 2545">
-                            </div>
+                            <div class="form-group mb-0"><label>เดือนเกิด *</label><select id="f-wall-month" class="form-control dyn-req"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
+                            <div class="form-group mb-0"><label>ปีเกิด (พ.ศ.) *</label><input type="number" id="f-wall-year" class="form-control dyn-req" placeholder="เช่น 2545"></div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 mt-3">
-                            <div class="form-group mb-0">
-                                <label>ปีนักษัตร *</label>
-                                <select id="f-wall-zodiac" class="form-control dyn-req">
-                                    <option value="">-- นักษัตร --</option><option value="ชวด">ชวด (หนู)</option><option value="ฉลู">ฉลู (วัว)</option><option value="ขาล">ขาล (เสือ)</option><option value="เถาะ">เถาะ (กระต่าย)</option><option value="มะโรง">มะโรง (งูใหญ่)</option><option value="มะเส็ง">มะเส็ง (งูเล็ก)</option><option value="มะเมีย">มะเมีย (ม้า)</option><option value="มะแม">มะแม (แพะ)</option><option value="วอก">วอก (ลิง)</option><option value="ระกา">ระกา (ไก่)</option><option value="จอ">จอ (หมา)</option><option value="กุน">กุน (หมู)</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label>สีที่ชอบ *</label>
-                                <input type="text" id="f-wall-color" class="form-control dyn-req" placeholder="เผื่อตรงกับสีถูกโฉลก">
-                            </div>
+                            <div class="form-group mb-0"><label>ปีนักษัตร *</label><select id="f-wall-zodiac" class="form-control dyn-req"><option value="">-- นักษัตร --</option><option value="ชวด">ชวด (หนู)</option><option value="ฉลู">ฉลู (วัว)</option><option value="ขาล">ขาล (เสือ)</option><option value="เถาะ">เถาะ (กระต่าย)</option><option value="มะโรง">มะโรง (งูใหญ่)</option><option value="มะเส็ง">มะเส็ง (งูเล็ก)</option><option value="มะเมีย">มะเมีย (ม้า)</option><option value="มะแม">มะแม (แพะ)</option><option value="วอก">วอก (ลิง)</option><option value="ระกา">ระกา (ไก่)</option><option value="จอ">จอ (หมา)</option><option value="กุน">กุน (หมู)</option></select></div>
+                            <div class="form-group mb-0"><label>สีที่ชอบ *</label><input type="text" id="f-wall-color" class="form-control dyn-req" placeholder="เผื่อตรงกับสีถูกโฉลก"></div>
                         </div>
                         <div class="form-group mt-3">
                             <label>เรื่องที่ต้องการเสริมหลัก (1 เรื่อง) *</label>
@@ -500,7 +468,7 @@
                     </div>
 
                     <div id="form-appt" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4">📅 จองเวลา (สำหรับคอล)</div>
+                        <div class="purple-pill text-[16px] mb-4 inline-block">📅 จองเวลา (สำหรับคอล)</div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="form-group mb-0"><label>วันที่จอง *</label><input type="date" id="f-appt-date" class="form-control text-sm"></div>
                             <div class="form-group mb-0"><label>เวลาที่จอง *</label><input type="time" id="f-appt-time" class="form-control text-sm" onchange="calculateEndTime()"></div>
@@ -509,41 +477,40 @@
                     </div>
 
                     <div id="form-web" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #eab8f5; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4">💻 ข้อมูลรับทำเว็บไซต์</div>
+                        <div class="purple-pill text-[16px] mb-4 inline-block">💻 ข้อมูลรับทำเว็บไซต์</div>
                         <div class="form-group mb-0">
                             <label>ชื่อร้าน / รูปแบบเว็บไซต์คร่าวๆ *</label>
                             <textarea id="f-web-brief" class="form-control" rows="3" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ (จากนั้นบรีฟต่อในแชทแอดมิน)"></textarea>
                         </div>
                     </div>
 
-                    <button id="btn-submit-order" class="btn-action mt-4 py-4" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป ✨</button>
+                    <button id="btn-submit-order" class="btn-action mt-4 py-4 w-full" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป ✨</button>
                 </div>
+
+                <!-- ส่วนแสดงผลสรุป (อยู่ใน Modal เดียวกัน จะโชว์เมื่อกดปุ่มสร้างข้อความ) -->
+                <div id="summary-area" class="border-t-2 border-dashed border-[#eab8f5] pt-6 mt-2 text-left" style="display:none;">
+                    <div class="text-[24px] text-[var(--c-purple-dark)] font-bold mb-2 text-center">🎉 สรุปยอดเรียบร้อย!</div>
+                    
+                    <div class="text-[16px] text-pink-500 font-bold mb-4 mt-4 text-center bg-[#fdf2f8] p-3 rounded-xl border border-pink-200 shadow-sm animate-pulse">
+                        🚨 อย่าลืมแนบสลิปให้แอดมินด้วยน้า 📸
+                    </div>
+
+                    <div class="text-[14px] text-[#8e3dae] mb-4 text-center bg-[#fbf3fc] p-2 rounded-xl border border-[#eab8f5]">ตรวจสอบข้อมูลให้เป๊ะ แล้วกดส่งได้เลยค่ะ ✨</div>
+                    
+                    <div class="form-group">
+                        <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:14px; background:#fff; border-color:#ca52ed; line-height:1.6;"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button class="bg-[#5bc2e7] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> ส่ง FB</button>
+                        <button class="bg-[#8cc63f] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> ส่ง LINE</button>
+                        <button class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> ส่ง IG</button>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <!-- Summary Area -->
-        <div id="summary-area" class="card-main p-6 mb-8 text-left" style="display:none;">
-            <div class="text-[24px] text-[var(--c-purple-dark)] font-bold mb-2 text-center">🎉 สรุปยอดเรียบร้อย!</div>
-            
-            <div class="text-[16px] text-pink-500 font-bold mb-4 mt-4 text-center bg-[#fdf2f8] p-3 rounded-xl border border-pink-200 shadow-sm animate-pulse">
-                🚨 อย่าลืมกดปุ่มส่งด้านล่างและแนบสลิปให้แอดมินด้วยน้า 📸
-            </div>
-
-            <div class="text-[14px] text-[#8e3dae] mb-4 text-center bg-[#fbf3fc] p-2 rounded-xl border border-[#eab8f5]">ตรวจสอบข้อมูลให้เป๊ะ แล้วกดส่งได้เลยค่ะ ✨</div>
-            
-            <div class="form-group">
-                <textarea id="summary-text" class="form-control" rows="12" readonly style="font-size:14px; background:#fff; border-color:#ca52ed; line-height:1.6;"></textarea>
-            </div>
-            
-            <!-- อัปเดตปุ่มเป็น 3 ปุ่ม (FB, LINE, IG) จัดเรียงให้สวยงาม -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <button class="bg-[#5bc2e7] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> ส่ง FB</button>
-                <button class="bg-[#8cc63f] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> ส่ง LINE</button>
-                <button class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> ส่ง IG</button>
-            </div>
-        </div>
-
-    </main>
+    </div>
 
     <!-- Admin Modal -->
     <div id="admin-modal" class="modal-overlay">
@@ -558,6 +525,7 @@
                     <h4 class="text-[#8e3dae] mt-0 mb-3 text-[16px] font-bold">📝 ตั้งค่าร้านค้าทั่วไป</h4>
                     <div class="form-group"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
                     <div class="form-group"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
+                    <div class="form-group"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2" placeholder="ใส่ลิงก์เว็บรีวิว (ถ้ามี)"></div>
                     <div class="form-group"><label>ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-2"></div>
                     <div class="form-group"><label>ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-2"></div>
                     <div class="form-group"><label>ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-2"></div>
@@ -589,6 +557,7 @@
     let shopSettings = {
         shopName: "Ah Tao Mu-space",
         slogan: "“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”",
+        reviewLink: "#",
         marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space ✨",
         fbLink: "https://m.me/taotofu.meow",
         lineLink: "https://lin.ee/WgEAeFx",
@@ -601,11 +570,17 @@
         sampleWebLink: ""
     };
 
+    // ปรับลำดับ: ให้ "โทรดูดวง" เป็น index 1 (โชว์กล่องที่ 2)
     const defaultData = [
         { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
             { name: "Yes or No!! (1 คำถาม)", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
             { name: "5 คำถาม (ขายดี)", price: 118 }, { name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129 },
             { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 }, { name: "เช็กล่วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }, { name: "พื้นดวง", price: 219 } 
+        ]},
+        { tab: 1, category: "โทรดูดวง", title: "📞 โทรดูดวง (พูดคุยสายตรง)", items: [ 
+            { name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99 }, { name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129 }, 
+            { name: "โทรไม่จำกัดคำถาม - 30 นาที", price: 189 }, { name: "โทรไม่จำกัดคำถาม - 1 ชั่วโมง", price: 299 },
+            { name: "ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)", price: 50 } 
         ]},
         { tab: 1, category: "ดูดวง", title: "✨ ดูดวงเฉพาะทาง (เรื่องรอบตัว & สิ่งศักดิ์สิทธิ์)", items: [ 
             { name: "คนรอบตัวมองว่าเราเป็นคนยังไง", price: 49 }, { name: "ดูสีและอัญมณีเสริมดวงประจำตัว", price: 69 },
@@ -624,11 +599,6 @@
             { name: "ดวงเราภายใน 3 เดือนถัดจากนี้", price: 199 }, { name: "ดวงชะตารายสัปดาห์อย่างละเอียด", price: 99 }, 
             { name: "ภาพรวมรายเดือน", price: 199 }, { name: "ดวงชะตารายเดือนอย่างละเอียด", price: 299 }, 
             { name: "ดวงชะตาราย 6 เดือน", price: 499 }, { name: "ดวงชะตารายปีอย่างละเอียด", price: 799 } 
-        ]},
-        { tab: 1, category: "โทรดูดวง", title: "📞 โทรดูดวง (พูดคุยสายตรง)", items: [ 
-            { name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99 }, { name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129 }, 
-            { name: "โทรไม่จำกัดคำถาม - 30 นาที", price: 189 }, { name: "โทรไม่จำกัดคำถาม - 1 ชั่วโมง", price: 299 },
-            { name: "ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)", price: 50 } 
         ]},
         { tab: 2, category: "พื้นที่รับฟัง", title: "☎️ พื้นที่รับฟัง (สายคอล)", items: [ 
             { name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59 }, { name: "30 นาที", price: 139 }, 
@@ -689,6 +659,7 @@
                     if(!shopSettings.sampleWallLink) shopSettings.sampleWallLink = "";
                     if(!shopSettings.sampleWebLink) shopSettings.sampleWebLink = "";
                     if(!shopSettings.igLink) shopSettings.igLink = "https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr";
+                    if(!shopSettings.reviewLink) shopSettings.reviewLink = "#";
                 }
                 if(result.products && result.products.length > 0 && result.products[0].hasOwnProperty('tab')) {
                     productData = result.products;
@@ -701,21 +672,6 @@
         switchTab(0);
     });
 
-    document.addEventListener('click', function(e) {
-        if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT' || e.target.tagName === 'BUTTON') return;
-        const star = document.createElement('div');
-        star.className = 'star-click';
-        star.innerHTML = '✨';
-        star.style.position = 'fixed';
-        star.style.left = e.clientX + 'px';
-        star.style.top = e.clientY + 'px';
-        star.style.zIndex = '999999';
-        star.style.pointerEvents = 'none';
-        star.style.animation = 'fadeOut 0.8s ease-out forwards';
-        document.body.appendChild(star);
-        setTimeout(() => star.remove(), 800);
-    });
-
     function applySettingsToDOM() {
         document.getElementById('display-shop-name').textContent = shopSettings.shopName;
         document.getElementById('display-slogan').textContent = shopSettings.slogan;
@@ -723,6 +679,7 @@
         document.getElementById('link-fb').href = shopSettings.fbLink;
         document.getElementById('link-line').href = shopSettings.lineLink;
         if(document.getElementById('link-ig')) document.getElementById('link-ig').href = shopSettings.igLink || '#';
+        if(document.getElementById('link-review')) document.getElementById('link-review').href = shopSettings.reviewLink || '#';
         document.getElementById('display-kbank-name').textContent = shopSettings.kbankName;
         document.getElementById('display-kbank-num').textContent = shopSettings.kbankNum;
         document.getElementById('display-wallet-num').textContent = shopSettings.walletNum;
@@ -761,9 +718,16 @@
 
             group.items.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                
+                // ตรวจจับชื่อแพ็กเกจเพื่อติดป้ายกำกับ Badges น่ารักๆ
+                let badgeHtml = '';
+                if (item.name.includes('15 นาที')) badgeHtml = '<span class="bg-red-100 text-red-500 border border-red-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">🔥 ขายดี</span>';
+                else if (item.name.includes('พื้นดวง')) badgeHtml = '<span class="bg-blue-100 text-blue-500 border border-blue-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">✨ มาใหม่</span>';
+                else if (item.name.includes('3 คำถาม')) badgeHtml = '<span class="bg-yellow-100 text-yellow-600 border border-yellow-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">⭐ แนะนำ</span>';
+
                 html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#eab8f5] hover:bg-[#fbf3fc] transition-colors rounded-lg px-2">
-                            <span class="text-[15px] text-[#8e3dae] flex-1 pr-2 leading-relaxed">${item.name}</span>
-                            <div class="flex items-center gap-3">
+                            <span class="text-[15px] text-[#8e3dae] flex-1 pr-2 leading-relaxed flex flex-wrap items-center">${item.name} ${badgeHtml}</span>
+                            <div class="flex items-center gap-3 shrink-0">
                                 <span class="text-[#8e3dae] font-bold text-[17px]">${item.price}.-</span>
                                 <button class="btn-add shadow-sm" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">+</button>
                             </div>
@@ -797,6 +761,31 @@
         updateCartTotal(); 
     }
 
+    // Modal functions for Checkout
+    function openCheckoutModal() {
+        if(currentCart.length === 0) {
+            alert('ตะกร้ายังว่างเปล่า ลองเลือกสินค้าดูก่อนน้า 🔮✨');
+            return;
+        }
+        // โชว์หน้าโหลดเวทมนตร์ก่อน
+        document.getElementById('loading-overlay').style.display = 'flex';
+        
+        setTimeout(() => {
+            document.getElementById('loading-overlay').style.display = 'none';
+            // เคลียร์สถานะฟอร์มให้กลับมาเป็นหน้ากรอกปกติ (เผื่อเพิ่งกดสรุปยอดไป)
+            document.getElementById('checkout-form-area').style.display = 'block';
+            document.getElementById('summary-area').style.display = 'none';
+            
+            document.getElementById('checkout-modal-overlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // ล็อกฉากหลังไม่ให้เลื่อน
+        }, 800);
+    }
+
+    function closeCheckoutModal() {
+        document.getElementById('checkout-modal-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto'; // ปลดล็อกฉากหลัง
+    }
+
     function updateCartTotal() {
         const listEl = document.getElementById('cart-items-list');
         const totalEl = document.getElementById('cart-total-price');
@@ -804,11 +793,9 @@
         
         if (currentCart.length === 0) {
             document.getElementById('cart-float').style.display = 'none';
-            document.getElementById('checkout-section').style.display = 'none';
+            closeCheckoutModal(); // ปิด Modal ถ้าของหมดตะกร้า
             return;
         }
-
-        document.getElementById('checkout-section').style.display = 'block';
 
         let html = ''; let subtotal = 0;
         hasChat = hasPhone = hasWall = hasChart = hasWeb = hasHeal = false; 
@@ -848,7 +835,7 @@
 
         if (document.getElementById('urgent-queue').checked) {
             subtotal += 59;
-            html += `<div class="flex justify-between mt-3 text-[#ca52ed] text-[15px] font-bold bg-[#fbf3fc] p-2 rounded-lg"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div class="flex justify-between mt-3 text-[#ca52ed] text-[15px] font-bold bg-[#fbf3fc] p-2 rounded-lg border border-[#eab8f5]"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
 
         listEl.innerHTML = html; 
@@ -961,12 +948,6 @@
         const now = new Date();
         document.getElementById('f-transfer-time').value = now.toTimeString().substring(0, 5);
         showToast('⏳ เสกเวลาโอนเป็นปัจจุบันให้แล้วค่ะ!');
-    }
-
-    function scrollToCheckout() {
-        if(currentCart.length > 0) {
-            document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
-        }
     }
 
     function validateForm() {
@@ -1116,8 +1097,14 @@
         fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveOrder", order: orderData }) }).catch(err => console.log(err));
 
         document.getElementById('summary-text').value = summary.trim();
+        
+        // สลับให้หน้าฟอร์มหายไป และหน้าแสดงผลสรุปโชว์ขึ้นมาแทน (ใน Modal เดิม)
+        document.getElementById('checkout-form-area').style.display = 'none';
         document.getElementById('summary-area').style.display = 'block';
-        document.getElementById('summary-area').scrollIntoView({ behavior: 'smooth' });
+        
+        // สั่งให้สกอร์บาร์ใน Modal เลื่อนกลับไปบนสุดเพื่อให้เห็นกล่องสรุปชัดๆ
+        document.getElementById('checkout-scroll-area').scrollIntoView({ behavior: 'smooth' });
+
         showToast('🎉 เสกข้อความสรุปเรียบร้อยแล้ว!');
 
         setTimeout(() => {
@@ -1171,6 +1158,7 @@
         document.getElementById('cfg-shopName').value = shopSettings.shopName;
         document.getElementById('cfg-slogan').value = shopSettings.slogan;
         document.getElementById('cfg-marquee').value = shopSettings.marquee;
+        document.getElementById('cfg-reviewLink').value = shopSettings.reviewLink || "#";
         document.getElementById('cfg-fbLink').value = shopSettings.fbLink;
         document.getElementById('cfg-lineLink').value = shopSettings.lineLink;
         document.getElementById('cfg-igLink').value = shopSettings.igLink || "";
@@ -1200,6 +1188,7 @@
         shopSettings.shopName = document.getElementById('cfg-shopName').value;
         shopSettings.slogan = document.getElementById('cfg-slogan').value;
         shopSettings.marquee = document.getElementById('cfg-marquee').value;
+        shopSettings.reviewLink = document.getElementById('cfg-reviewLink').value;
         shopSettings.fbLink = document.getElementById('cfg-fbLink').value;
         shopSettings.lineLink = document.getElementById('cfg-lineLink').value;
         shopSettings.igLink = document.getElementById('cfg-igLink').value;
