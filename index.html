@@ -14,22 +14,19 @@
         @font-face { font-family: 'The Seasons'; src: local('The Seasons'); font-display: swap; }
 
         :root {
-            --c-purple-dark: #4B2B9F; 
-            --c-text-main: #3B1C87;   
+            --c-purple-dark: #3b1c87; 
+            --c-text-main: #4a2175;   
         }
 
         body {
             font-family: 'Cloud', 'Kanit', sans-serif; 
-            background: linear-gradient(135deg, #2b1468, #5c35a6, #a170f3, #e593cb);
+            /* พื้นหลังไล่สีเวทมนตร์ ม่วงเข้ม -> ม่วงชมพู -> ม่วงสว่าง */
+            background: linear-gradient(135deg, #2e1065, #5c2092, #9333ea, #c084fc, #5c2092);
             background-size: 300% 300%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 20s ease infinite;
             color: var(--c-text-main);
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
-            -webkit-tap-highlight-color: transparent;
-            font-size: 16px;
+            margin: 0; padding: 0; overflow-x: hidden; min-height: 100vh;
+            -webkit-tap-highlight-color: transparent; font-size: 16px;
         }
 
         @keyframes gradientBG {
@@ -38,189 +35,120 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* โค้ดสำหรับกล่องแบนเนอร์ */
-        .banner-container {
-            position: relative;
-            width: 100%;
-            height: 160px; /* ปรับความสูงแบนเนอร์ได้ตามต้องการ */
-            border-radius: 1.5rem;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(75, 43, 159, 0.25);
+        /* ---------------- Floating Magic Elements ---------------- */
+        .magic-element {
+            position: fixed; pointer-events: none; z-index: 0;
+            color: #fdf4ff; opacity: 0.15; text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            animation: floatMagic linear infinite;
+        }
+        @keyframes floatMagic {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.3; }
+            80% { opacity: 0.3; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.3); opacity: 0; }
         }
 
-        .banner-image {
-            width: 100%;
-            height: 100%;
-            background-image: url('แบนเนอร์.PNG'); /* ชื่อไฟล์อ้างอิงให้ตรงเป๊ะ */
-            background-size: cover;
-            background-position: center;
-            /* การทำให้รูปไม่ชัดมาก: ใช้ blur เบลอภาพ และ opacity ทำให้สีซอฟต์ลง */
-            filter: blur(2px) opacity(0.85); 
-            transform: scale(1.05); /* ขยายรูปเล็กน้อยเพื่อไม่ให้ขอบขาวโผล่ตอนเบลอ */
-        }
-
-        /* สร้างเลเยอร์สีขาว/ม่วงจางๆ ทับรูปแบนเนอร์เพื่อให้ตัวอักษรหรือกล่องด้านล่างเด่นกว่า */
-        .banner-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(243,232,255,0.7) 100%);
-        }
-
-        /* พื้นหลังไอคอนรูปทรงเรขาคณิตและเวทมนตร์สีทึบ */
-        .bg-shape-icon {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.18;
-            z-index: 0;
-            animation: floatShape linear infinite;
-        }
-        @keyframes floatShape {
-            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); }
-            50% { opacity: 0.25; }
-            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); }
-        }
-
+        /* ---------------- Typography & Colors ---------------- */
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
-        
         .animated-gradient-text {
-            background: linear-gradient(270deg, #9D76E1, #FF9BCE, #FFE66D, #E063A4, #9D76E1);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(270deg, #b794f4, #f687b3, #fbd38d, #f687b3, #b794f4);
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: textGradientShift 6s ease infinite;
         }
-        @keyframes textGradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes textGradientShift { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
 
+        /* ---------------- Cards & Boxes (Pastel Tint) ---------------- */
         .card-main {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
+            /* สีพื้นหลังไม่ใช่ขาวจั๊วะ แต่เป็นสีชมพูอมม่วงพาสเทลอ่อนมากๆ */
+            background-color: #faf5ff; 
+            backdrop-filter: blur(10px);
             border-radius: 1.5rem;
-            box-shadow: 0 10px 30px rgba(76, 29, 149, 0.25);
-            border: 2px solid #e9d5ff;
-            position: relative;
-            z-index: 10;
+            box-shadow: 0 15px 35px rgba(20, 5, 45, 0.4);
+            border: 1px solid #f3e8ff;
+            position: relative; z-index: 10;
         }
 
-        .logo-glow {
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), inset 0 0 10px rgba(236, 72, 153, 0.3);
-            border: 2px solid #d8b4fe;
+        /* ลูกเล่นแสงเรืองรอง (Glow Effect) */
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(216, 180, 254, 0.6), inset 0 0 10px rgba(244, 114, 182, 0.3);
+            border: 3px solid #fff;
         }
 
+        /* ---------------- Tabs & Buttons ---------------- */
         .tab-btn {
-            background: #fff;
-            border: 2px dashed #c084fc;
-            color: #7e22ce;
-            border-radius: 1.2rem;
-            padding: 12px 6px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            line-height: 1.3; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: #fff0f6; border: 2px dashed #d8b4fe; color: #7e22ce;
+            border-radius: 1.2rem; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            line-height: 1.3; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .tab-btn.active {
-            background: linear-gradient(135deg, #7F50F2, #D87DD8);
-            border: 2px dashed #fff;
-            color: #fff;
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 15px rgba(127, 80, 242, 0.4);
+            background: linear-gradient(135deg, #a855f7, #ec4899); border: 2px dashed #fae8ff; color: #ffffff;
+            transform: translateY(-4px) scale(1.05); box-shadow: 0 10px 20px rgba(168, 85, 247, 0.4);
         }
-        .tab-btn.active .price-badge {
-            background-color: #fff;
-            color: #7e22ce;
-        }
+        .tab-btn.active .price-badge { background-color: #fff; color: #a855f7; }
 
-        .purple-pill {
-            background: linear-gradient(90deg, #7F50F2, #D87DD8);
-            color: white;
-            border-radius: 1rem;
-            padding: 8px 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .purple-pill-dashed {
-            background: linear-gradient(90deg, #7F50F2, #D87DD8);
-            padding: 3px;
-            border-radius: 1.2rem;
-            position: relative;
-            z-index: 10;
-        }
-        .purple-pill-inner {
-            border: 2px dashed white;
-            border-radius: 1rem;
-            padding: 8px 15px;
-            color: white;
-            text-align: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
+        .purple-pill { background: linear-gradient(90deg, #9333ea, #db2777); color: white; border-radius: 1rem; padding: 8px 15px; text-align: center; font-weight: bold; }
+        .purple-pill-dashed { background: linear-gradient(90deg, #9333ea, #db2777); padding: 3px; border-radius: 1.2rem; position: relative; z-index: 10; }
+        .purple-pill-inner { border: 2px dashed white; border-radius: 1rem; padding: 8px 15px; color: white; text-align: center; font-weight: bold; font-size: 18px; }
 
         .btn-add {
-            background: #38bdf8; color: #fff; 
-            border: none; border-radius: 8px;
-            width: 32px; height: 32px; font-size: 20px; cursor: pointer; display: inline-flex;
-            align-items: center; justify-content: center; transition: all 0.2s; font-weight: bold;
-            line-height: 1;
+            background: linear-gradient(135deg, #f472b6, #d946ef); color: #fff; 
+            border: none; border-radius: 8px; width: 32px; height: 32px; font-size: 20px; cursor: pointer; display: inline-flex;
+            align-items: center; justify-content: center; transition: all 0.2s; font-weight: bold; line-height: 1;
+            box-shadow: 0 3px 8px rgba(217, 70, 239, 0.3);
         }
-        .btn-add:hover { transform: scale(1.15) rotate(5deg); background: #0ea5e9; }
+        .btn-add:hover { transform: scale(1.15) rotate(5deg); background: linear-gradient(135deg, #db2777, #c026d3); }
 
-        @keyframes wiggleCart {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-8deg) scale(1.1); }
-            50% { transform: rotate(8deg) scale(1.1); }
-            75% { transform: rotate(-4deg) scale(1.1); }
-        }
-        .floating-cart {
-            position: fixed; bottom: 30px; right: 20px; z-index: 990;
-            background: #fff; color: var(--c-purple-dark); border-radius: 50%;
-            width: 70px; height: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25); border: 3px solid #c084fc; cursor: pointer; transition: all 0.3s;
-        }
-        .floating-cart:hover { transform: scale(1.1) translateY(-5px); animation: wiggleCart 0.6s ease-in-out; }
-        .cart-count {
-            position: absolute; top: -6px; right: -6px; background: #f472b6; color: #fff;
-            font-size: 13px; font-weight: bold; width: 26px; height: 26px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .form-group { margin-bottom: 16px; text-align: left; }
-        .form-group label { display: block; font-size: 15px; color: var(--c-purple-dark); margin-bottom: 6px; font-weight: bold; }
-        .form-control {
-            width: 100%; padding: 12px 14px; background: #fff; border: 2px solid #e9d5ff; border-radius: 1rem;
-            color: var(--c-text-main); font-family: 'Cloud', 'Kanit', sans-serif; font-size: 15px; outline: none; transition: all 0.2s;
-        }
-        .form-control:focus { border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2); transform: translateY(-1px); }
-        
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
             font-family: 'Cloud', 'Kanit', sans-serif; font-size: 18px; color: #fff; font-weight: bold;
-            background: linear-gradient(90deg, #7F50F2, #D87DD8); box-shadow: 0 4px 10px rgba(127, 80, 242, 0.3); transition: all 0.2s; margin-top: 10px;
+            background: linear-gradient(90deg, #9333ea, #db2777); box-shadow: 0 4px 15px rgba(219, 39, 119, 0.4); transition: all 0.2s; margin-top: 10px;
         }
-        .btn-action:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(127, 80, 242, 0.4); }
+        .btn-action:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(219, 39, 119, 0.5); }
+        .btn-action:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        @keyframes spin-pause { 0% { transform: rotate(0deg); } 15% { transform: rotate(360deg); } 100% { transform: rotate(360deg); } }
+        /* ---------------- Floating Cart ---------------- */
+        @keyframes wiggleCart { 0%, 100% {transform: rotate(0deg);} 25% {transform: rotate(-10deg) scale(1.15);} 50% {transform: rotate(10deg) scale(1.15);} 75% {transform: rotate(-5deg) scale(1.15);} }
+        .floating-cart {
+            position: fixed; bottom: 30px; right: 20px; z-index: 990;
+            background: #fff; color: #7e22ce; border-radius: 50%;
+            width: 75px; height: 75px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 20px rgba(217, 70, 239, 0.5); border: 3px solid #f472b6; cursor: pointer; transition: all 0.3s;
+        }
+        .floating-cart:hover { transform: scale(1.1) translateY(-5px); animation: wiggleCart 0.6s ease-in-out; }
+        .cart-count {
+            position: absolute; top: -5px; right: -5px; background: #db2777; color: #fff;
+            font-size: 13px; font-weight: bold; width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        /* ---------------- Form Elements ---------------- */
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-group label { display: block; font-size: 15px; color: var(--c-purple-dark); margin-bottom: 6px; font-weight: bold; }
+        .form-control {
+            /* สีช่องกรอกไม่ใช่ขาวจั๊วะ เป็นขาวอมม่วงอ่อนๆ ลดความบาดตา */
+            width: 100%; padding: 12px 14px; background: #fffcfd; border: 2px solid #e9d5ff; border-radius: 1rem;
+            color: var(--c-text-main); font-family: 'Cloud', 'Kanit', sans-serif; font-size: 15px; outline: none; transition: all 0.2s;
+        }
+        .form-control:focus { background: #fff; border-color: #d946ef; box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.15); transform: translateY(-1px); }
+
+        /* ---------------- Admin & Modals ---------------- */
+        @keyframes spin-pause { 0% {transform: rotate(0deg);} 15% {transform: rotate(360deg);} 100% {transform: rotate(360deg);} }
         .btn-admin {
             position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
-            background: #fff; font-size: 20px; cursor: pointer; border:none;
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(4px); font-size: 20px; cursor: pointer; border:none;
             z-index: 99; display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15); animation: spin-pause 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); animation: spin-pause 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .modal-overlay {
-            display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-blur:blur(3px); 
-            z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center;
-        }
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15, 5, 30, 0.75); backdrop-blur:blur(5px); z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center; }
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .checkout-popup { animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .checkout-popup { animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; background-color: #faf5ff; }
 
         .toast {
             position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px);
-            background: #3b1159; color: white; padding: 14px 28px; border-radius: 40px; 
-            font-size: 16px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.3);
+            background: linear-gradient(90deg, #7e22ce, #db2777); color: white; padding: 14px 28px; border-radius: 40px; 
+            font-size: 16px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.4);
             transition: transform .4s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff; font-weight: bold;
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
@@ -228,83 +156,89 @@
 </head>
 <body class="antialiased text-center relative">
 
-    <!-- พื้นหลังไอคอนรูปทรงเรขาคณิตและเวทมนตร์สีทึบ -->
-    <div class="bg-shape-icon text-3xl text-purple-300" style="left: 10%; animation-duration: 9s;">✦</div>
-    <div class="bg-shape-icon text-2xl text-pink-300" style="left: 80%; animation-duration: 12s; animation-delay: 2s;">▲</div>
-    <div class="bg-shape-icon text-4xl text-blue-300" style="left: 45%; animation-duration: 10s; animation-delay: 4s;">●</div>
-    <div class="bg-shape-icon text-2xl text-purple-200" style="left: 20%; animation-duration: 14s; animation-delay: 1s;">■</div>
-    <div class="bg-shape-icon text-3xl text-pink-200" style="left: 70%; animation-duration: 8s; animation-delay: 3s;">★</div>
+    <!-- 🌟 ไอคอนลอยไปมาเสริมความเวทมนตร์ 🌟 -->
+    <div class="magic-element text-3xl" style="left: 10%; animation-duration: 12s;">✦</div>
+    <div class="magic-element text-2xl" style="left: 85%; animation-duration: 15s; animation-delay: 2s;">🌙</div>
+    <div class="magic-element text-4xl" style="left: 45%; animation-duration: 18s; animation-delay: 4s;">✨</div>
+    <div class="magic-element text-xl"  style="left: 20%; animation-duration: 10s; animation-delay: 1s;">🔮</div>
+    <div class="magic-element text-2xl" style="left: 75%; animation-duration: 14s; animation-delay: 3s;">✦</div>
+    <div class="magic-element text-xl"  style="left: 55%; animation-duration: 11s; animation-delay: 5s;">⭐</div>
 
+    <!-- ตะกร้าเรืองแสง -->
     <div class="floating-cart" onclick="openCheckoutModal()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
-        <span style="font-size:24px; margin-bottom:2px;">🛒</span>
+        <span style="font-size:26px; margin-bottom:2px;">🛒</span>
         <span style="font-size: 12px; font-weight: bold;">ตะกร้า</span>
     </div>
 
-    <div id="loading-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99999] hidden flex-col items-center justify-center">
-        <div class="text-6xl animate-spin mb-5">🪄</div>
-        <div class="text-white font-bold text-xl tracking-wide">กำลังเตรียมตะกร้าเวทมนตร์...</div>
+    <!-- หน้าต่าง Loading แบบเวทมนตร์ -->
+    <div id="loading-overlay" class="fixed inset-0 bg-[#1e0b3b]/80 backdrop-blur-md z-[99999] hidden flex-col items-center justify-center transition-opacity">
+        <div class="text-7xl animate-bounce mb-6 filter drop-shadow-[0_0_15px_rgba(236,72,153,0.8)]">🔮</div>
+        <div class="text-white font-bold text-xl tracking-wide font-seasons">กำลังเปิดตะกร้าเวทมนตร์...</div>
     </div>
 
     <main class="max-w-[480px] mx-auto pt-6 pb-24 relative px-4">
         
-        <!-- ส่วนแบนเนอร์ที่เพิ่มใหม่ -->
-        <div class="banner-container">
-            <div class="banner-image"></div>
-            <div class="banner-overlay"></div>
-        </div>
-
         <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
 
-        <div class="card-main p-6 mb-5 relative">
-            <div class="flex items-center gap-4 mb-3 text-left">
-                <div class="w-[75px] h-[75px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden logo-glow">
+        <!-- กล่องโปรไฟล์แบนเนอร์เวทมนตร์ (เชื่อมเป็นเนื้อเดียวกัน) -->
+        <div class="card-main mb-6 relative overflow-hidden p-0">
+            <!-- ส่วนแบนเนอร์ด้านบน (ใช้แบนเนอร์.PNG ตามสั่ง พร้อมทำเบลอ) -->
+            <div class="w-full h-[150px] relative">
+                <div class="absolute inset-0" style="background-image: url('แบนเนอร์.PNG'); background-size: cover; background-position: center; filter: blur(2px) opacity(0.9);"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#faf5ff]"></div>
+            </div>
+
+            <!-- ส่วนข้อมูลร้าน โลโก้เรืองแสงทับแบนเนอร์ -->
+            <div class="px-5 pb-6 flex flex-col items-center relative -mt-12 text-center">
+                <div class="w-[95px] h-[95px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden glow-effect mb-2 z-10">
                     <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
                 </div>
-                <div class="flex-1 min-w-0">
-                    <h1 class="text-[28px] sm:text-[32px] mb-0 animated-gradient-text font-seasons font-bold truncate leading-tight" id="display-shop-name">Ah Tao Mu-space</h1>
-                    <a href="#" id="link-review" target="_blank" class="inline-block text-[#7e22ce] font-bold text-[12px] bg-[#f3e8ff] border border-[#d8b4fe] px-3 py-0.5 rounded-full mt-1 hover:bg-[#e9d5ff] transition-colors shadow-sm">
-                        ✨ ดูรีวิวทั้งหมด
+                
+                <h1 class="text-[26px] sm:text-[30px] mb-0 animated-gradient-text font-seasons font-bold truncate leading-tight w-full" id="display-shop-name">Ah Tao Mu-space</h1>
+                
+                <a href="#" id="link-review" target="_blank" class="inline-flex items-center gap-1 text-[#a855f7] font-bold text-[12px] bg-white border border-[#e9d5ff] px-3 py-1 rounded-full mt-2 hover:bg-purple-50 transition-colors shadow-sm">
+                    ✨ ดูรีวิวทั้งหมด
+                </a>
+
+                <p class="text-[14px] mt-3 mb-4 font-seasons font-bold text-[#c026d3]" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
+
+                <div class="grid grid-cols-3 gap-2 w-full">
+                    <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-b from-[#0ea5e9] to-[#0284c7] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
+                        <i class="fa-brands fa-facebook-messenger text-[18px]"></i> Facebook
+                    </a>
+                    <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-b from-[#22c55e] to-[#16a34a] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
+                        <i class="fa-brands fa-line text-[18px]"></i> Line
+                    </a>
+                    <a href="#" id="link-ig" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-tr from-[#9333ea] via-[#db2777] to-[#f97316] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
+                        <i class="fa-brands fa-instagram text-[18px]"></i> Instagram
                     </a>
                 </div>
             </div>
+        </div>
 
-            <p class="text-[14px] mb-4 font-seasons font-bold text-[#7e22ce] text-center" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
-
-            <div class="grid grid-cols-3 gap-2">
-                <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#0284c7] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
-                    <i class="fa-brands fa-facebook-messenger text-[18px]"></i> Facebook
-                </a>
-                <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-[#16a34a] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
-                    <i class="fa-brands fa-line text-[18px]"></i> Line
-                </a>
-                <a href="#" id="link-ig" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-tr from-[#9333ea] via-[#db2777] to-[#f97316] text-white py-2 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-sm">
-                    <i class="fa-brands fa-instagram text-[18px]"></i> Instagram
-                </a>
+        <div class="purple-pill-dashed mb-5 max-w-[400px] mx-auto shadow-lg glow-effect !border-none">
+            <div class="border-2 border-dashed border-white rounded-[1rem] py-1.5 px-3 bg-white/20">
+                <marquee id="display-marquee" scrollamount="4" class="text-white text-[16px] font-bold mt-1 tracking-wide">✨ ยินดีต้อนรับสู่ AhTao Mu-Space พื้นที่ฮีลใจของคุณ ✨</marquee>
             </div>
         </div>
 
-        <div class="purple-pill-dashed mb-5 max-w-[400px] mx-auto shadow-md">
-            <div class="border-2 border-dashed border-white rounded-[1rem] py-1.5 px-3">
-                <marquee id="display-marquee" scrollamount="4" class="text-white text-[16px] font-bold mt-1">✨ ยินดีต้อนรับสู่ AhTao Mu-Space ✨</marquee>
-            </div>
-        </div>
-
+        <!-- แท็บเมนู -->
         <div class="flex gap-2 justify-center mb-6">
             <button class="tab-btn w-1/3 active" id="btn-tab-1" onclick="switchTab(1)">
-                <span class="text-[26px] mb-0 leading-none">🔮</span>
-                <span class="font-bold text-[16px] mt-1">ดูดวง</span>
-                <span class="price-badge text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full mt-1.5 border border-purple-200">เริ่ม 29.-</span>
+                <span class="text-[26px] mb-0 leading-none drop-shadow-md">🔮</span>
+                <span class="font-bold text-[15px] mt-1">ดูดวง</span>
+                <span class="price-badge text-[10px] font-bold px-2 py-0.5 rounded-full mt-1.5 border border-[#e9d5ff]">เริ่ม 29.-</span>
             </button>
             <button class="tab-btn w-1/3" id="btn-tab-2" onclick="switchTab(2)">
-                <span class="text-[22px] mb-0 leading-none mt-1">📱</span>
-                <span class="font-bold text-[16px] mt-1">วอลเปเปอร์</span>
-                <span class="price-badge text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full mt-1.5 border border-purple-200">เริ่ม 189.-</span>
+                <span class="text-[22px] mb-0 leading-none mt-1 drop-shadow-md">📱</span>
+                <span class="font-bold text-[15px] mt-1">วอลเปเปอร์</span>
+                <span class="price-badge text-[10px] font-bold px-2 py-0.5 rounded-full mt-1.5 border border-[#e9d5ff]">เริ่ม 189.-</span>
             </button>
             <button class="tab-btn w-1/3" id="btn-tab-3" onclick="switchTab(3)">
-                <span class="text-[22px] mb-0 leading-none mt-1">💻</span>
-                <span class="font-bold text-[16px] mt-1">เว็บไซต์</span>
-                <span class="price-badge text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full mt-1.5 border border-purple-200">เริ่ม 99.-</span>
+                <span class="text-[22px] mb-0 leading-none mt-1 drop-shadow-md">💻</span>
+                <span class="font-bold text-[15px] mt-1">เว็บไซต์</span>
+                <span class="price-badge text-[10px] font-bold px-2 py-0.5 rounded-full mt-1.5 border border-[#e9d5ff]">เริ่ม 99.-</span>
             </button>
         </div>
 
@@ -313,48 +247,21 @@
                 <div class="purple-pill-dashed max-w-[260px] mx-auto shadow-md mb-[-15px] relative z-10 hover:scale-105 transition-transform">
                     <div class="purple-pill-inner text-[18px]">📖 วิธีใช้งาน</div>
                 </div>
-                <div class="card-main p-6 pt-8 mb-8 text-left text-[#7e22ce] text-[15px] leading-relaxed relative">
+                <div class="card-main p-6 pt-8 mb-8 text-left text-[#7e22ce] text-[15px] leading-relaxed relative border-none">
                     <div class="mb-3">1. กดเลือกหมวดหมู่สินค้าด้านบน <br><span class="text-[13px] opacity-80">(ดูดวง, วอลเปเปอร์, เว็บไซต์)</span></div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div class="mb-3">2. กดปุ่ม <span class="bg-[#38bdf8] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
+                    <div class="mb-3">2. กดปุ่ม <span class="bg-gradient-to-r from-[#f472b6] to-[#d946ef] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div class="mb-3">3. เมื่อเลือกครบแล้วกด <span class="font-bold">ไอคอนตะกร้า</span> มุมขวาล่าง จะมีหน้าต่างเด้งขึ้นมาให้กรอกข้อมูล</div>
+                    <div class="mb-3">3. เมื่อเลือกครบแล้วกด <span class="font-bold text-[#d946ef]">ไอคอนตะกร้า</span> มุมขวาล่าง จะมีหน้าต่างเด้งขึ้นมาให้กรอกข้อมูล</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div class="mb-3">4. โอนเงินตามยอดรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)</div>
+                    <div class="mb-3">4. โอนเงินตามค่าครูรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div class="mb-3">5. กด "สร้างข้อความสรุป"</div>
+                    <div class="mb-3">5. กด "เสกข้อความสรุป"</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div>6. กดปุ่มส่งทาง Line/FB/IG ข้อความจะถูกก๊อปปี้อัตโนมัติ ให้นำไปวางส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖</div>
-                </div>
-
-                <div class="purple-pill-dashed max-w-[260px] mx-auto shadow-md mb-[-15px] relative z-10 hover:scale-105 transition-transform">
-                    <div class="purple-pill-inner text-[18px]">📌 กฎของร้าน</div>
-                </div>
-                <div class="card-main p-6 pt-8 mb-4 text-left text-[#7e22ce] text-[15px] leading-relaxed relative">
-                    <div class="text-center mb-4 text-[14px]">(อ่านก่อนน้า เพื่อความสบายใจทั้งสองฝ่ายค่ะ)</div>
-                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
-
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">กฎทั่วไป :</div>
-                    <div class="mb-4 pl-1">ชำระเงินแล้วขอสงวนสิทธิ์ไม่คืนเงินทุกกรณี<br>รบกวน <span class="font-bold text-[#6b21a8]">งดจิก งดเร่งน้า</span> เราตั้งใจทำทุกคิว จะรีบส่งมอบให้เร็วที่สุดค่ะ</div>
-                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
-
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">โทรดูดวง & ฮีลใจ :</div>
-                    <div class="mb-4 pl-1">รบกวนตรงต่อเวลาคิวนะคะ หากต้องการเลื่อนต้องแจ้งล่วงหน้า <span class="text-[13px] opacity-80">(หากเลื่อนกะทันหันก่อนเวลาโทรจริง ขออนุญาตปรับครั้งละ 100 บาทค่า)</span></div>
-                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
-
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">ดูดวงแบบพิมพ์ :</div>
-                    <div class="mb-4 pl-1">รบกวนเช็กข้อมูลให้ครบถ้วน โดยเฉพาะ <span class="font-bold text-[#6b21a8]">"เดือนเกิด"</span> นะคะ เพื่อป้องกันระบบแจ้งเตือนว่ากรอกข้อมูลไม่ครบค่ะ</div>
-                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
-
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">วอลเปเปอร์ :</div>
-                    <div class="mb-4 pl-1">ระยะเวลาจัดทำ 3-7 วัน <span class="text-[13px] opacity-80">(หากต้องการงานด่วน +ค่าเร่ง รับงานได้ภายใน 1-2 วันค่า)</span><br>รบกวนส่งบรีฟให้ครบก่อนเริ่มงานนะคะ</div>
-                    <div class="border-b-2 border-dashed border-[#e9d5ff] mb-4"></div>
-
-                    <div class="font-bold text-[17px] mb-1 italic text-[#6b21a8]">เว็บไซต์ :</div>
-                    <div class="mb-2 pl-1">รบกวนส่งข้อมูลและรูปให้ครบก่อนเริ่มงาน สามารถแก้ดีไซน์ได้ตามจำนวนครั้งที่ตกลงกันไว้ค่ะ</div>
+                    <div>6. กดปุ่มส่งทาง Line/FB/IG ข้อความจะถูกก๊อปปี้อัตโนมัติ <span class="text-[#db2777] font-bold">ให้นำไป "วาง" ส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖</span></div>
                 </div>
                 
-                <div class="text-white text-center font-bold mt-2 text-[16px] animate-pulse">
+                <div class="text-[#fdf4ff] text-center font-bold mt-2 text-[16px] animate-pulse drop-shadow-md">
                     👇 กดเลือกหมวดหมู่สินค้าด้านบนเพื่อเริ่มสั่งซื้อได้เลยค่ะ 👇
                 </div>
             </div>
@@ -363,55 +270,64 @@
         </div>
     </main>
 
-    <div id="checkout-modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
-        <div class="checkout-popup bg-[#fdfcff] w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-2xl">
-            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-[#f3e8ff] text-[#9333ea] border-2 border-[#d8b4fe] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#9333ea] hover:text-white hover:border-[#9333ea] transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Modal ตะกร้าเวทมนตร์ -->
+    <div id="checkout-modal-overlay" class="fixed inset-0 bg-[#1e0b3b]/80 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
+        <div class="checkout-popup w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-[0_0_30px_rgba(219,39,119,0.3)]">
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-white text-[#d946ef] border-2 border-[#e9d5ff] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#d946ef] hover:text-white transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
             
             <div id="checkout-scroll-area">
-                <div class="purple-pill text-[18px] mb-5 mr-8 inline-block px-6">📦 รายการในตะกร้า</div>
+                <div class="purple-pill text-[18px] mb-5 mr-8 inline-block px-6 glow-effect">📦 ของในตะกร้าเวทมนตร์</div>
                 <div id="cart-items-list" class="text-[15px] mb-4 text-left px-2"></div>
                 
-                <div class="mb-5 bg-[#f3e8ff] p-3 rounded-2xl border-2 dashed border-[#d8b4fe] transition-colors hover:border-[#9333ea] text-left">
+                <div class="mb-5 bg-white p-3 rounded-2xl border-2 dashed border-[#e9d5ff] transition-colors hover:border-[#d946ef] text-left">
                     <label class="text-[15px] text-[#7e22ce] cursor-pointer flex items-center gap-2 font-bold">
-                        <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#9333ea; width:20px; height:20px;"> 
-                        ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)
+                        <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#d946ef; width:20px; height:20px;"> 
+                        ⚡ เสกคิวเร่งด่วนพิเศษ (+59 บาท)
                     </label>
                 </div>
 
-                <div class="border-2 border-[#9333ea] rounded-xl text-[18px] text-[var(--c-text-main)] mb-6 text-center p-4 bg-white font-bold shadow-md transform hover:scale-[1.02] transition-transform">
-                    ยอดรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#9333ea] text-[32px]">0</span> บาท
+                <div class="border-2 border-[#d946ef] rounded-xl text-[18px] text-[var(--c-text-main)] mb-6 text-center p-4 bg-white font-bold shadow-md transform hover:scale-[1.02] transition-transform">
+                    ค่าครูรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#d946ef] text-[32px]">0</span> บาท
                 </div>
 
                 <div id="checkout-form-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left">
-                    <div class="purple-pill text-[18px] mb-5 inline-block px-6">💳 โอนเงิน & กรอกข้อมูล</div>
+                    <div class="purple-pill text-[18px] mb-5 inline-block px-6 glow-effect">💳 โอนเงิน & ข้อมูลเวทมนตร์</div>
                     
-                    <div class="border-2 border-[#38bdf8] rounded-xl shadow-[3px_3px_0px_#38bdf8] p-5 text-center mb-4 bg-white hover:-translate-y-1 transition-transform">
-                        <div class="text-[14px] text-[var(--c-text-sub)]">ธนาคารกสิกรไทย (KBank)</div>
-                        <div class="text-[17px] text-[#7e22ce] font-bold my-1" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
-                        <span class="block text-[30px] tracking-widest text-[#0284c7] font-bold my-2" id="display-kbank-num">1961933834</span>
-                        <button class="bg-[#38bdf8] text-white px-5 py-2.5 rounded-xl text-[15px] font-bold hover:bg-[#0ea5e9] transition-colors shadow-sm" onclick="copyNum('kbank')">📋 คัดลอกเลขบัญชี</button>
+                    <!-- กล่องบัญชีไซส์กะทัดรัดเรียงคู่กัน -->
+                    <div class="grid grid-cols-2 gap-3 mb-5">
+                        <div class="border-2 border-[#38bdf8] rounded-xl shadow-[2px_2px_0px_#38bdf8] p-3 text-center bg-white hover:-translate-y-1 transition-transform flex flex-col justify-between">
+                            <div>
+                                <div class="text-[11px] text-gray-500 font-bold mb-1">กสิกรไทย (KBank)</div>
+                                <div class="text-[13px] text-[#7e22ce] font-bold leading-tight" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
+                                <div class="text-[18px] tracking-wider text-[#0284c7] font-bold my-1" id="display-kbank-num">1961933834</div>
+                            </div>
+                            <button class="bg-[#38bdf8] text-white w-full py-1.5 rounded-lg text-[13px] font-bold hover:bg-[#0ea5e9] transition-colors mt-1" onclick="copyNum('kbank')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
+                        </div>
+
+                        <div class="border-2 border-[#f59e0b] rounded-xl shadow-[2px_2px_0px_#f59e0b] p-3 text-center bg-white hover:-translate-y-1 transition-transform flex flex-col justify-between">
+                            <div>
+                                <div class="text-[11px] text-gray-500 font-bold mb-1">TrueMoney Wallet</div>
+                                <div class="text-[13px] text-[#7e22ce] font-bold leading-tight invisible">.</div> <!-- ดันบรรทัดให้เท่ากัน -->
+                                <div class="text-[18px] tracking-wider text-[#d97706] font-bold my-1" id="display-wallet-num">0800172584</div>
+                            </div>
+                            <button class="bg-[#f59e0b] text-white w-full py-1.5 rounded-lg text-[13px] font-bold hover:bg-[#d97706] transition-colors mt-1" onclick="copyNum('wallet')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
+                        </div>
                     </div>
 
-                    <div class="border-2 border-[#f59e0b] rounded-xl shadow-[3px_3px_0px_#f59e0b] p-5 text-center mb-6 bg-white hover:-translate-y-1 transition-transform">
-                        <div class="text-[14px] text-[var(--c-text-sub)]">TrueMoney Wallet</div>
-                        <span class="block text-[30px] tracking-widest text-[#d97706] font-bold my-2" id="display-wallet-num">0800172584</span>
-                        <button class="bg-[#f59e0b] text-white px-5 py-2.5 rounded-xl text-[15px] font-bold hover:bg-[#d97706] transition-colors shadow-sm" onclick="copyNum('wallet')">📋 คัดลอกเบอร์</button>
-                    </div>
-
-                    <div class="form-group bg-[#f3e8ff] p-3 rounded-xl border border-[#d8b4fe] transition-colors hover:border-[#9333ea]">
+                    <div class="form-group bg-white p-3 rounded-xl border border-[#e9d5ff] transition-colors hover:border-[#d946ef]">
                         <label class="text-[14px] text-[#7e22ce] cursor-pointer flex items-start gap-2 leading-relaxed mb-0 font-bold">
-                            <input type="checkbox" id="confirm-pay" class="req-check" style="accent-color:#9333ea; width:22px; height:22px; margin-top:2px;">
-                            <span>ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว<br><span class="text-pink-600">(ต้องแนบสลิปในแชทให้แอดมินด้วยนะคะ) *</span></span>
+                            <input type="checkbox" id="confirm-pay" class="req-check" style="accent-color:#d946ef; width:22px; height:22px; margin-top:2px;">
+                            <span>ฉันได้โอนเงินค่าครูเรียบร้อยแล้ว ✨<br><span class="text-pink-500">(ต้องแนบรูปสลิปในแชทให้แม่หมอด้วยนะคะ) *</span></span>
                         </label>
                     </div>
 
                     <div class="grid grid-cols-1 gap-3 mb-5">
-                        <div class="form-group" style="margin-bottom:0;"><label>วันที่โอน *</label><input type="date" id="f-transfer-date" class="form-control req-field text-sm"></div>
-                        <div class="form-group" style="margin-bottom:0;">
+                        <div class="form-group mb-0"><label>วันที่โอน *</label><input type="date" id="f-transfer-date" class="form-control req-field text-sm"></div>
+                        <div class="form-group mb-0">
                             <label>เวลาที่โอน *</label>
                             <div class="flex items-center gap-2">
                                 <input type="time" id="f-transfer-time" class="form-control req-field text-sm" style="flex:1;">
-                                <button type="button" onclick="setNowTime()" class="bg-white text-[#9333ea] border-2 border-[#9333ea] px-3 py-[10px] rounded-xl text-[14px] font-bold shadow-sm hover:bg-[#9333ea] hover:text-white transition-colors whitespace-nowrap">⏳ โอนเมื่อกี้</button>
+                                <button type="button" onclick="setNowTime()" class="bg-white text-[#d946ef] border-2 border-[#d946ef] px-3 py-[10px] rounded-xl text-[13px] font-bold shadow-sm hover:bg-[#d946ef] hover:text-white transition-colors whitespace-nowrap">⏳ โอนเมื่อกี้</button>
                             </div>
                         </div>
                     </div>
@@ -421,24 +337,24 @@
                         <input type="text" id="f-name" class="form-control req-field" placeholder="เช่น น้องฟ้า / IG: fah_sky">
                     </div>
 
-                    <div id="form-chat-options" style="display:none; background:#f3e8ff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
+                    <div id="form-chat-options" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
                         <div class="form-group" id="delivery-type-group">
                             <label>เลือกรูปแบบการรับงาน *</label>
                             <div class="flex gap-4 mt-2" id="delivery-radio-container">
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบพิมพ์</label>
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#9333ea; width:20px; height:20px;"> แบบอัดเสียง</label>
+                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#d946ef; width:20px; height:20px;"> แบบพิมพ์</label>
+                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce]" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#d946ef; width:20px; height:20px;"> แบบอัดเสียง</label>
                             </div>
-                            <div id="delivery-lock-note" class="text-[13px] text-pink-600 font-bold mt-2" style="display:none;">🔒 รายการนี้จำกัดเฉพาะ "แบบพิมพ์" เท่านั้นค่ะ</div>
+                            <div id="delivery-lock-note" class="text-[13px] text-pink-500 font-bold mt-2" style="display:none;">🔒 รายการนี้จำกัดเฉพาะ "แบบพิมพ์" เท่านั้นค่ะ</div>
                         </div>
-                        <div class="form-group" id="card-option-group" style="margin-bottom:0; background:#fff; padding:12px; border-radius:10px; border:1px solid #d8b4fe;">
+                        <div class="form-group mb-0 bg-white p-3 rounded-lg border border-[#e9d5ff]" id="card-option-group">
                             <label class="flex items-center gap-2 cursor-pointer text-[#7e22ce] mb-0 font-bold">
-                                <input type="checkbox" id="f-card-opt" style="width:20px; height:20px; accent-color:#9333ea;"> รับหน้าไพ่ด้วย
+                                <input type="checkbox" id="f-card-opt" style="width:20px; height:20px; accent-color:#d946ef;"> รับหน้าไพ่ด้วย
                             </label>
                         </div>
                     </div>
 
-                    <div id="form-personal" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
+                    <div id="form-personal" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
                         <div class="form-group" id="field-status-box">
                             <label>สถานะความสัมพันธ์ *</label>
@@ -454,40 +370,22 @@
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3" id="field-month-year-box">
-                            <div class="form-group mb-0">
-                                <label>เดือนเกิด *</label>
-                                <select id="f-month" class="form-control"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label>ปี พ.ศ. (ไม่บังคับ)</label>
-                                <input type="number" id="f-year" class="form-control" placeholder="เช่น 2545">
-                            </div>
+                            <div class="form-group mb-0"><label>เดือนเกิด *</label><select id="f-month" class="form-control"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
+                            <div class="form-group mb-0"><label>ปี พ.ศ. (ไม่บังคับ)</label><input type="number" id="f-year" class="form-control" placeholder="เช่น 2545"></div>
                         </div>
                     </div>
 
-                    <div id="form-questions" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4 inline-block">💬 คำถามดูดวง</div>
+                    <div id="form-questions" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
+                        <div class="purple-pill text-[16px] mb-4 inline-block">💬 คำถามที่อยากถามไพ่</div>
                         <div id="dynamic-questions"></div>
                     </div>
 
-                    <div id="form-wall" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4 inline-block">🎨 ข้อมูลทำวอลเปเปอร์</div>
-                        <div class="form-group">
-                            <label>ชื่อที่ใส่ในวอล (ไม่บังคับ)</label>
-                            <input type="text" id="f-wall-name" class="form-control" placeholder="เช่น Mook / May / หรือเว้นว่าง">
-                        </div>
+                    <div id="form-wall" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
+                        <div class="purple-pill text-[16px] mb-4 inline-block">🎨 ข้อมูลเสกวอลเปเปอร์</div>
+                        <div class="form-group"><label>ชื่อที่ใส่ในวอล (ไม่บังคับ)</label><input type="text" id="f-wall-name" class="form-control" placeholder="เช่น Mook / May / หรือเว้นว่าง"></div>
                         <div class="grid grid-cols-2 gap-3">
-                            <div class="form-group mb-0">
-                                <label>วันเกิด (จ.-อา.) *</label>
-                                <select id="f-wall-day" class="form-control dyn-req"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select>
-                            </div>
-                            <div class="form-group mb-0">
-                                <label>วันที่ (1-31) *</label>
-                                <select id="f-wall-date" class="form-control dyn-req">
-                                    <option value="">-- วันที่ --</option>
-                                    <script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script>
-                                </select>
-                            </div>
+                            <div class="form-group mb-0"><label>วันเกิด (จ.-อา.) *</label><select id="f-wall-day" class="form-control dyn-req"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select></div>
+                            <div class="form-group mb-0"><label>วันที่ (1-31) *</label><select id="f-wall-date" class="form-control dyn-req"><option value="">-- วันที่ --</option><script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script></select></div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 mt-3">
                             <div class="form-group mb-0"><label>เดือนเกิด *</label><select id="f-wall-month" class="form-control dyn-req"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
@@ -497,50 +395,42 @@
                             <div class="form-group mb-0"><label>ปีนักษัตร *</label><select id="f-wall-zodiac" class="form-control dyn-req"><option value="">-- นักษัตร --</option><option value="ชวด">ชวด (หนู)</option><option value="ฉลู">ฉลู (วัว)</option><option value="ขาล">ขาล (เสือ)</option><option value="เถาะ">เถาะ (กระต่าย)</option><option value="มะโรง">มะโรง (งูใหญ่)</option><option value="มะเส็ง">มะเส็ง (งูเล็ก)</option><option value="มะเมีย">มะเมีย (ม้า)</option><option value="มะแม">มะแม (แพะ)</option><option value="วอก">วอก (ลิง)</option><option value="ระกา">ระกา (ไก่)</option><option value="จอ">จอ (หมา)</option><option value="กุน">กุน (หมู)</option></select></div>
                             <div class="form-group mb-0"><label>สีที่ชอบ *</label><input type="text" id="f-wall-color" class="form-control dyn-req" placeholder="เผื่อตรงกับสีถูกโฉลก"></div>
                         </div>
-                        <div class="form-group mt-3">
-                            <label>เรื่องที่ต้องการเสริมหลัก (1 เรื่อง) *</label>
-                            <input type="text" id="f-wall-main" class="form-control dyn-req" placeholder="เช่น การเงิน, ความรัก, การงาน">
-                        </div>
+                        <div class="form-group mt-3"><label>เรื่องที่ต้องการเสริมหลัก (1 เรื่อง) *</label><input type="text" id="f-wall-main" class="form-control dyn-req" placeholder="เช่น การเงิน, ความรัก, การงาน"></div>
                         <div id="wall-extra-container"></div>
                     </div>
 
-                    <div id="form-appt" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
-                        <div class="purple-pill text-[16px] mb-4 inline-block">📅 จองเวลา (สำหรับคอล)</div>
+                    <div id="form-appt" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
+                        <div class="purple-pill text-[16px] mb-4 inline-block">📅 เวลานัดหมายเวทมนตร์ (สำหรับคอล)</div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="form-group mb-0"><label>วันที่จอง *</label><input type="date" id="f-appt-date" class="form-control text-sm"></div>
                             <div class="form-group mb-0"><label>เวลาที่จอง *</label><input type="time" id="f-appt-time" class="form-control text-sm" onchange="calculateEndTime()"></div>
                         </div>
-                        <div id="end-time-display" class="mt-4 text-[15px] text-[var(--c-purple-dark)] font-bold text-center bg-[#f3e8ff] p-2.5 rounded-lg border border-[#d8b4fe]" style="display:none;"></div>
+                        <div id="end-time-display" class="mt-4 text-[14px] text-[#db2777] font-bold text-center bg-[#fce7f3] p-2.5 rounded-lg border border-[#fbcfe8]" style="display:none;"></div>
                     </div>
 
-                    <div id="form-web" style="display:none; background:#fff; padding:18px; border-radius:1rem; border:2px dashed #d8b4fe; margin-bottom:16px;">
+                    <div id="form-web" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                         <div class="purple-pill text-[16px] mb-4 inline-block">💻 ข้อมูลรับทำเว็บไซต์</div>
-                        <div class="form-group mb-0">
-                            <label>ชื่อร้าน / รูปแบบเว็บไซต์คร่าวๆ *</label>
-                            <textarea id="f-web-brief" class="form-control" rows="3" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ (จากนั้นบรีฟต่อในแชทแอดมิน)"></textarea>
-                        </div>
+                        <div class="form-group mb-0"><label>ชื่อร้าน / รูปแบบเว็บไซต์คร่าวๆ *</label><textarea id="f-web-brief" class="form-control" rows="3" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ (จากนั้นบรีฟต่อในแชทแอดมิน)"></textarea></div>
                     </div>
 
-                    <button id="btn-submit-order" class="btn-action mt-4 py-4 w-full" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป ✨</button>
+                    <button id="btn-submit-order" class="btn-action mt-4 py-4 w-full glow-effect text-[19px]" onclick="generateSummaryAndSend()">🪄 เสกข้อความสรุป 🪄</button>
                 </div>
 
                 <div id="summary-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left" style="display:none;">
-                    <div class="text-[24px] text-[var(--c-purple-dark)] font-bold mb-2 text-center">🎉 สรุปยอดเรียบร้อย!</div>
+                    <div class="text-[24px] text-[#a855f7] font-bold mb-2 text-center drop-shadow-sm">✨ เสกข้อความเรียบร้อย! ✨</div>
                     
-                    <div class="text-[16px] text-pink-600 font-bold mb-4 mt-4 text-center bg-[#fdf2f8] p-3 rounded-xl border border-pink-200 shadow-sm animate-pulse">
-                        🚨 อย่าลืมแนบสลิปให้แอดมินด้วยน้า 📸
+                    <div class="text-[15px] text-pink-600 font-bold mb-5 mt-4 text-center bg-[#fdf2f8] p-3 rounded-xl border-2 border-dashed border-pink-300 shadow-sm animate-bounce">
+                        🚨 ระบบคัดลอกให้แล้ว เปิดแอปแล้วอย่าลืมกด<br><span class="text-xl">"วาง (Paste)" และแนบสลิปน้า 📸</span>
                     </div>
-
-                    <div class="text-[14px] text-[#7e22ce] mb-4 text-center bg-[#f3e8ff] p-2 rounded-xl border border-[#d8b4fe]">ตรวจสอบข้อมูลให้เป๊ะ แล้วกดส่งได้เลยค่ะ ✨</div>
                     
                     <div class="form-group">
-                        <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:14px; background:#fff; border-color:#9333ea; line-height:1.6;"></textarea>
+                        <textarea id="summary-text" class="form-control" rows="8" readonly style="font-size:13px; background:#fff; border-color:#d946ef; line-height:1.6;"></textarea>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <button class="bg-[#0284c7] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> ส่ง FB</button>
-                        <button class="bg-[#16a34a] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> ส่ง LINE</button>
-                        <button class="bg-gradient-to-tr from-[#9333ea] via-[#db2777] to-[#f97316] text-white py-3.5 rounded-xl font-bold text-[15px] shadow-sm hover:scale-[1.03] transition-transform flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> ส่ง IG</button>
+                        <button class="bg-gradient-to-b from-[#0ea5e9] to-[#0284c7] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> คัดลอก & เปิด Messenger</button>
+                        <button class="bg-gradient-to-b from-[#22c55e] to-[#16a34a] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> คัดลอก & เปิด LINE</button>
+                        <button class="bg-gradient-to-tr from-[#9333ea] via-[#db2777] to-[#f97316] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> คัดลอก & เปิด IG</button>
                     </div>
                 </div>
 
@@ -548,23 +438,21 @@
         </div>
     </div>
 
-    <!-- Admin Modal: ระบบ Accordion เปิด-ปิดย่อหน้า -->
+    <!-- Admin Modal -->
     <div id="admin-modal" class="modal-overlay">
-        <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#9333ea] shadow-xl relative max-h-[90vh] flex flex-col text-left">
-            <div class="flex justify-between items-center border-b-2 dashed border-[#d8b4fe] pb-3 mb-4">
-                <h2 class="text-[#9333ea] m-0 text-xl font-bold">🔮 ระบบหลังบ้าน (Admin)</h2>
-                <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-500 text-3xl cursor-pointer hover:text-red-500">&times;</button>
+        <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#d946ef] shadow-[0_0_20px_rgba(217,70,239,0.5)] relative max-h-[90vh] flex flex-col text-left">
+            <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-3 mb-4">
+                <h2 class="text-[#c026d3] m-0 text-xl font-bold">🔮 ระบบหลังบ้าน (Admin)</h2>
+                <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-400 text-3xl cursor-pointer hover:text-pink-500">&times;</button>
             </div>
             
             <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-4">
-                
-                <!-- ส่วนที่ 1: ตั้งค่าร้านทั่วไป (มีปุ่มเปิด-ปิดย่อหน้า) -->
-                <div class="bg-[#f3e8ff] rounded-2xl border-2 border-[#d8b4fe] overflow-hidden shadow-sm">
-                    <button onclick="toggleAccordion('acc-settings')" class="w-full p-4 flex justify-between items-center bg-[#f3e8ff] hover:bg-[#e9d5ff] transition-colors cursor-pointer border-none font-bold text-[#7e22ce] text-[16px]">
+                <div class="bg-[#faf5ff] rounded-2xl border-2 border-[#e9d5ff] overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('acc-settings')" class="w-full p-4 flex justify-between items-center bg-[#fdf4ff] hover:bg-[#fae8ff] transition-colors cursor-pointer border-none font-bold text-[#9333ea] text-[16px]">
                         <span>📝 1. ตั้งค่าข้อมูลร้านทั่วไป</span>
                         <i id="icon-acc-settings" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div id="acc-settings" class="p-4 bg-white border-t border-[#d8b4fe] space-y-3" style="display:none;">
+                    <div id="acc-settings" class="p-4 bg-white border-t border-[#e9d5ff] space-y-3" style="display:none;">
                         <div class="form-group mb-0"><label>ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>สโลแกน</label><input type="text" id="cfg-slogan" class="form-control py-2"></div>
                         <div class="form-group mb-0"><label>ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2"></div>
@@ -580,29 +468,28 @@
                     </div>
                 </div>
 
-                <!-- ส่วนที่ 2: จัดการสินค้าและราคา (มีปุ่มเปิด-ปิดย่อหน้า) -->
-                <div class="bg-[#f3e8ff] rounded-2xl border-2 border-[#d8b4fe] overflow-hidden shadow-sm">
-                    <button onclick="toggleAccordion('acc-products')" class="w-full p-4 flex justify-between items-center bg-[#f3e8ff] hover:bg-[#e9d5ff] transition-colors cursor-pointer border-none font-bold text-[#7e22ce] text-[16px]">
-                        <span>📦 2. จัดการสินค้าและราคา</span>
+                <div class="bg-[#faf5ff] rounded-2xl border-2 border-[#e9d5ff] overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('acc-products')" class="w-full p-4 flex justify-between items-center bg-[#fdf4ff] hover:bg-[#fae8ff] transition-colors cursor-pointer border-none font-bold text-[#9333ea] text-[16px]">
+                        <span>📦 2. จัดการสินค้า (ป้ายแท็ก & สลับตำแหน่ง)</span>
                         <i id="icon-acc-products" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div id="acc-products" class="p-4 bg-white border-t border-[#d8b4fe] space-y-4" style="display:none;">
+                    <div id="acc-products" class="p-4 bg-white border-t border-[#e9d5ff] space-y-4" style="display:none;">
                         <div id="admin-products-list" class="space-y-4"></div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="flex gap-2 border-t-2 dashed border-[#d8b4fe] pt-4">
+            <div class="flex gap-2 border-t-2 dashed border-[#e9d5ff] pt-4">
                 <button onclick="saveAdmin()" class="btn-action m-0 flex-[2]">💾 บันทึกทั้งหมด</button>
-                <button onclick="resetAdmin()" class="btn-action m-0 flex-1 !bg-red-400 !shadow-none">⚠️ รีเซ็ต</button>
+                <button onclick="resetAdmin()" class="btn-action m-0 flex-1 !bg-gray-400 !shadow-none">⚠️ รีเซ็ต</button>
             </div>
         </div>
     </div>
 
-    <div class="toast" id="toast">✅ สำเร็จ!</div>
+    <div class="toast" id="toast">✨ เสกข้อความเรียบร้อย! ✨</div>
 
     <script>
+    // --- โค้ดกันพัง: หุ้มการทำงานหลักด้วย Try-Catch ---
     const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
     const ADMIN_PASS = "1164";
 
@@ -610,23 +497,28 @@
         shopName: "Ah Tao Mu-space",
         slogan: "“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”",
         reviewLink: "#",
-        marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space ✨",
+        marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space พื้นที่ฮีลใจของคุณ ✨",
         fbLink: "https://m.me/taotofu.meow",
         lineLink: "https://lin.ee/WgEAeFx",
-        igLink: "https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr",
+        igLink: "https://www.instagram.com/artaoty2",
         kbankName: "ธนพร เจิมเฟื่องฟู",
         kbankNum: "1961933834",
         walletNum: "0800172584",
-        rulesText: "",
         sampleWallLink: "",
         sampleWebLink: ""
     };
 
+    // ลำดับสินค้าอัปเดตใหม่ (เอาพื้นที่รับฟังออก, โทรดูดวงขึ้นที่ 2, โครงสร้างรองรับ Badge)
     const defaultData = [
         { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
-            { name: "Yes or No!! (1 คำถาม)", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
-            { name: "5 คำถาม (ขายดี)", price: 118 }, { name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129 },
-            { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 }, { name: "เช็กล่วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }, { name: "พื้นดวง", price: 219 } 
+            { name: "Yes or No!! (1 คำถาม)", price: 9 }, 
+            { name: "1 คำถาม", price: 29 }, 
+            { name: "3 คำถาม", price: 69, badge: { text: "แนะนำ", emoji: "⭐", bg: "#fef08a", color: "#b45309" } }, 
+            { name: "5 คำถาม", price: 118, badge: { text: "ขายดี", emoji: "🔥", bg: "#fee2e2", color: "#e11d48" } }, 
+            { name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129 },
+            { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 }, 
+            { name: "เช็กล่วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }, 
+            { name: "พื้นดวง", price: 219, badge: { text: "มาใหม่", emoji: "✨", bg: "#dbeafe", color: "#1d4ed8" } } 
         ]},
         { tab: 1, category: "โทรดูดวง", title: "📞 โทรดูดวง (พูดคุยสายตรง)", items: [ 
             { name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99 }, { name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129 }, 
@@ -651,10 +543,6 @@
             { name: "ภาพรวมรายเดือน", price: 199 }, { name: "ดวงชะตารายเดือนอย่างละเอียด", price: 299 }, 
             { name: "ดวงชะตาราย 6 เดือน", price: 499 }, { name: "ดวงชะตารายปีอย่างละเอียด", price: 799 } 
         ]},
-        { tab: 2, category: "พื้นที่รับฟัง", title: "☎️ พื้นที่รับฟัง (สายคอล)", items: [ 
-            { name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59 }, { name: "30 นาที", price: 139 }, 
-            { name: "60 นาที", price: 239 }, { name: "90 นาที", price: 329 }, { name: "แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)", price: 659 } 
-        ]},
         { tab: 2, category: "วอลเปเปอร์", title: "📱 วอลเปเปอร์สายมู", items: [ 
             { name: "วอลเปเปอร์สายมูออกแบบเริ่มต้น", price: 189 }, { name: "วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้", price: 199 }, 
             { name: "วอลเปเปอร์สายมูเพิ่มเรื่อง (บวกเพิ่มต่อเรื่อง)", price: 39 }, { name: "ค่าเร่งเฉพาะวอลเปเปอร์", price: 89 } 
@@ -665,17 +553,20 @@
         ]}
     ];
 
-    let productData = JSON.parse(JSON.stringify(defaultData));
+    let productData = [];
     let currentCart = [];
     let activeTab = 0;
 
-    let hasChat = false, hasPhone = false, hasWall = false, hasChart = false, hasWeb = false, hasHeal = false;
+    let hasChat = false, hasPhone = false, hasWall = false, hasChart = false, hasWeb = false;
     let totalChatQuestions = 0;
     let minChatPrice = 999;
     let wallAddCount = 0;
 
     document.addEventListener('DOMContentLoaded', async () => {
         try {
+            // โค้ดกันพัง: ก๊อปปี้ defaultData อย่างปลอดภัย
+            productData = JSON.parse(JSON.stringify(defaultData));
+
             const today = new Date();
             const dateStr = today.toISOString().split('T')[0];
             const timeStr = today.toTimeString().substring(0, 5);
@@ -683,58 +574,52 @@
             if(document.getElementById('f-transfer-date')) document.getElementById('f-transfer-date').value = dateStr;
             if(document.getElementById('f-transfer-time')) document.getElementById('f-transfer-time').value = timeStr;
             
-            const savedData = localStorage.getItem('muSpaceUserData');
-            if (savedData) {
-                const p = JSON.parse(savedData);
-                if(p.name) document.getElementById('f-name').value = p.name;
-                if(p.age) document.getElementById('f-age').value = p.age;
-                if(p.status) document.getElementById('f-status').value = p.status;
-                if(p.day) document.getElementById('f-day').value = p.day;
-                if(p.month) document.getElementById('f-month').value = p.month;
-                if(p.year) document.getElementById('f-year').value = p.year;
-            }
-
-            const localSettings = localStorage.getItem('muSpaceSettingsV3');
-            if (localSettings) shopSettings = JSON.parse(localSettings);
-
-            const localProd = localStorage.getItem('muSpaceProductsV3');
-            if (localProd) productData = JSON.parse(localProd);
+            // โหลดข้อมูลเก่าของผู้ใช้ถ้ามี
+            try {
+                const savedData = localStorage.getItem('muSpaceUserData');
+                if (savedData) {
+                    const p = JSON.parse(savedData);
+                    if(p.name) document.getElementById('f-name').value = p.name;
+                    if(p.age) document.getElementById('f-age').value = p.age;
+                    if(p.status) document.getElementById('f-status').value = p.status;
+                    if(p.day) document.getElementById('f-day').value = p.day;
+                    if(p.month) document.getElementById('f-month').value = p.month;
+                    if(p.year) document.getElementById('f-year').value = p.year;
+                }
+                const localSettings = localStorage.getItem('muSpaceSettingsV4');
+                if (localSettings) shopSettings = JSON.parse(localSettings);
+                const localProd = localStorage.getItem('muSpaceProductsV4');
+                if (localProd) productData = JSON.parse(localProd);
+            } catch(e) { console.warn("Local storage parse error, using defaults"); }
             
             applySettingsToDOM();
 
-            fetch(API_URL + "?action=getData").then(res => res.json()).then(result => {
-                if (result) {
-                    if(result.settings) {
+            // ดึง API อย่างปลอดภัย
+            fetch(API_URL + "?action=getData")
+                .then(res => res.json())
+                .then(result => {
+                    if (result && result.settings) {
                         shopSettings = result.settings;
-                        if(!shopSettings.sampleWallLink) shopSettings.sampleWallLink = "";
-                        if(!shopSettings.sampleWebLink) shopSettings.sampleWebLink = "";
-                        if(!shopSettings.igLink) shopSettings.igLink = "https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr";
-                        if(!shopSettings.reviewLink) shopSettings.reviewLink = "#";
+                        if(result.products && result.products.length > 0 && result.products[0].hasOwnProperty('tab')) {
+                            productData = result.products;
+                        }
+                        applySettingsToDOM();
+                        if(activeTab > 0) renderProducts(); 
                     }
-                    if(result.products && result.products.length > 0 && result.products[0].hasOwnProperty('tab')) {
-                        productData = result.products;
-                    }
-                    applySettingsToDOM();
-                    if(activeTab > 0) renderProducts(); 
-                }
-            }).catch(e => console.log("Offline mode or API error"));
+                })
+                .catch(e => console.log("Offline mode or API error (Safe Fallback applied)"));
 
             switchTab(0);
-        } catch (err) {
-            console.error("Init Error Protected:", err);
-        }
+        } catch (err) { console.error("Init Error Protected:", err); }
     });
 
-    // ระบบ Accordion เปิด-ปิดย่อหน้าหลังบ้าน
     function toggleAccordion(id) {
         const el = document.getElementById(id);
         const icon = document.getElementById('icon-' + id);
         if (el.style.display === 'none') {
-            el.style.display = 'block';
-            icon.style.transform = 'rotate(180deg)';
+            el.style.display = 'block'; icon.style.transform = 'rotate(180deg)';
         } else {
-            el.style.display = 'none';
-            icon.style.transform = 'rotate(0deg)';
+            el.style.display = 'none'; icon.style.transform = 'rotate(0deg)';
         }
     }
 
@@ -756,7 +641,6 @@
     function switchTab(tabId) {
         activeTab = tabId;
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        
         if (tabId === 0) {
             document.getElementById('rules-view').style.display = 'block';
             document.getElementById('products-wrapper').style.display = 'none';
@@ -774,29 +658,33 @@
         const itemsToRender = productData.filter(d => d.tab === activeTab);
         
         itemsToRender.forEach(group => {
-            html += `<div class="card-main p-6 mb-6 transform hover:scale-[1.01] transition-transform">
-                        <div class="purple-pill text-[18px] mb-4">${group.title}</div>`;
+            html += `<div class="card-main p-5 mb-6 transform hover:scale-[1.01] transition-transform">
+                        <div class="purple-pill text-[17px] mb-4 shadow-sm">${group.title}</div>`;
             
             if (group.category === "วอลเปเปอร์" && shopSettings.sampleWallLink) {
-                html += `<a href="${shopSettings.sampleWallLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#f3e8ff] border-2 border-dashed border-[#9333ea] text-[#7e22ce] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#e9d5ff] text-[15px] transition-colors decoration-none">🖼️ ดูตัวอย่างวอลเปเปอร์คลิกที่นี่</a>`;
+                html += `<a href="${shopSettings.sampleWallLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fdf4ff] border-2 border-dashed border-[#d946ef] text-[#c026d3] rounded-xl py-2.5 mb-4 font-bold shadow-sm hover:bg-[#fae8ff] text-[14px] transition-colors decoration-none">🖼️ ดูตัวอย่างวอลเปเปอร์คลิกที่นี่</a>`;
             }
             if (group.category === "รับทำเว็บไซต์" && shopSettings.sampleWebLink) {
-                html += `<a href="${shopSettings.sampleWebLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#f3e8ff] border-2 border-dashed border-[#9333ea] text-[#7e22ce] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#e9d5ff] text-[15px] transition-colors decoration-none">💻 ดูตัวอย่างเว็บไซต์คลิกที่นี่</a>`;
+                html += `<a href="${shopSettings.sampleWebLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fdf4ff] border-2 border-dashed border-[#d946ef] text-[#c026d3] rounded-xl py-2.5 mb-4 font-bold shadow-sm hover:bg-[#fae8ff] text-[14px] transition-colors decoration-none">💻 ดูตัวอย่างเว็บไซต์คลิกที่นี่</a>`;
             }
 
             group.items.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                
                 let badgeHtml = '';
-                if (item.name.includes('15 นาที')) badgeHtml = '<span class="bg-red-100 text-red-600 border border-red-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">🔥 ขายดี</span>';
-                else if (item.name.includes('พื้นดวง')) badgeHtml = '<span class="bg-blue-100 text-blue-600 border border-blue-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">✨ มาใหม่</span>';
-                else if (item.name.includes('3 คำถาม')) badgeHtml = '<span class="bg-yellow-100 text-yellow-700 border border-yellow-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">⭐ แนะนำ</span>';
+                
+                // ระบบป้ายแท็ก Custom
+                if (item.badge && item.badge.text) {
+                    badgeHtml = `<span style="background-color:${item.badge.bg}; color:${item.badge.color}; border: 1px solid${item.badge.color}30;" class="text-[10px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm tracking-wide">${item.badge.emoji}${item.badge.text}</span>`;
+                } else if (item.name.includes('15 นาที')) {
+                    // Fallback สำหรับของเก่า
+                    badgeHtml = '<span class="bg-red-100 text-red-600 border border-red-200 text-[10px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">🔥 ขายดี</span>';
+                }
 
-                html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#d8b4fe] hover:bg-[#f3e8ff] transition-colors rounded-lg px-2">
+                html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#e9d5ff] hover:bg-white transition-colors rounded-lg px-2">
                             <span class="text-[15px] text-[#7e22ce] flex-1 pr-2 leading-relaxed flex flex-wrap items-center">${item.name}${badgeHtml}</span>
                             <div class="flex items-center gap-3 shrink-0">
-                                <span class="text-[#7e22ce] font-bold text-[17px]">${item.price}.-</span>
-                                <button class="btn-add shadow-sm" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">+</button>
+                                <span class="text-[#a855f7] font-bold text-[17px]">${item.price}.-</span>
+                                <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">+</button>
                             </div>
                         </div>`;
             });
@@ -809,13 +697,12 @@
         if(name.includes('เพิ่มเรื่อง') || name.includes('+39')) {
             let currentAddCount = currentCart.filter(i => i.name.includes('เพิ่มเรื่อง') || i.name.includes('+39')).length;
             if(currentAddCount >= 5) {
-                alert('⚠️ เพิ่มเรื่องเสริมได้สูงสุด 5 เรื่องต่อบิลนะคะ');
-                return;
+                alert('⚠️ เพิ่มเรื่องเสริมได้สูงสุด 5 เรื่องต่อบิลนะคะ'); return;
             }
         }
         currentCart.push({ name, price, category });
         updateCartTotal();
-        showToast('🛒 เพิ่มลงตะกร้าแล้ว! แวะไปดูได้เลย');
+        showToast('🛒 หยิบใส่ตะกร้าเวทมนตร์แล้ว!');
         
         const cartIcon = document.getElementById('cart-float');
         cartIcon.style.display = 'flex';
@@ -823,26 +710,20 @@
         setTimeout(() => cartIcon.style.transform = '', 300);
     }
 
-    function removeItem(index) { 
-        currentCart.splice(index, 1); 
-        updateCartTotal(); 
-    }
+    function removeItem(index) { currentCart.splice(index, 1); updateCartTotal(); }
 
     function openCheckoutModal() {
         if(currentCart.length === 0) {
-            alert('ตะกร้ายังว่างเปล่า ลองเลือกสินค้าดูก่อนน้า 🔮✨');
-            return;
+            alert('ตะกร้ายังว่างเปล่า ลองเลือกสินค้าดูก่อนน้า 🔮✨'); return;
         }
         document.getElementById('loading-overlay').style.display = 'flex';
-        
         setTimeout(() => {
             document.getElementById('loading-overlay').style.display = 'none';
             document.getElementById('checkout-form-area').style.display = 'block';
             document.getElementById('summary-area').style.display = 'none';
-            
             document.getElementById('checkout-modal-overlay').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-        }, 800);
+        }, 600); // โหลดไวขึ้นนิดนึง
     }
 
     function closeCheckoutModal() {
@@ -857,33 +738,25 @@
         
         if (currentCart.length === 0) {
             document.getElementById('cart-float').style.display = 'none';
-            closeCheckoutModal();
-            return;
+            closeCheckoutModal(); return;
         }
 
         let html = ''; let subtotal = 0;
-        hasChat = hasPhone = hasWall = hasChart = hasWeb = hasHeal = false; 
-        totalChatQuestions = 0;
-        minChatPrice = 999;
-        wallAddCount = 0;
+        hasChat = hasPhone = hasWall = hasChart = hasWeb = false; 
+        totalChatQuestions = 0; minChatPrice = 999; wallAddCount = 0;
 
         currentCart.forEach((item, index) => {
             subtotal += item.price;
-            html += `<div class="flex justify-between mb-2 border-b dashed border-[#d8b4fe] pb-2 text-[15px] text-[#7e22ce] font-bold items-center hover:bg-gray-50 rounded-lg px-1">
+            html += `<div class="flex justify-between mb-2 border-b dashed border-[#e9d5ff] pb-2 text-[15px] text-[#7e22ce] font-bold items-center hover:bg-white rounded-lg px-1">
                 <span class="flex-1">- ${item.name}</span> 
-                <span class="text-[#9333ea] font-bold whitespace-nowrap">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-400 cursor-pointer ml-1 hover:scale-125 transition-transform"><i class="fa-solid fa-circle-xmark"></i></button></span>
+                <span class="text-[#d946ef] font-bold whitespace-nowrap">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-400 cursor-pointer ml-1 hover:scale-125 transition-transform"><i class="fa-solid fa-circle-xmark"></i></button></span>
             </div>`;
             
             if (item.category === 'โทรดูดวง') hasPhone = true;
             else if (item.category === 'รับทำเว็บไซต์') hasWeb = true;
-            else if (item.category === 'พื้นที่รับฟัง') hasHeal = true;
             else if (item.category === 'วอลเปเปอร์') {
-                if(item.name.includes('เริ่มต้น') || item.name.includes('แม่หมอดู') || item.price === 189 || item.price === 199) {
-                    hasWall = true;
-                }
-                if(item.name.includes('เพิ่มเรื่อง') || item.name.includes('+39')) {
-                    wallAddCount++;
-                }
+                if(item.name.includes('เริ่มต้น') || item.name.includes('แม่หมอดู') || item.price === 189 || item.price === 199) hasWall = true;
+                if(item.name.includes('เพิ่มเรื่อง') || item.name.includes('+39')) wallAddCount++;
             }
             else if (item.category === 'ดูดวง') {
                 if (item.name.includes('พื้นดวง') || item.name.includes('ผูกดวง')) hasChart = true;
@@ -899,32 +772,25 @@
 
         if (document.getElementById('urgent-queue').checked) {
             subtotal += 59;
-            html += `<div class="flex justify-between mt-3 text-[#9333ea] text-[15px] font-bold bg-[#f3e8ff] p-2 rounded-lg border border-[#d8b4fe]"><span>⚡ คิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div class="flex justify-between mt-3 text-[#d946ef] text-[15px] font-bold bg-[#fdf4ff] p-2 rounded-lg border border-[#fae8ff]"><span>⚡ เสกคิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
-
-        listEl.innerHTML = html; 
-        totalEl.textContent = subtotal; 
+        listEl.innerHTML = html; totalEl.textContent = subtotal; 
         setupDynamicForm();
     }
 
     function setupDynamicForm() {
         const needPersonal = hasChat || hasPhone;
         const formPersonal = document.getElementById('form-personal');
-        
-        formPersonal.style.display = needPersonal || hasHeal ? 'block' : 'none';
+        formPersonal.style.display = needPersonal ? 'block' : 'none';
         if (needPersonal) {
             document.getElementById('field-status-box').style.display = 'block';
             document.getElementById('field-month-year-box').style.display = 'grid'; 
             document.getElementById('f-day').closest('.form-group').style.display = 'block';
-        } else if (hasHeal) {
-            document.getElementById('field-status-box').style.display = 'none';
-            document.getElementById('field-month-year-box').style.display = 'none';
-            document.getElementById('f-day').closest('.form-group').style.display = 'none';
         }
         manageRequiredFields(formPersonal);
 
         const formAppt = document.getElementById('form-appt');
-        formAppt.style.display = (hasPhone || hasHeal) ? 'block' : 'none';
+        formAppt.style.display = hasPhone ? 'block' : 'none';
         manageRequiredFields(formAppt);
 
         const formWeb = document.getElementById('form-web');
@@ -932,17 +798,12 @@
         manageRequiredFields(formWeb);
 
         const chatOptionsBox = document.getElementById('form-chat-options');
-        if (hasChat) {
-            chatOptionsBox.style.display = 'block';
-            checkDeliveryPriceLock();
-        } else {
-            chatOptionsBox.style.display = 'none';
-        }
+        if (hasChat) { chatOptionsBox.style.display = 'block'; checkDeliveryPriceLock(); } 
+        else chatOptionsBox.style.display = 'none';
 
         const dQuestionsDiv = document.getElementById('dynamic-questions');
         const formQuestions = document.getElementById('form-questions');
         formQuestions.style.display = hasChat ? 'block' : 'none';
-        
         if (hasChat) {
             dQuestionsDiv.innerHTML = '';
             if (totalChatQuestions > 0) {
@@ -974,7 +835,6 @@
         const audioLabel = document.getElementById('audio-option-label');
         const lockNote = document.getElementById('delivery-lock-note');
         const printRadio = document.querySelector('input[name="delivery_type"][value="พิมพ์"]');
-
         if (minChatPrice < 69) {
             if(audioLabel) audioLabel.style.display = 'none';
             if(lockNote) lockNote.style.display = 'block';
@@ -989,217 +849,176 @@
         const isVisible = container.style.display !== 'none';
         const inputs = container.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]):not(#f-year):not(#f-wall-name), select, textarea');
         inputs.forEach(input => {
-            if(isVisible) input.classList.add('dyn-req');
-            else input.classList.remove('dyn-req');
+            if(isVisible) input.classList.add('dyn-req'); else input.classList.remove('dyn-req');
         });
     }
-
-    function toggleDeliveryOptions() {
-        const cardBox = document.getElementById('card-option-group');
-        cardBox.style.display = 'block';
-    }
+    function toggleDeliveryOptions() { document.getElementById('card-option-group').style.display = 'block'; }
 
     function calculateEndTime() {
         const timeVal = document.getElementById('f-appt-time').value;
         const display = document.getElementById('end-time-display');
         if (!timeVal) { display.style.display = 'none'; return; }
-
         let minutes = 10;
         currentCart.forEach(i => {
             if (i.name.includes('15 นาที')) minutes = 15;
             else if (i.name.includes('30 นาที')) minutes = 30;
             else if (i.name.includes('1 ชั่วโมง')) minutes = 60;
-            else if (i.name.includes('60 นาที')) minutes = 60;
-            else if (i.name.includes('90 นาที')) minutes = 90;
         });
-
         const [h, m] = timeVal.split(':').map(Number);
-        const dateObj = new Date();
-        dateObj.setHours(h, m + minutes);
+        const dateObj = new Date(); dateObj.setHours(h, m + minutes);
         const endH = String(dateObj.getHours()).padStart(2, '0');
         const endM = String(dateObj.getMinutes()).padStart(2, '0');
-
-        display.textContent = `⏱️ เวลาหมดรอบคอล (ประมาณ): ${endH}:${endM} น. (รวม ${minutes} นาที)`;
+        display.innerHTML = `⏱️ คาดว่าหมดรอบเวลาประมาณ: <b>${endH}:${endM} น.</b> (รวม ${minutes} นาที)`;
         display.style.display = 'block';
     }
 
     function setNowTime() {
-        const now = new Date();
-        document.getElementById('f-transfer-time').value = now.toTimeString().substring(0, 5);
-        showToast('⏳ เสกเวลาโอนเป็นปัจจุบันให้แล้วค่ะ!');
+        const now = new Date(); document.getElementById('f-transfer-time').value = now.toTimeString().substring(0, 5);
+        showToast('⏳ เสกเวลาปัจจุบันให้แล้วค่ะ!');
     }
 
     function validateForm() {
         if (!document.getElementById('confirm-pay').checked) { 
-            alert('อย่าลืมติ๊กช่อง "ฉันได้ตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้ว" นะคะ 🥺'); 
-            return false; 
+            alert('อย่าลืมติ๊กช่อง "ฉันได้โอนเงินค่าครูเรียบร้อยแล้ว" และแนบสลิปนะคะ 🥺'); return false; 
         }
-        
         let isValid = true;
         const baseReq = ['f-transfer-date', 'f-transfer-time', 'f-name'];
         baseReq.forEach(id => {
             const el = document.getElementById(id);
-            if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; }
-            else { el.style.borderColor = '#d8b4fe'; }
+            if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; } else el.style.borderColor = '#e9d5ff';
         });
-
-        const dynReqs = document.querySelectorAll('.dyn-req');
-        dynReqs.forEach(el => {
+        document.querySelectorAll('.dyn-req').forEach(el => {
             if (el.offsetWidth > 0 && el.offsetHeight > 0) {
-                if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; } 
-                else { el.style.borderColor = '#d8b4fe'; }
+                if(!el.value.trim()) { isValid = false; el.style.borderColor = 'red'; } else el.style.borderColor = '#e9d5ff';
             }
         });
-
         if(!isValid) alert('⚠️ รบกวนกรอกข้อมูลให้ครบทุกช่องที่มีดอกจัน (*) ให้แม่หมอหน่อยน้า');
         return isValid;
     }
 
     function generateSummaryAndSend() {
         if (!validateForm()) return;
-
         const btnSubmit = document.getElementById('btn-submit-order');
-        btnSubmit.disabled = true;
-        btnSubmit.innerHTML = "🪄 กำลังเสกข้อความด้วยเวทมนตร์...";
-        btnSubmit.style.opacity = "0.8";
-
-        const name = document.getElementById('f-name').value.trim();
-        const tDate = document.getElementById('f-transfer-date').value;
-        const tTime = document.getElementById('f-transfer-time').value;
-        let totalPrice = document.getElementById('cart-total-price').textContent;
+        btnSubmit.disabled = true; btnSubmit.innerHTML = "🪄 กำลังใช้เวทมนตร์เสกข้อความ...";
         
-        const userDataToSave = {
-            name: name,
-            age: document.getElementById('f-age') ? document.getElementById('f-age').value : "",
-            status: document.getElementById('f-status') ? document.getElementById('f-status').value : "",
-            day: document.getElementById('f-day') ? document.getElementById('f-day').value : "",
-            month: document.getElementById('f-month') ? document.getElementById('f-month').value : "",
-            year: document.getElementById('f-year') ? document.getElementById('f-year').value.trim() : ""
-        };
-        localStorage.setItem('muSpaceUserData', JSON.stringify(userDataToSave));
-
-        let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
-        if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
-        
-        let summary = `🧸 ขอบคุณสำหรับการจองคิวกับอาเต๋านะคะ\n-----------------------------\n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว\nวันที่: ${tDate} เวลา: ${tTime}\n-----------------------------\n`;
-
-        if (hasPhone || hasHeal) {
-            summary += `📞 ข้อมูลการจองคิว:\nวันที่: ${document.getElementById('f-appt-date').value} เวลา: ${document.getElementById('f-appt-time').value} น.\n-----------------------------\n`;
-        }
-
-        if (hasChat || hasPhone) {
-            let ageVal = document.getElementById('f-age').value;
-            let statusVal = document.getElementById('f-status').value;
-            let dayVal = document.getElementById('f-day').value;
-            let monthVal = document.getElementById('f-month').value;
-            let yearVal = document.getElementById('f-year').value.trim();
-            let dobText = yearVal ? `วัน${dayVal} เดือน${monthVal} ปี${yearVal}` : `วัน${dayVal} เดือน${monthVal}`;
+        try {
+            const name = document.getElementById('f-name').value.trim();
+            const tDate = document.getElementById('f-transfer-date').value;
+            const tTime = document.getElementById('f-transfer-time').value;
+            let totalPrice = document.getElementById('cart-total-price').textContent;
             
-            summary += `🔮 ข้อมูลส่วนตัว:\nอายุ: ${ageVal} ปี\nสถานะ: ${statusVal}\nเกิดวัน: ${dobText}\n-----------------------------\n`;
-        } else if (hasHeal) {
-            let ageVal = document.getElementById('f-age').value;
-            summary += `🔮 ข้อมูลส่วนตัว:\nอายุ: ${ageVal} ปี\n-----------------------------\n`;
-        }
+            const userDataToSave = {
+                name: name,
+                age: document.getElementById('f-age') ? document.getElementById('f-age').value : "",
+                status: document.getElementById('f-status') ? document.getElementById('f-status').value : "",
+                day: document.getElementById('f-day') ? document.getElementById('f-day').value : "",
+                month: document.getElementById('f-month') ? document.getElementById('f-month').value : "",
+                year: document.getElementById('f-year') ? document.getElementById('f-year').value.trim() : ""
+            };
+            localStorage.setItem('muSpaceUserData', JSON.stringify(userDataToSave));
 
-        let qDetails = [];
-        if (hasChat) {
-            const deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
-            const cardOptChecked = document.getElementById('f-card-opt').checked ? " (รับหน้าไพ่)" : " (ไม่รับหน้าไพ่)";
-            const formatText = deliveryType === 'พิมพ์' ? `[แบบพิมพ์${cardOptChecked}]` : `[แบบอัดเสียง]`;
-
-            summary += `📝 ข้อมูลและคำถาม:\n${formatText}\n`;
-            document.querySelectorAll('.dyn-q').forEach((q, idx) => { 
-                if(q.offsetWidth > 0) {
-                    summary += `Q${idx+1}:${q.value.trim()}\n`; 
-                    qDetails.push(`Q${idx+1}:${q.value.trim()}`);
-                }
-            });
-            summary += `-----------------------------\n`;
-        }
-
-        let wallDetailsText = "";
-        if (hasWall) {
-            let wName = document.getElementById('f-wall-name').value.trim() || "-";
-            let wDay = document.getElementById('f-wall-day').value;
-            let wDate = document.getElementById('f-wall-date').value;
-            let wMonth = document.getElementById('f-wall-month').value;
-            let wYear = document.getElementById('f-wall-year').value;
-            let wZod = document.getElementById('f-wall-zodiac').value;
-            let wCol = document.getElementById('f-wall-color').value.trim();
-            let wMain = document.getElementById('f-wall-main').value.trim();
-
-            summary += `🎨 ข้อมูลทำวอลเปเปอร์:\nชื่อในวอล: ${wName}\nเกิดวัน: ${wDay} ที่ ${wDate}${wMonth} พ.ศ.${wYear}\nปีนักษัตร: ${wZod}\nสีที่ชอบ: ${wCol}\nเสริมเรื่องหลัก: ${wMain}\n`;
+            let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
+            if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ เสกคิวเร่งด่วนพิเศษ (+59 บาท)`;
             
-            wallDetailsText = `[วอลเปเปอร์]\nวันเกิด: ${wDay} ${wDate}${wMonth} ${wYear} (ปี${wZod})\nสี: ${wCol}\nเรื่องหลัก: ${wMain}`;
-            
-            let extraInps = document.querySelectorAll('.wall-extra-inp');
-            if(extraInps.length > 0) {
-                let extras = [];
-                extraInps.forEach((inp, idx) => { 
-                    summary += `เสริมเพิ่ม #${idx+1}:${inp.value.trim()}\n`; 
-                    extras.push(inp.value.trim());
-                });
-                wallDetailsText += `\nเรื่องเสริมเพิ่ม: ${extras.join(', ')}`;
+            let summary = `🧸 ขอบคุณสำหรับการเปิดไพ่กับอาเต๋านะคะ\n-----------------------------\n🛒 ออเดอร์จาก: ${name}\n📋 รายการที่สั่ง:\n${orderItemsOnly}\n💰 ค่าครูรวม: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว\nวันที่: ${tDate} เวลา: ${tTime}\n-----------------------------\n`;
+
+            if (hasPhone) summary += `📞 เวลานัดคอล:\nวันที่: ${document.getElementById('f-appt-date').value} เวลา: ${document.getElementById('f-appt-time').value} น.\n-----------------------------\n`;
+
+            if (hasChat || hasPhone) {
+                let ageVal = document.getElementById('f-age').value;
+                let statusVal = document.getElementById('f-status').value;
+                let dayVal = document.getElementById('f-day').value;
+                let monthVal = document.getElementById('f-month').value;
+                let yearVal = document.getElementById('f-year').value.trim();
+                let dobText = yearVal ? `วัน${dayVal} เดือน${monthVal} ปี${yearVal}` : `วัน${dayVal} เดือน${monthVal}`;
+                summary += `🔮 ข้อมูลดวงชะตา:\nอายุ: ${ageVal} ปี\nสถานะ: ${statusVal}\nเกิดวัน: ${dobText}\n-----------------------------\n`;
             }
-            summary += `-----------------------------\n`;
+
+            let qDetails = [];
+            if (hasChat) {
+                const deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
+                const cardOptChecked = document.getElementById('f-card-opt').checked ? " (รับหน้าไพ่)" : " (ไม่รับหน้าไพ่)";
+                const formatText = deliveryType === 'พิมพ์' ? `[แบบพิมพ์${cardOptChecked}]` : `[แบบอัดเสียง]`;
+                summary += `📝 คำถามของชะตานี้:\n${formatText}\n`;
+                document.querySelectorAll('.dyn-q').forEach((q, idx) => { 
+                    if(q.offsetWidth > 0) { summary += `Q${idx+1}:${q.value.trim()}\n`; qDetails.push(`Q${idx+1}:${q.value.trim()}`); }
+                });
+                summary += `-----------------------------\n`;
+            }
+
+            let wallDetailsText = "";
+            if (hasWall) {
+                let wName = document.getElementById('f-wall-name').value.trim() || "-";
+                let wDay = document.getElementById('f-wall-day').value;
+                let wDate = document.getElementById('f-wall-date').value;
+                let wMonth = document.getElementById('f-wall-month').value;
+                let wYear = document.getElementById('f-wall-year').value;
+                let wZod = document.getElementById('f-wall-zodiac').value;
+                let wCol = document.getElementById('f-wall-color').value.trim();
+                let wMain = document.getElementById('f-wall-main').value.trim();
+                summary += `🎨 บรีฟวอลเปเปอร์:\nชื่อ: ${wName}\nเกิด: ${wDay} ที่ ${wDate}${wMonth} พ.ศ.${wYear}\nปี: ${wZod}\nสี: ${wCol}\nเน้น: ${wMain}\n`;
+                wallDetailsText = `[วอลเปเปอร์]\nวันเกิด: ${wDay} ${wDate}${wMonth} ${wYear} (ปี${wZod})\nสี: ${wCol}\nเรื่องหลัก: ${wMain}`;
+                let extraInps = document.querySelectorAll('.wall-extra-inp');
+                if(extraInps.length > 0) {
+                    let extras = [];
+                    extraInps.forEach((inp, idx) => { summary += `เพิ่ม #${idx+1}:${inp.value.trim()}\n`; extras.push(inp.value.trim()); });
+                    wallDetailsText += `\nเรื่องเสริมเพิ่ม: ${extras.join(', ')}`;
+                }
+                summary += `-----------------------------\n`;
+            }
+
+            let webBriefText = "";
+            if (hasWeb) {
+                webBriefText = document.getElementById('f-web-brief').value.trim();
+                summary += `💻 ข้อมูลทำเว็บไซต์:\n${webBriefText}\n-----------------------------\n`;
+            }
+
+            summary += `🚨 (ลูกค้านำข้อความนี้กดส่งพร้อมสลิปโอนเงินได้เลยค่ะ) 📸💖\n`;
+
+            let allDetails = [];
+            if(hasChat) allDetails.push(`[ดูดวง]\nรูปแบบ: ${document.querySelector('input[name="delivery_type"]:checked').value}\n${qDetails.join('\n')}`);
+            if(hasWall) allDetails.push(wallDetailsText);
+            if(hasWeb) allDetails.push(`[เว็บ]\n${webBriefText}`);
+            let personalCombined = "-";
+            if(hasChat || hasPhone) {
+                personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: วัน${document.getElementById('f-day').value}${document.getElementById('f-month').value}`;
+            }
+            const orderData = {
+                name: name,
+                items: orderItemsOnly.replace(/\n- ⚡ เสกคิวเร่งด่วนพิเศษ/g, ' + คิวเร่ง'),
+                appt: hasPhone ? `${document.getElementById('f-appt-date').value} /${document.getElementById('f-appt-time').value} น.` : "-",
+                personal: personalCombined,
+                details: allDetails.length > 0 ? allDetails.join('\n\n') : "-",
+                price: totalPrice
+            };
+            
+            // ส่งออเดอร์ (กันพัง)
+            fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveOrder", order: orderData }) }).catch(e => console.log("Offline Post"));
+
+            document.getElementById('summary-text').value = summary.trim();
+            document.getElementById('checkout-form-area').style.display = 'none';
+            document.getElementById('summary-area').style.display = 'block';
+            document.getElementById('checkout-scroll-area').scrollIntoView({ behavior: 'smooth' });
+
+            showToast('✨ เสกข้อความเรียบร้อย! ✨');
+        } catch(e) {
+            alert("โอ๊ะ! เวทมนตร์สะดุดเล็กน้อย กรุณาลองใหม่อีกครั้งค่ะ");
+            console.error(e);
+        } finally {
+            setTimeout(() => {
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = "🪄 เสกข้อความสรุป 🪄";
+            }, 1000);
         }
-
-        let webBriefText = "";
-        if (hasWeb) {
-            webBriefText = document.getElementById('f-web-brief').value.trim();
-            summary += `💻 ข้อมูลรับทำเว็บไซต์:\n${webBriefText}\n-----------------------------\n`;
-        }
-
-        summary += `🚨 อย่าลืมแนบรูปสลิปโอนเงินส่งพร้อมข้อความนี้นะคะ 📸💖\n`;
-
-        let allDetails = [];
-        if(hasChat) allDetails.push(`[ดูดวง]\nรูปแบบ: ${document.querySelector('input[name="delivery_type"]:checked').value}\n${qDetails.join('\n')}`);
-        if(hasWall) allDetails.push(wallDetailsText);
-        if(hasWeb) allDetails.push(`[เว็บ]\n${webBriefText}`);
-
-        let personalCombined = "-";
-        if(hasChat || hasPhone) {
-            personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: วัน${document.getElementById('f-day').value}${document.getElementById('f-month').value}`;
-        } else if(hasHeal) {
-            personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี`;
-        }
-
-        const orderData = {
-            name: name,
-            items: orderItemsOnly.replace(/\n- ⚡ คิวเร่งด่วนพิเศษ/g, ' + คิวเร่ง'),
-            appt: (hasPhone || hasHeal) ? `${document.getElementById('f-appt-date').value} /${document.getElementById('f-appt-time').value} น.` : "-",
-            personal: personalCombined,
-            details: allDetails.length > 0 ? allDetails.join('\n\n') : "-",
-            price: totalPrice
-        };
-        
-        fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveOrder", order: orderData }) }).catch(err => console.log(err));
-
-        document.getElementById('summary-text').value = summary.trim();
-        document.getElementById('checkout-form-area').style.display = 'none';
-        document.getElementById('summary-area').style.display = 'block';
-        document.getElementById('checkout-scroll-area').scrollIntoView({ behavior: 'smooth' });
-
-        showToast('🎉 เสกข้อความสรุปเรียบร้อยแล้ว!');
-
-        setTimeout(() => {
-            btnSubmit.disabled = false;
-            btnSubmit.innerHTML = "✨ สร้างข้อความสรุป ✨";
-            btnSubmit.style.opacity = "1";
-        }, 1500);
     }
 
     function copyText(text) {
-        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => showToast('📋 คัดลอกสำเร็จแล้วค่ะ!'));
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => showToast('📋 คัดลอกสำเร็จแล้ว! อย่าลืมกดวางนะคะ'));
         else {
-            const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('📋 คัดลอกสำเร็จแล้วค่ะ!');
+            const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('📋 คัดลอกสำเร็จแล้ว! อย่าลืมกดวางนะคะ');
         }
     }
-
-    function copyNum(type) {
-        if(type === 'kbank') copyText(shopSettings.kbankNum);
-        if(type === 'wallet') copyText(shopSettings.walletNum);
-    }
+    function copyNum(type) { if(type === 'kbank') copyText(shopSettings.kbankNum); if(type === 'wallet') copyText(shopSettings.walletNum); }
 
     function sendSummary(type) { 
         const b = document.getElementById('summary-text'); 
@@ -1208,25 +1027,19 @@
             if(type === 'fb') window.open(shopSettings.fbLink, '_blank'); 
             else if(type === 'line') window.open(shopSettings.lineLink, '_blank'); 
             else if(type === 'ig') window.open(shopSettings.igLink, '_blank'); 
-        }, 500); 
+        }, 800); 
     }
-
     function showToast(msg) { 
-        const t = document.getElementById('toast'); 
-        t.textContent = msg; 
-        t.classList.add('on'); 
-        setTimeout(() => t.classList.remove('on'), 3000); 
+        const t = document.getElementById('toast'); t.textContent = msg; 
+        t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 3000); 
     }
 
     // --- Admin System ---
     function openAdmin() {
-        const pass = prompt("🔒 กรุณากรอกรหัสผ่านหลังบ้าน:");
-        if (pass === ADMIN_PASS) {
-            renderAdminPanel();
-            document.getElementById('admin-modal').style.display = 'flex';
-        } else if (pass !== null) alert("❌ รหัสผ่านไม่ถูกต้อง!");
+        const pass = prompt("🔒 กรุณากรอกรหัสผ่านหลังบ้าน (Admin Only):");
+        if (pass === ADMIN_PASS) { renderAdminPanel(); document.getElementById('admin-modal').style.display = 'flex'; } 
+        else if (pass !== null) alert("❌ รหัสผ่านไม่ถูกต้อง!");
     }
-
     function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
 
     function renderAdminPanel() {
@@ -1246,21 +1059,32 @@
 
             let html = ``;
             productData.forEach((group, gIdx) => {
-                html += `<div class="bg-white p-4 rounded-xl mb-3.5 border-2 border-[#d8b4fe] shadow-sm">
-                            <h5 class="m-0 mb-3 text-[14px] font-bold text-[#7e22ce] border-b border-[#f3e8ff] pb-1.5">หมวด ${group.tab}: ${group.title}</h5>`;
+                html += `<div class="bg-white p-4 rounded-xl mb-4 border-2 border-[#e9d5ff] shadow-sm">
+                            <h5 class="m-0 mb-3 text-[14px] font-bold text-[#c026d3] border-b border-[#f3e8ff] pb-1.5">หมวด ${group.tab}: ${group.title}</h5>`;
                 group.items.forEach((item, iIdx) => {
-                    html += `<div class="flex gap-2 mb-2.5 items-center">
-                                <input type="text" class="form-control py-1.5 px-2.5 flex-[2] text-[13px]" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
-                                <input type="number" class="form-control py-1.5 px-2.5 flex-1 text-[13px]" value="${item.price}" id="price-${gIdx}-${iIdx}">
-                                <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0 flex items-center justify-center">X</button>
+                    const badge = item.badge || { text: "", emoji: "", bg: "#fef08a", color: "#b45309" };
+                    html += `<div class="p-3 bg-gray-50 rounded-lg mb-2 border border-gray-100">
+                                <div class="flex gap-2 items-center mb-2">
+                                    <div class="flex flex-col gap-1 shrink-0">
+                                        <button onclick="moveItem(${gIdx}, ${iIdx}, -1)" class="w-6 h-6 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 text-xs">▲</button>
+                                        <button onclick="moveItem(${gIdx}, ${iIdx}, 1)" class="w-6 h-6 bg-gray-200 rounded text-gray-600 hover:bg-gray-300 text-xs">▼</button>
+                                    </div>
+                                    <input type="text" class="form-control py-1.5 px-2.5 flex-[2] text-[13px] !bg-white" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
+                                    <input type="number" class="form-control py-1.5 px-2.5 flex-[1] text-[13px] !bg-white" value="${item.price}" id="price-${gIdx}-${iIdx}">
+                                    <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0">X</button>
+                                </div>
+                                <div class="flex flex-wrap gap-2 items-center pl-8 text-xs text-gray-600">
+                                    แท็ก: <input type="text" placeholder="คำ (เช่น แนะนำ)" class="border rounded px-1.5 py-1 w-20" id="b-text-${gIdx}-${iIdx}" value="${badge.text}">
+                                    อิโมจิ: <input type="text" placeholder="⭐" class="border rounded px-1.5 py-1 w-12 text-center" id="b-emoji-${gIdx}-${iIdx}" value="${badge.emoji}">
+                                    สีพื้น: <input type="color" class="w-6 h-6 p-0 border-none rounded cursor-pointer" id="b-bg-${gIdx}-${iIdx}" value="${badge.bg}">
+                                    สีฟอนต์: <input type="color" class="w-6 h-6 p-0 border-none rounded cursor-pointer" id="b-color-${gIdx}-${iIdx}" value="${badge.color}">
+                                </div>
                             </div>`;
                 });
-                html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#f3e8ff] border border-dashed border-[#9333ea] text-[#7e22ce] py-2 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#e9d5ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
+                html += `<button onclick="addItem(${gIdx})" class="w-full bg-[#fdf4ff] border border-dashed border-[#d946ef] text-[#c026d3] py-2 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#fae8ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
             });
             document.getElementById('admin-products-list').innerHTML = html;
-        } catch(e) {
-            console.error("Admin Render Error:", e);
-        }
+        } catch(e) { console.error("Admin Render Error:", e); }
     }
 
     function updateDataFromDOM() {
@@ -1282,37 +1106,52 @@
                 group.items.forEach((item, iIdx) => {
                     const n = document.getElementById(`name-${gIdx}-${iIdx}`);
                     const p = document.getElementById(`price-${gIdx}-${iIdx}`);
+                    const bt = document.getElementById(`b-text-${gIdx}-${iIdx}`);
+                    const be = document.getElementById(`b-emoji-${gIdx}-${iIdx}`);
+                    const bb = document.getElementById(`b-bg-${gIdx}-${iIdx}`);
+                    const bc = document.getElementById(`b-color-${gIdx}-${iIdx}`);
+                    
                     if(n) item.name = n.value;
                     if(p) item.price = parseInt(p.value) || 0;
+                    if(bt && bt.value.trim() !== "") {
+                        item.badge = { text: bt.value.trim(), emoji: be.value.trim(), bg: bb.value, color: bc.value };
+                    } else { item.badge = null; }
                 });
             });
-        } catch(e) {}
+        } catch(e) { console.error("Update DOM Error:", e); }
     }
 
-    function addItem(gIdx) { updateDataFromDOM(); productData[gIdx].items.push({name: "บริการใหม่", price: 0}); renderAdminPanel(); }
-    function deleteItem(gIdx, iIdx) { if(confirm("ต้องการลบรายการนี้ใช่ไหมคะ?")){ updateDataFromDOM(); productData[gIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
+    function moveItem(gIdx, iIdx, direction) {
+        updateDataFromDOM();
+        const items = productData[gIdx].items;
+        if (iIdx + direction < 0 || iIdx + direction >= items.length) return; // ติดขอบแล้ว
+        const temp = items[iIdx];
+        items[iIdx] = items[iIdx + direction];
+        items[iIdx + direction] = temp;
+        renderAdminPanel();
+    }
+    
+    function addItem(gIdx) { updateDataFromDOM(); productData[gIdx].items.push({name: "บริการใหม่", price: 0, badge: null}); renderAdminPanel(); }
+    function deleteItem(gIdx, iIdx) { if(confirm("ต้องการลบลบรายการเวทมนตร์นี้ใช่ไหมคะ?")){ updateDataFromDOM(); productData[gIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
 
     async function saveAdmin() {
         updateDataFromDOM();
         try {
-            showToast('⏳ กำลังเซฟข้อมูลอย่างตั้งใจ...');
-            localStorage.setItem('muSpaceSettingsV3', JSON.stringify(shopSettings));
-            localStorage.setItem('muSpaceProductsV3', JSON.stringify(productData));
-            
+            showToast('⏳ กำลังเซฟข้อมูลลงตำราเวทมนตร์...');
+            localStorage.setItem('muSpaceSettingsV4', JSON.stringify(shopSettings));
+            localStorage.setItem('muSpaceProductsV4', JSON.stringify(productData));
             const payload = { action: "saveAdminData", settings: shopSettings, products: productData };
-            await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+            fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).catch(e=>console.log("Offline backup complete"));
             
-            closeAdmin(); showToast('✅ บันทึกสำเร็จแล้วค่า!'); setTimeout(() => location.reload(), 800); 
+            closeAdmin(); setTimeout(() => location.reload(), 1000); 
         } catch (e) {
-            closeAdmin(); showToast('บันทึกชั่วคราวแล้วน้า (Offline)'); setTimeout(() => location.reload(), 800);
+            closeAdmin(); showToast('บันทึกชั่วคราวแล้วน้า (Offline)'); setTimeout(() => location.reload(), 1000);
         }
     }
 
     function resetAdmin() {
-        if(confirm("แน่ใจนะว่าจะรีเซ็ตเป็นค่าเริ่มต้นทั้งหมด?")) {
-            localStorage.removeItem('muSpaceSettingsV3');
-            localStorage.removeItem('muSpaceProductsV3');
-            location.reload();
+        if(confirm("แน่ใจนะว่าจะรีเซ็ตกลับเป็นค่าเริ่มต้นของระบบ (ล้างทั้งหมด)?")) {
+            localStorage.removeItem('muSpaceSettingsV4'); localStorage.removeItem('muSpaceProductsV4'); location.reload();
         }
     }
     </script>
