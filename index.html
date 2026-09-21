@@ -34,29 +34,29 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ---------------- Floating Magic Elements ---------------- */
+        /* ---------------- Floating Magic Elements (เพิ่มมิติสีวิ้งวับ) ---------------- */
         .magic-element {
             position: fixed; pointer-events: none; z-index: 0;
-            color: #fdf4ff; opacity: 0.15; text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            opacity: 0.25; text-shadow: 0 0 15px currentColor;
             animation: floatMagic linear infinite;
         }
         @keyframes floatMagic {
             0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
-            20% { opacity: 0.3; }
-            80% { opacity: 0.3; }
+            20% { opacity: 0.35; }
+            80% { opacity: 0.35; }
             100% { transform: translateY(-20vh) rotate(360deg) scale(1.3); opacity: 0; }
         }
 
         /* ---------------- Typography & Colors ---------------- */
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
         .animated-gradient-text {
-            background: linear-gradient(270deg, #b794f4, #f687b3, #fbd38d, #f687b3, #b794f4);
+            background: linear-gradient(270deg, #b794f4, #f687b3, #fbbf24, #f687b3, #b794f4);
             background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: textGradientShift 6s ease infinite;
         }
         @keyframes textGradientShift { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
 
-        /* ---------------- Cards & Boxes (Pastel Tint) ---------------- */
+        /* ---------------- Cards & Boxes ---------------- */
         .card-main {
             background-color: #faf5ff; 
             backdrop-filter: blur(10px);
@@ -66,11 +66,12 @@
             position: relative; z-index: 10;
         }
 
-        /* ลูกเล่นแสงเรืองรอง (Glow Effect) */
+        /* ลูกเล่นแสงเรืองรอง (เพิ่มมิติแสงสีทองและชมพู ตัดกับสีเว็บ) */
         .glow-effect {
-            box-shadow: 0 0 20px rgba(216, 180, 254, 0.6), inset 0 0 10px rgba(244, 114, 182, 0.3);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6), inset 0 0 15px rgba(236, 72, 153, 0.4);
             border: 3px solid #fff;
         }
+        .glow-text { text-shadow: 0 0 10px rgba(251, 191, 36, 0.5); }
 
         /* ---------------- Tabs & Buttons ---------------- */
         .tab-btn {
@@ -88,13 +89,14 @@
         .purple-pill-dashed { background: linear-gradient(90deg, #9333ea, #db2777); padding: 3px; border-radius: 1.2rem; position: relative; z-index: 10; }
         .purple-pill-inner { border: 2px dashed white; border-radius: 1rem; padding: 8px 15px; color: white; text-align: center; font-weight: bold; font-size: 18px; }
 
+        /* ปุ่มบวก (+) จุดตัดสีฟ้าคราม/น้ำเงินสว่าง ให้โดดเด่น */
         .btn-add {
-            background: linear-gradient(135deg, #f472b6, #d946ef); color: #fff; 
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6); color: #fff; 
             border: none; border-radius: 8px; width: 32px; height: 32px; font-size: 20px; cursor: pointer; display: inline-flex;
             align-items: center; justify-content: center; transition: all 0.2s; font-weight: bold; line-height: 1;
-            box-shadow: 0 3px 8px rgba(217, 70, 239, 0.3);
+            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.4);
         }
-        .btn-add:hover { transform: scale(1.15) rotate(5deg); background: linear-gradient(135deg, #db2777, #c026d3); }
+        .btn-add:hover { transform: scale(1.15) rotate(5deg); background: linear-gradient(135deg, #0284c7, #2563eb); }
 
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -111,7 +113,7 @@
             position: fixed; bottom: 30px; right: 20px; z-index: 990;
             background: #fff; color: #7e22ce; border-radius: 50%;
             width: 75px; height: 75px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 20px rgba(217, 70, 239, 0.5); border: 3px solid #f472b6; cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 25px rgba(251, 191, 36, 0.5); border: 3px solid #fbbf24; cursor: pointer; transition: all 0.3s;
         }
         .floating-cart:hover { transform: scale(1.1) translateY(-5px); animation: wiggleCart 0.6s ease-in-out; }
         .cart-count {
@@ -138,7 +140,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2); animation: spin-pause 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15, 5, 30, 0.75); backdrop-blur:blur(5px); z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center; }
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15, 5, 30, 0.8); backdrop-blur:blur(5px); z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center; }
         @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .checkout-popup { animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; background-color: #faf5ff; }
 
@@ -153,15 +155,15 @@
 </head>
 <body class="antialiased text-center relative">
 
-    <!-- 🌟 ไอคอนลอยไปมาเสริมความเวทมนตร์ 🌟 -->
-    <div class="magic-element text-3xl" style="left: 10%; animation-duration: 12s;">✦</div>
-    <div class="magic-element text-2xl" style="left: 85%; animation-duration: 15s; animation-delay: 2s;">🌙</div>
-    <div class="magic-element text-4xl" style="left: 45%; animation-duration: 18s; animation-delay: 4s;">✨</div>
-    <div class="magic-element text-xl"  style="left: 20%; animation-duration: 10s; animation-delay: 1s;">🔮</div>
-    <div class="magic-element text-2xl" style="left: 75%; animation-duration: 14s; animation-delay: 3s;">✦</div>
-    <div class="magic-element text-xl"  style="left: 55%; animation-duration: 11s; animation-delay: 5s;">⭐</div>
+    <!-- 🌟 ไอคอนลอยเวทมนตร์ (มิติสีตัดเหลืองทอง-ฟ้า-ชมพู) 🌟 -->
+    <div class="magic-element text-3xl text-yellow-300" style="left: 10%; animation-duration: 12s;">✦</div>
+    <div class="magic-element text-2xl text-blue-300" style="left: 85%; animation-duration: 15s; animation-delay: 2s;">🌙</div>
+    <div class="magic-element text-4xl text-pink-300" style="left: 45%; animation-duration: 18s; animation-delay: 4s;">✨</div>
+    <div class="magic-element text-xl text-yellow-200"  style="left: 20%; animation-duration: 10s; animation-delay: 1s;">🔮</div>
+    <div class="magic-element text-2xl text-pink-200" style="left: 75%; animation-duration: 14s; animation-delay: 3s;">✦</div>
+    <div class="magic-element text-xl text-blue-200"  style="left: 55%; animation-duration: 11s; animation-delay: 5s;">⭐</div>
 
-    <!-- ตะกร้าเรืองแสง -->
+    <!-- ตะกร้าเวทมนตร์มีขอบและแสงสีทอง -->
     <div class="floating-cart" onclick="openCheckoutModal()" id="cart-float" style="display:none;">
         <span class="cart-count" id="cart-count">0</span>
         <span style="font-size:26px; margin-bottom:2px;">🛒</span>
@@ -169,9 +171,9 @@
     </div>
 
     <!-- หน้าต่าง Loading แบบเวทมนตร์ -->
-    <div id="loading-overlay" class="fixed inset-0 bg-[#1e0b3b]/80 backdrop-blur-md z-[99999] hidden flex-col items-center justify-center transition-opacity">
-        <div class="text-7xl animate-bounce mb-6 filter drop-shadow-[0_0_15px_rgba(236,72,153,0.8)]">🔮</div>
-        <div class="text-white font-bold text-xl tracking-wide font-seasons">กำลังเปิดตะกร้าเวทมนตร์...</div>
+    <div id="loading-overlay" class="fixed inset-0 bg-[#1e0b3b]/85 backdrop-blur-md z-[99999] hidden flex-col items-center justify-center transition-opacity">
+        <div class="text-7xl animate-bounce mb-6 filter drop-shadow-[0_0_20px_rgba(251,191,36,0.8)]">🔮</div>
+        <div class="text-[#fbbf24] font-bold text-xl tracking-wide font-seasons drop-shadow-md">กำลังเปิดตะกร้าเวทมนตร์...</div>
     </div>
 
     <main class="max-w-[480px] mx-auto pt-6 pb-24 relative px-4">
@@ -180,21 +182,19 @@
 
         <!-- กล่องโปรไฟล์แบนเนอร์เวทมนตร์ -->
         <div class="card-main mb-6 relative p-0 overflow-hidden" style="border:none;">
-            <!-- ส่วนแบนเนอร์ด้านบนที่กลืนไปกับพื้นหลังอย่างนุ่มนวล (Smooth Fade) -->
+            <!-- แบนเนอร์ด้านบนที่กลืนไปกับพื้นหลังอย่างนุ่มนวล (Smooth Fade) -->
             <div class="w-full h-[160px] relative">
-                <!-- รูปแบนเนอร์.PNG -->
-                <div class="absolute inset-0" style="background-image: url('แบนเนอร์.PNG'); background-size: cover; background-position: center; filter: blur(1.5px) opacity(0.9);"></div>
-                <!-- Gradient ซ้อนทับให้ขอบล่างค่อยๆ จางหายและกลืนกับสีพื้นกล่อง (#faf5ff) ไร้รอยต่อ -->
+                <div class="absolute inset-0" style="background-image: url('แบนเนอร์.PNG'); background-size: cover; background-position: center; filter: blur(1px) opacity(0.95);"></div>
                 <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(250,245,255,0) 0%, rgba(250,245,255,0) 50%, #faf5ff 100%);"></div>
             </div>
 
-            <!-- ส่วนข้อมูลร้าน โลโก้มีออร่าซอฟต์ๆ -->
+            <!-- ส่วนข้อมูลร้าน โลโก้มีออร่าแสงสีทองซอฟต์ๆ -->
             <div class="px-5 pb-6 flex flex-col items-center relative -mt-14 text-center z-10">
                 <div class="w-[95px] h-[95px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden glow-effect mb-3">
                     <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150?text=Logo'">
                 </div>
                 
-                <h1 class="text-[26px] sm:text-[30px] mb-0 animated-gradient-text font-seasons font-bold truncate leading-tight w-full" id="display-shop-name">Ah Tao Mu-space</h1>
+                <h1 class="text-[26px] sm:text-[30px] mb-0 animated-gradient-text font-seasons font-bold truncate leading-tight w-full glow-text" id="display-shop-name">Ah Tao Mu-space</h1>
                 
                 <a href="#" id="link-review" target="_blank" class="inline-flex items-center gap-1 text-[#a855f7] font-bold text-[12px] bg-white border border-[#e9d5ff] px-3 py-1 rounded-full mt-2 hover:bg-purple-50 transition-colors shadow-sm">
                     ✨ ดูรีวิวทั้งหมด
@@ -202,15 +202,14 @@
 
                 <p class="text-[14px] mt-3 mb-4 font-seasons font-bold text-[#c026d3]" id="display-slogan">“ พื้นที่ปลอดภัย ให้ไพ่ช่วยฮีลใจคุณ ”</p>
 
-                <!-- ปุ่ม Social ที่ลบสีส้มออก ใช้โทน ม่วง ชมพู เขียว -->
+                <!-- ปุ่ม Social ไร้สีส้ม ใช้โทนน้ำเงิน-เขียว-ชมพูม่วง -->
                 <div class="grid grid-cols-3 gap-2 w-full">
-                    <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-b from-[#8b5cf6] to-[#6d28d9] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
+                    <a href="#" id="link-fb" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
                         <i class="fa-brands fa-facebook-messenger text-[18px]"></i> Facebook
                     </a>
-                    <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-b from-[#22c55e] to-[#16a34a] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
+                    <a href="#" id="link-line" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-b from-[#059669] to-[#10b981] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
                         <i class="fa-brands fa-line text-[18px]"></i> Line
                     </a>
-                    <!-- ปุ่ม IG ไม่มีสีส้มแล้ว -->
                     <a href="#" id="link-ig" target="_blank" class="flex flex-col items-center justify-center gap-1 bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white py-2.5 rounded-xl font-bold text-[12px] hover:scale-105 transition-transform shadow-md">
                         <i class="fa-brands fa-instagram text-[18px]"></i> Instagram
                     </a>
@@ -251,9 +250,9 @@
                 <div class="card-main p-6 pt-8 mb-8 text-left text-[#7e22ce] text-[15px] leading-relaxed relative border-none">
                     <div class="mb-3">1. กดเลือกหมวดหมู่สินค้าด้านบน <br><span class="text-[13px] opacity-80">(ดูดวง, วอลเปเปอร์, เว็บไซต์)</span></div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div class="mb-3">2. กดปุ่ม <span class="bg-gradient-to-r from-[#f472b6] to-[#d946ef] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
+                    <div class="mb-3">2. กดปุ่ม <span class="bg-gradient-to-r from-[#0ea5e9] to-[#3b82f6] text-white px-2 py-0.5 rounded-md text-sm font-bold mx-1">+</span> ด้านหลังรายการที่ต้องการเพื่อหยิบลงตะกร้า</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
-                    <div class="mb-3">3. เมื่อเลือกครบแล้วกด <span class="font-bold text-[#d946ef]">ไอคอนตะกร้า</span> มุมขวาล่าง จะมีหน้าต่างเด้งขึ้นมาให้กรอกข้อมูล</div>
+                    <div class="mb-3">3. เมื่อเลือกครบแล้วกด <span class="font-bold text-[#fbbf24]">ไอคอนตะกร้า</span> มุมขวาล่าง จะมีหน้าต่างเด้งขึ้นมาให้กรอกข้อมูล</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
                     <div class="mb-3">4. โอนเงินตามค่าครูรวม และกรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)</div>
                     <div class="border-b-2 border-dashed border-[#e9d5ff] mb-3"></div>
@@ -262,7 +261,7 @@
                     <div>6. กดปุ่มส่งทาง Line/FB/IG ข้อความจะถูกก๊อปปี้อัตโนมัติ <span class="text-[#db2777] font-bold">ให้นำไป "วาง" ส่งแอดมินพร้อมแนบสลิปได้เลยค่ะ 💖</span></div>
                 </div>
                 
-                <div class="text-[#fdf4ff] text-center font-bold mt-2 text-[16px] animate-pulse drop-shadow-md">
+                <div class="text-[#fbbf24] text-center font-bold mt-2 text-[16px] animate-pulse drop-shadow-md">
                     👇 กดเลือกหมวดหมู่สินค้าด้านบนเพื่อเริ่มสั่งซื้อได้เลยค่ะ 👇
                 </div>
             </div>
@@ -273,7 +272,7 @@
 
     <!-- Modal ตะกร้าเวทมนตร์ -->
     <div id="checkout-modal-overlay" class="fixed inset-0 bg-[#1e0b3b]/80 backdrop-blur-sm z-[99000] hidden items-end sm:items-center justify-center px-0 sm:px-4">
-        <div class="checkout-popup w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-[0_0_30px_rgba(219,39,119,0.3)]">
+        <div class="checkout-popup w-full max-w-[500px] h-[90vh] sm:h-auto sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl p-5 overflow-y-auto relative shadow-[0_0_30px_rgba(251,191,36,0.3)]">
             <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-white text-[#d946ef] border-2 border-[#e9d5ff] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#d946ef] hover:text-white transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
             
             <div id="checkout-scroll-area">
@@ -294,7 +293,7 @@
                 <div id="checkout-form-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left">
                     <div class="purple-pill text-[18px] mb-5 inline-block px-6 glow-effect">💳 โอนเงิน & ข้อมูลเวทมนตร์</div>
                     
-                    <!-- กล่องบัญชีไซส์กะทัดรัดเรียงคู่กัน ปรับสีให้เข้าธีมเวทมนตร์ (ดึงสีชมพู และ สีเขียว) -->
+                    <!-- กล่องบัญชีไซส์กะทัดรัดเรียงคู่กัน (ตัดสีส้มออก ใช้ น้ำเงินคราม และ ชมพู) -->
                     <div class="grid grid-cols-2 gap-3 mb-5">
                         <!-- กล่อง KBank สีชมพู/ม่วง -->
                         <div class="border-2 border-[#d946ef] rounded-xl shadow-[2px_2px_0px_#d946ef] p-3 text-center bg-white hover:-translate-y-1 transition-transform flex flex-col justify-between">
@@ -303,17 +302,17 @@
                                 <div class="text-[13px] text-[#7e22ce] font-bold leading-tight" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
                                 <div class="text-[17px] tracking-wider text-[#d946ef] font-bold my-1" id="display-kbank-num">1961933834</div>
                             </div>
-                            <button class="bg-[#d946ef] text-white w-full py-1.5 rounded-lg text-[13px] font-bold hover:bg-[#c026d3] transition-colors mt-1" onclick="copyNum('kbank')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
+                            <button class="bg-gradient-to-r from-[#d946ef] to-[#c026d3] text-white w-full py-1.5 rounded-lg text-[13px] font-bold hover:brightness-110 transition-all mt-1" onclick="copyNum('kbank')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
                         </div>
 
-                        <!-- กล่อง Wallet สีเขียวเวทมนตร์ -->
-                        <div class="border-2 border-[#10b981] rounded-xl shadow-[2px_2px_0px_#10b981] p-3 text-center bg-white hover:-translate-y-1 transition-transform flex flex-col justify-between">
+                        <!-- กล่อง Wallet เปลี่ยนเป็นสีน้ำเงินเข้ม (Midnight Blue) จุดตัดสีที่ดูสวยพรีเมียม -->
+                        <div class="border-2 border-[#1e3a8a] rounded-xl shadow-[2px_2px_0px_#1e3a8a] p-3 text-center bg-white hover:-translate-y-1 transition-transform flex flex-col justify-between">
                             <div>
-                                <div class="text-[11px] text-[#059669] font-bold mb-1">TrueMoney Wallet</div>
-                                <div class="text-[13px] text-[#7e22ce] font-bold leading-tight invisible">.</div> <!-- ดันบรรทัดให้เท่ากัน -->
-                                <div class="text-[17px] tracking-wider text-[#10b981] font-bold my-1" id="display-wallet-num">0800172584</div>
+                                <div class="text-[11px] text-[#1e3a8a] font-bold mb-1">TrueMoney Wallet</div>
+                                <div class="text-[13px] text-[#7e22ce] font-bold leading-tight invisible">.</div> 
+                                <div class="text-[17px] tracking-wider text-[#1e40af] font-bold my-1" id="display-wallet-num">0800172584</div>
                             </div>
-                            <button class="bg-[#10b981] text-white w-full py-1.5 rounded-lg text-[13px] font-bold hover:bg-[#059669] transition-colors mt-1" onclick="copyNum('wallet')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
+                            <button class="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white w-full py-1.5 rounded-lg text-[13px] font-bold hover:brightness-110 transition-all mt-1" onclick="copyNum('wallet')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
                         </div>
                     </div>
 
@@ -430,10 +429,10 @@
                         <textarea id="summary-text" class="form-control" rows="8" readonly style="font-size:13px; background:#fff; border-color:#d946ef; line-height:1.6;"></textarea>
                     </div>
                     
-                    <!-- เปลี่ยนปุ่ม Social ไร้สีส้ม ให้เข้าธีมเวทมนตร์ -->
+                    <!-- เปลี่ยนปุ่ม Social ไร้สีส้ม ใช้โทนน้ำเงิน-เขียว-ม่วงชมพู -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <button class="bg-gradient-to-b from-[#8b5cf6] to-[#6d28d9] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> คัดลอก & เปิด Messenger</button>
-                        <button class="bg-gradient-to-b from-[#22c55e] to-[#16a34a] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> คัดลอก & เปิด LINE</button>
+                        <button class="bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-xl"></i> คัดลอก & เปิด Messenger</button>
+                        <button class="bg-gradient-to-b from-[#059669] to-[#10b981] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('line')"><i class="fa-brands fa-line text-xl"></i> คัดลอก & เปิด LINE</button>
                         <button class="bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white py-3 rounded-xl font-bold text-[14px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-xl"></i> คัดลอก & เปิด IG</button>
                     </div>
                 </div>
@@ -478,6 +477,7 @@
                         <i id="icon-acc-products" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div id="acc-products" class="p-4 bg-white border-t border-[#e9d5ff] space-y-4" style="display:none;">
+                        <div class="text-[13px] text-pink-500 mb-2">💡 ทริค: กดลูกศรหลังชื่อหมวดหมู่ เพื่อย้ายกล่องใหญ่ขึ้น-ลงได้เลย</div>
                         <div id="admin-products-list" class="space-y-4"></div>
                     </div>
                 </div>
@@ -512,7 +512,7 @@
         sampleWebLink: ""
     };
 
-    // การตั้งลำดับที่ถูกต้อง 100%: 1.ดูดวงทั่วไป 2.โทรดูดวง 3... และรองรับระบบ Badge
+    // ลำดับ Default 100%: 1.ดูดวงทั่วไป 2.โทรดูดวง 3... และรองรับระบบ Badge
     const defaultData = [
         { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
             { name: "Yes or No!! (1 คำถาม)", price: 9 }, 
@@ -568,7 +568,7 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
         try {
-            // โค้ดกันพัง: ก๊อปปี้ defaultData อย่างปลอดภัย
+            // ก๊อปปี้ defaultData อย่างปลอดภัย
             productData = JSON.parse(JSON.stringify(defaultData));
 
             const today = new Date();
@@ -578,7 +578,7 @@
             if(document.getElementById('f-transfer-date')) document.getElementById('f-transfer-date').value = dateStr;
             if(document.getElementById('f-transfer-time')) document.getElementById('f-transfer-time').value = timeStr;
             
-            // โหลดข้อมูลเก่าของผู้ใช้ถ้ามี
+            // โหลดข้อมูล Local Storage
             try {
                 const savedData = localStorage.getItem('muSpaceUserData');
                 if (savedData) {
@@ -590,15 +590,15 @@
                     if(p.month) document.getElementById('f-month').value = p.month;
                     if(p.year) document.getElementById('f-year').value = p.year;
                 }
-                const localSettings = localStorage.getItem('muSpaceSettingsV5');
+                const localSettings = localStorage.getItem('muSpaceSettingsV6');
                 if (localSettings) shopSettings = JSON.parse(localSettings);
-                const localProd = localStorage.getItem('muSpaceProductsV5');
+                const localProd = localStorage.getItem('muSpaceProductsV6');
                 if (localProd) productData = JSON.parse(localProd);
             } catch(e) { console.warn("Local storage parse error, using defaults"); }
             
             applySettingsToDOM();
 
-            // ดึง API อย่างปลอดภัย
+            // ดึง API ป้องกันหน้าขาว
             fetch(API_URL + "?action=getData")
                 .then(res => res.json())
                 .then(result => {
@@ -676,7 +676,6 @@
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 let badgeHtml = '';
                 
-                // ระบบป้ายแท็ก Custom
                 if (item.badge && item.badge.text) {
                     badgeHtml = `<span style="background-color:${item.badge.bg}; color:${item.badge.color}; border: 1px solid${item.badge.color}30;" class="text-[10px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm tracking-wide">${item.badge.emoji}${item.badge.text}</span>`;
                 } else if (item.name.includes('15 นาที')) {
@@ -699,9 +698,7 @@
     function addToCart(name, price, category) {
         if(name.includes('เพิ่มเรื่อง') || name.includes('+39')) {
             let currentAddCount = currentCart.filter(i => i.name.includes('เพิ่มเรื่อง') || i.name.includes('+39')).length;
-            if(currentAddCount >= 5) {
-                alert('⚠️ เพิ่มเรื่องเสริมได้สูงสุด 5 เรื่องต่อบิลนะคะ'); return;
-            }
+            if(currentAddCount >= 5) { alert('⚠️ เพิ่มเรื่องเสริมได้สูงสุด 5 เรื่องต่อบิลนะคะ'); return; }
         }
         currentCart.push({ name, price, category });
         updateCartTotal();
@@ -716,9 +713,7 @@
     function removeItem(index) { currentCart.splice(index, 1); updateCartTotal(); }
 
     function openCheckoutModal() {
-        if(currentCart.length === 0) {
-            alert('ตะกร้ายังว่างเปล่า ลองเลือกสินค้าดูก่อนน้า 🔮✨'); return;
-        }
+        if(currentCart.length === 0) { alert('ตะกร้ายังว่างเปล่า ลองเลือกสินค้าดูก่อนน้า 🔮✨'); return; }
         document.getElementById('loading-overlay').style.display = 'flex';
         setTimeout(() => {
             document.getElementById('loading-overlay').style.display = 'none';
@@ -726,7 +721,7 @@
             document.getElementById('summary-area').style.display = 'none';
             document.getElementById('checkout-modal-overlay').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-        }, 600); // โหลดไวขึ้นนิดนึง
+        }, 600); 
     }
 
     function closeCheckoutModal() {
@@ -739,10 +734,7 @@
         const totalEl = document.getElementById('cart-total-price');
         document.getElementById('cart-count').textContent = currentCart.length;
         
-        if (currentCart.length === 0) {
-            document.getElementById('cart-float').style.display = 'none';
-            closeCheckoutModal(); return;
-        }
+        if (currentCart.length === 0) { document.getElementById('cart-float').style.display = 'none'; closeCheckoutModal(); return; }
 
         let html = ''; let subtotal = 0;
         hasChat = hasPhone = hasWall = hasChart = hasWeb = false; 
@@ -1045,6 +1037,16 @@
     }
     function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
 
+    // ย้ายหมวดหมู่ใหญ่ ขึ้น-ลง
+    function moveGroup(gIdx, direction) {
+        updateDataFromDOM();
+        if (gIdx + direction < 0 || gIdx + direction >= productData.length) return;
+        const temp = productData[gIdx];
+        productData[gIdx] = productData[gIdx + direction];
+        productData[gIdx + direction] = temp;
+        renderAdminPanel();
+    }
+
     function renderAdminPanel() {
         try {
             document.getElementById('cfg-shopName').value = shopSettings.shopName;
@@ -1063,7 +1065,13 @@
             let html = ``;
             productData.forEach((group, gIdx) => {
                 html += `<div class="bg-white p-4 rounded-xl mb-4 border-2 border-[#e9d5ff] shadow-sm">
-                            <h5 class="m-0 mb-3 text-[14px] font-bold text-[#c026d3] border-b border-[#f3e8ff] pb-1.5">หมวด ${group.tab}: ${group.title}</h5>`;
+                            <div class="flex justify-between items-center mb-3 border-b border-[#f3e8ff] pb-1.5">
+                                <h5 class="m-0 text-[14px] font-bold text-[#c026d3]">หมวด ${group.tab}: ${group.title}</h5>
+                                <div class="flex gap-1">
+                                    <button onclick="moveGroup(${gIdx}, -1)" class="w-7 h-7 bg-[#fdf4ff] text-[#d946ef] rounded hover:bg-[#fae8ff] font-bold" title="เลื่อนหมวดหมู่นี้ขึ้น">▲</button>
+                                    <button onclick="moveGroup(${gIdx}, 1)" class="w-7 h-7 bg-[#fdf4ff] text-[#d946ef] rounded hover:bg-[#fae8ff] font-bold" title="เลื่อนหมวดหมู่นี้ลง">▼</button>
+                                </div>
+                            </div>`;
                 group.items.forEach((item, iIdx) => {
                     const badge = item.badge || { text: "", emoji: "", bg: "#fef08a", color: "#b45309" };
                     html += `<div class="p-3 bg-gray-50 rounded-lg mb-2 border border-gray-100">
@@ -1141,8 +1149,8 @@
         updateDataFromDOM();
         try {
             showToast('⏳ กำลังเซฟข้อมูลลงตำราเวทมนตร์...');
-            localStorage.setItem('muSpaceSettingsV5', JSON.stringify(shopSettings));
-            localStorage.setItem('muSpaceProductsV5', JSON.stringify(productData));
+            localStorage.setItem('muSpaceSettingsV6', JSON.stringify(shopSettings));
+            localStorage.setItem('muSpaceProductsV6', JSON.stringify(productData));
             const payload = { action: "saveAdminData", settings: shopSettings, products: productData };
             fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) }).catch(e=>console.log("Offline backup complete"));
             
@@ -1154,7 +1162,7 @@
 
     function resetAdmin() {
         if(confirm("แน่ใจนะว่าจะรีเซ็ตกลับเป็นค่าเริ่มต้นของระบบ (ล้างทั้งหมด)?")) {
-            localStorage.removeItem('muSpaceSettingsV5'); localStorage.removeItem('muSpaceProductsV5'); location.reload();
+            localStorage.removeItem('muSpaceSettingsV6'); localStorage.removeItem('muSpaceProductsV6'); location.reload();
         }
     }
     </script>
