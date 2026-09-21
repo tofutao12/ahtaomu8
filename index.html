@@ -14,13 +14,13 @@
         @font-face { font-family: 'The Seasons'; src: local('The Seasons'); font-display: swap; }
 
         :root {
-            --c-purple-dark: #6b21a8; 
-            --c-text-main: #3b1159;   
+            --c-purple-dark: #4B2B9F; 
+            --c-text-main: #3B1C87;   
         }
 
         body {
             font-family: 'Cloud', 'Kanit', sans-serif; 
-            background: linear-gradient(135deg, #2e1065, #4c1d95, #6b21a8, #3b1159);
+            background: linear-gradient(135deg, #2b1468, #5c35a6, #a170f3, #e593cb);
             background-size: 300% 300%;
             animation: gradientBG 15s ease infinite;
             color: var(--c-text-main);
@@ -36,6 +36,35 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* โค้ดสำหรับกล่องแบนเนอร์ */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 160px; /* ปรับความสูงแบนเนอร์ได้ตามต้องการ */
+            border-radius: 1.5rem;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(75, 43, 159, 0.25);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('แบนเนอร์.PNG'); /* ชื่อไฟล์อ้างอิงให้ตรงเป๊ะ */
+            background-size: cover;
+            background-position: center;
+            /* การทำให้รูปไม่ชัดมาก: ใช้ blur เบลอภาพ และ opacity ทำให้สีซอฟต์ลง */
+            filter: blur(2px) opacity(0.85); 
+            transform: scale(1.05); /* ขยายรูปเล็กน้อยเพื่อไม่ให้ขอบขาวโผล่ตอนเบลอ */
+        }
+
+        /* สร้างเลเยอร์สีขาว/ม่วงจางๆ ทับรูปแบนเนอร์เพื่อให้ตัวอักษรหรือกล่องด้านล่างเด่นกว่า */
+        .banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(243,232,255,0.7) 100%);
         }
 
         /* พื้นหลังไอคอนรูปทรงเรขาคณิตและเวทมนตร์สีทึบ */
@@ -55,7 +84,7 @@
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
         
         .animated-gradient-text {
-            background: linear-gradient(270deg, #c084fc, #f472b6, #38bdf8, #a855f7, #c084fc);
+            background: linear-gradient(270deg, #9D76E1, #FF9BCE, #FFE66D, #E063A4, #9D76E1);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -92,11 +121,11 @@
             line-height: 1.3; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .tab-btn.active {
-            background: linear-gradient(135deg, #9333ea, #c084fc);
+            background: linear-gradient(135deg, #7F50F2, #D87DD8);
             border: 2px dashed #fff;
             color: #fff;
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 15px rgba(147, 51, 234, 0.4);
+            box-shadow: 0 8px 15px rgba(127, 80, 242, 0.4);
         }
         .tab-btn.active .price-badge {
             background-color: #fff;
@@ -104,7 +133,7 @@
         }
 
         .purple-pill {
-            background: linear-gradient(90deg, #9333ea, #c084fc);
+            background: linear-gradient(90deg, #7F50F2, #D87DD8);
             color: white;
             border-radius: 1rem;
             padding: 8px 15px;
@@ -112,7 +141,7 @@
             font-weight: bold;
         }
         .purple-pill-dashed {
-            background: linear-gradient(90deg, #9333ea, #c084fc);
+            background: linear-gradient(90deg, #7F50F2, #D87DD8);
             padding: 3px;
             border-radius: 1.2rem;
             position: relative;
@@ -169,9 +198,9 @@
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
             font-family: 'Cloud', 'Kanit', sans-serif; font-size: 18px; color: #fff; font-weight: bold;
-            background: linear-gradient(90deg, #9333ea, #c084fc); box-shadow: 0 4px 10px rgba(147, 51, 234, 0.3); transition: all 0.2s; margin-top: 10px;
+            background: linear-gradient(90deg, #7F50F2, #D87DD8); box-shadow: 0 4px 10px rgba(127, 80, 242, 0.3); transition: all 0.2s; margin-top: 10px;
         }
-        .btn-action:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(147, 51, 234, 0.4); }
+        .btn-action:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 8px 20px rgba(127, 80, 242, 0.4); }
 
         @keyframes spin-pause { 0% { transform: rotate(0deg); } 15% { transform: rotate(360deg); } 100% { transform: rotate(360deg); } }
         .btn-admin {
@@ -219,6 +248,12 @@
 
     <main class="max-w-[480px] mx-auto pt-6 pb-24 relative px-4">
         
+        <!-- ส่วนแบนเนอร์ที่เพิ่มใหม่ -->
+        <div class="banner-container">
+            <div class="banner-image"></div>
+            <div class="banner-overlay"></div>
+        </div>
+
         <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
 
         <div class="card-main p-6 mb-5 relative">
@@ -513,7 +548,7 @@
         </div>
     </div>
 
-    <!-- Admin Modal: ระบบ Accordion เปิด-ปิดย่อหน้า (ตามบรีฟข้อ 2) -->
+    <!-- Admin Modal: ระบบ Accordion เปิด-ปิดย่อหน้า -->
     <div id="admin-modal" class="modal-overlay">
         <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#9333ea] shadow-xl relative max-h-[90vh] flex flex-col text-left">
             <div class="flex justify-between items-center border-b-2 dashed border-[#d8b4fe] pb-3 mb-4">
@@ -587,7 +622,6 @@
         sampleWebLink: ""
     };
 
-    // ปรับลำดับสินค้า: ให้กล่อง "โทรดูดวง" ขึ้นมาอยู่เป็นกล่องที่ 2 ทันทีตามบรีฟ
     const defaultData = [
         { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
             { name: "Yes or No!! (1 คำถาม)", price: 9 }, { name: "1 คำถาม", price: 29 }, { name: "3 คำถาม", price: 69 }, 
@@ -691,7 +725,7 @@
         }
     });
 
-    // ระบบ Accordion เปิด-ปิดย่อหน้าหลังบ้าน (ตามบรีฟ)
+    // ระบบ Accordion เปิด-ปิดย่อหน้าหลังบ้าน
     function toggleAccordion(id) {
         const el = document.getElementById(id);
         const icon = document.getElementById('icon-' + id);
@@ -759,7 +793,7 @@
                 else if (item.name.includes('3 คำถาม')) badgeHtml = '<span class="bg-yellow-100 text-yellow-700 border border-yellow-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">⭐ แนะนำ</span>';
 
                 html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#d8b4fe] hover:bg-[#f3e8ff] transition-colors rounded-lg px-2">
-                            <span class="text-[15px] text-[#7e22ce] flex-1 pr-2 leading-relaxed flex flex-wrap items-center">${item.name} ${badgeHtml}</span>
+                            <span class="text-[15px] text-[#7e22ce] flex-1 pr-2 leading-relaxed flex flex-wrap items-center">${item.name}${badgeHtml}</span>
                             <div class="flex items-center gap-3 shrink-0">
                                 <span class="text-[#7e22ce] font-bold text-[17px]">${item.price}.-</span>
                                 <button class="btn-add shadow-sm" onclick="addToCart('${safeName}', ${item.price}, '${group.category}')">+</button>
@@ -1076,8 +1110,8 @@
             summary += `📝 ข้อมูลและคำถาม:\n${formatText}\n`;
             document.querySelectorAll('.dyn-q').forEach((q, idx) => { 
                 if(q.offsetWidth > 0) {
-                    summary += `Q${idx+1}: ${q.value.trim()}\n`; 
-                    qDetails.push(`Q${idx+1}: ${q.value.trim()}`);
+                    summary += `Q${idx+1}:${q.value.trim()}\n`; 
+                    qDetails.push(`Q${idx+1}:${q.value.trim()}`);
                 }
             });
             summary += `-----------------------------\n`;
@@ -1094,15 +1128,15 @@
             let wCol = document.getElementById('f-wall-color').value.trim();
             let wMain = document.getElementById('f-wall-main').value.trim();
 
-            summary += `🎨 ข้อมูลทำวอลเปเปอร์:\nชื่อในวอล: ${wName}\nเกิดวัน: ${wDay} ที่ ${wDate} ${wMonth} พ.ศ.${wYear}\nปีนักษัตร: ${wZod}\nสีที่ชอบ: ${wCol}\nเสริมเรื่องหลัก: ${wMain}\n`;
+            summary += `🎨 ข้อมูลทำวอลเปเปอร์:\nชื่อในวอล: ${wName}\nเกิดวัน: ${wDay} ที่ ${wDate}${wMonth} พ.ศ.${wYear}\nปีนักษัตร: ${wZod}\nสีที่ชอบ: ${wCol}\nเสริมเรื่องหลัก: ${wMain}\n`;
             
-            wallDetailsText = `[วอลเปเปอร์]\nวันเกิด: ${wDay} ${wDate} ${wMonth} ${wYear} (ปี${wZod})\nสี: ${wCol}\nเรื่องหลัก: ${wMain}`;
+            wallDetailsText = `[วอลเปเปอร์]\nวันเกิด: ${wDay} ${wDate}${wMonth} ${wYear} (ปี${wZod})\nสี: ${wCol}\nเรื่องหลัก: ${wMain}`;
             
             let extraInps = document.querySelectorAll('.wall-extra-inp');
             if(extraInps.length > 0) {
                 let extras = [];
                 extraInps.forEach((inp, idx) => { 
-                    summary += `เสริมเพิ่ม #${idx+1}: ${inp.value.trim()}\n`; 
+                    summary += `เสริมเพิ่ม #${idx+1}:${inp.value.trim()}\n`; 
                     extras.push(inp.value.trim());
                 });
                 wallDetailsText += `\nเรื่องเสริมเพิ่ม: ${extras.join(', ')}`;
@@ -1125,7 +1159,7 @@
 
         let personalCombined = "-";
         if(hasChat || hasPhone) {
-            personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: วัน${document.getElementById('f-day').value} ${document.getElementById('f-month').value}`;
+            personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: วัน${document.getElementById('f-day').value}${document.getElementById('f-month').value}`;
         } else if(hasHeal) {
             personalCombined = `อายุ: ${document.getElementById('f-age').value} ปี`;
         }
@@ -1133,7 +1167,7 @@
         const orderData = {
             name: name,
             items: orderItemsOnly.replace(/\n- ⚡ คิวเร่งด่วนพิเศษ/g, ' + คิวเร่ง'),
-            appt: (hasPhone || hasHeal) ? `${document.getElementById('f-appt-date').value} / ${document.getElementById('f-appt-time').value} น.` : "-",
+            appt: (hasPhone || hasHeal) ? `${document.getElementById('f-appt-date').value} /${document.getElementById('f-appt-time').value} น.` : "-",
             personal: personalCombined,
             details: allDetails.length > 0 ? allDetails.join('\n\n') : "-",
             price: totalPrice
