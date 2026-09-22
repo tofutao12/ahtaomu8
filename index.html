@@ -18,7 +18,6 @@
             --c-text-main: #4a2175;   
         }
 
-        /* --- โซนพื้นหลังและการแสดงผลหลัก --- */
         body {
             font-family: 'Cloud', 'Kanit', sans-serif; 
             background: linear-gradient(135deg, #2e1065, #5c2092, #9333ea, #c084fc, #5c2092);
@@ -47,95 +46,94 @@
             100% { transform: translateY(-20vh) rotate(360deg) scale(1.3); opacity: 0; }
         }
 
-        /* --- โซนตัวอักษร --- */
         .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
+        
+        /* คืนชีพตัวหนังสือไล่สีวิ้งวับ (Animated Gradient Text) */
         .animated-gradient-text {
-            background: linear-gradient(270deg, #fdf4ff, #fbcfe8, #fef08a, #fbcfe8, #fdf4ff);
-            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: linear-gradient(270deg, #d946ef, #a855f7, #fbbf24, #ec4899, #d946ef);
+            background-size: 300% 300%; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
             animation: textGradientShift 6s ease infinite;
         }
         @keyframes textGradientShift { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
         .glow-text { text-shadow: 0 0 10px rgba(251, 191, 36, 0.5); }
 
-        /* --- โซนเค้าโครงโครงสร้าง (Layout ตามเว็บรีวิว) --- */
+        /* --- โครงสร้างตามแบบเว็บรีวิว (อ้างอิงรูปที่ส่งมา) --- */
         .app-container {
             max-width: 480px; margin: 0 auto; min-height: 100vh;
             position: relative; overflow-x: hidden;
-            padding-bottom: 90px;
+            padding-bottom: 110px;
         }
 
         .banner-bg {
             background-image: url('แบนเนอร์.PNG');
             background-size: cover; background-position: center;
             position: relative;
-            border-radius: 0 0 40px 40px;
+            border-radius: 0 0 35px 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            height: 180px;
         }
         .banner-bg::after {
-            content: ''; position: absolute; inset: 0; border-radius: 0 0 40px 40px;
-            background: linear-gradient(180deg, rgba(46, 16, 101, 0.2) 0%, rgba(46, 16, 101, 0.6) 100%);
+            content: ''; position: absolute; inset: 0; border-radius: 0 0 35px 35px;
+            background: linear-gradient(180deg, rgba(46, 16, 101, 0.1) 0%, rgba(46, 16, 101, 0.65) 100%);
         }
 
         .hero-logo-wrapper {
-            width: 130px; height: 130px; background-color: white;
+            width: 110px; height: 110px; background-color: white;
             border-radius: 50%; border: 4px solid #fae8ff;
             box-shadow: 0 0 25px rgba(251, 191, 36, 0.6), inset 0 0 15px rgba(236, 72, 153, 0.4);
             margin: 0 auto; position: relative; z-index: 20;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
-            margin-top: -65px; /* คาบเส้นกึ่งกลางพอดี */
+            margin-top: -55px; /* คาบเส้นพอดี */
         }
 
         .content-bg {
-            background-color: rgba(253, 244, 255, 0.95);
+            background-color: rgba(253, 244, 255, 0.96);
             backdrop-filter: blur(10px);
-            border-radius: 40px 40px 0 0;
-            min-height: 500px;
-            margin-top: -80px; /* ดึงพื้นหลังขึ้นไปรองรับโลโก้ */
-            padding-top: 90px; /* เว้นที่ให้โลโก้และชื่อ */
+            border-radius: 35px 35px 0 0;
+            min-height: 600px;
+            margin-top: -70px;
+            padding-top: 80px;
             position: relative; z-index: 10;
         }
 
         .card-main {
             background-color: #ffffff; 
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
             border: 2px solid #fae8ff;
             position: relative; z-index: 10;
         }
 
-        /* --- ปุ่มหมวดหมู่ (Tabs) แบบสี่เหลี่ยมโค้งมน --- */
+        /* --- ปุ่มหมวดหมู่แบบกะทัดรัด --- */
         .tab-btn {
             background: #ffffff; border: 2px solid #fae8ff; color: #7e22ce;
-            border-radius: 1.2rem; padding: 14px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            line-height: 1.3; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            position: relative; overflow: hidden;
+            border-radius: 1rem; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            line-height: 1.2; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
         .tab-btn .icon-box {
-            width: 45px; height: 45px; border-radius: 14px;
+            width: 36px; height: 36px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px; margin-bottom: 6px; transition: all 0.3s;
+            font-size: 16px; margin-bottom: 4px; transition: all 0.3s;
         }
-        /* สีปุ่มตอนไม่ได้เลือก */
         #btn-tab-1 .icon-box { background: #fffbeb; color: #f59e0b; }
         #btn-tab-2 .icon-box { background: #f0fdf4; color: #10b981; }
         #btn-tab-3 .icon-box { background: #eff6ff; color: #3b82f6; }
         
-        /* สีปุ่มตอน Active */
         .tab-btn.active {
-            border-color: #d946ef; color: #c026d3; transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(217, 70, 239, 0.15);
+            border-color: #d946ef; color: #c026d3; transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(217, 70, 239, 0.15);
         }
         .tab-btn.active .icon-box {
             background: linear-gradient(135deg, #d946ef, #9333ea); color: white;
-            box-shadow: 0 4px 10px rgba(217, 70, 239, 0.3);
         }
 
-        .purple-pill { background: linear-gradient(90deg, #9333ea, #db2777); color: white; border-radius: 1rem; padding: 8px 15px; text-align: center; font-weight: bold; }
+        .purple-pill { background: linear-gradient(90deg, #9333ea, #db2777); color: white; border-radius: 0.8rem; padding: 6px 12px; text-align: center; font-weight: bold; }
 
-        /* --- ปุ่ม + และลูกเล่นแอนิเมชัน --- */
         .btn-add {
             background: linear-gradient(135deg, #0ea5e9, #3b82f6); color: #fff; 
-            border: none; border-radius: 50%; width: 34px; height: 34px; font-size: 20px; cursor: pointer; display: inline-flex;
+            border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 18px; cursor: pointer; display: inline-flex;
             align-items: center; justify-content: center; transition: all 0.2s; font-weight: bold; line-height: 1;
             box-shadow: 0 4px 10px rgba(14, 165, 233, 0.4); position: relative;
         }
@@ -144,92 +142,91 @@
 
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%; padding: 14px 20px; border: none; border-radius: 1.2rem; cursor: pointer;
+            width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
             font-family: 'Cloud', 'Kanit', sans-serif; font-size: 18px; color: #fff; font-weight: bold;
             background: linear-gradient(90deg, #9333ea, #db2777); box-shadow: 0 6px 20px rgba(219, 39, 119, 0.4); transition: all 0.2s; margin-top: 10px;
         }
         .btn-action:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(219, 39, 119, 0.5); }
         .btn-action:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        /* แอนิเมชัน +1 เวลากดเพิ่มลงตะกร้า */
         @keyframes floatUpFade { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-30px) scale(1.5); } }
-        .mini-toast { position: absolute; font-weight: bold; color: #ec4899; font-size: 18px; pointer-events: none; animation: floatUpFade 0.8s forwards; text-shadow: 0 0 5px white; z-index: 50; }
+        .mini-toast { position: absolute; font-weight: bold; color: #ec4899; font-size: 16px; pointer-events: none; animation: floatUpFade 0.8s forwards; text-shadow: 0 0 5px white; z-index: 50; }
         
-        /* สั่นแจ้งเตือนช่องที่ลืมกรอก */
         @keyframes shakeError { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
         .error-shake { animation: shakeError 0.3s ease-in-out 2; border-color: #ef4444 !important; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5) !important; background-color: #fef2f2 !important; }
 
-        /* --- โซนฟอร์มและ Modal --- */
-        .form-group { margin-bottom: 16px; text-align: left; }
-        .form-group label { display: block; font-size: 15px; color: var(--c-purple-dark); margin-bottom: 6px; font-weight: bold; }
+        .form-group { margin-bottom: 14px; text-align: left; }
+        .form-group label { display: block; font-size: 14px; color: var(--c-purple-dark); margin-bottom: 4px; font-weight: bold; }
         .form-control {
-            width: 100%; padding: 12px 14px; background: #fffcfd; border: 2px solid #e9d5ff; border-radius: 1rem;
-            color: var(--c-text-main); font-family: 'Cloud', 'Kanit', sans-serif; font-size: 15px; outline: none; transition: all 0.2s;
+            width: 100%; padding: 10px 12px; background: #fffcfd; border: 2px solid #e9d5ff; border-radius: 0.8rem;
+            color: var(--c-text-main); font-family: 'Cloud', 'Kanit', sans-serif; font-size: 14px; outline: none; transition: all 0.2s;
         }
-        .form-control:focus { background: #fff; border-color: #d946ef; box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.15); transform: translateY(-1px); }
+        .form-control:focus { background: #fff; border-color: #d946ef; box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.15); }
 
         .btn-admin {
-            position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); font-size: 20px; cursor: pointer; border:2px solid rgba(255,255,255,0.4);
-            z-index: 99; display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+            position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); font-size: 18px; cursor: pointer; border:2px solid rgba(255,255,255,0.4);
+            z-index: 99; display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: white;
         }
         .btn-admin:hover { background: rgba(255,255,255,0.4); transform: rotate(180deg); }
 
-        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15, 5, 30, 0.85); backdrop-filter:blur(5px); z-index:100000; overflow-y:auto; padding:20px; justify-content: center; align-items: center; }
-        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .checkout-popup { animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; background-color: #faf5ff; }
+        .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15, 5, 30, 0.85); backdrop-filter:blur(5px); z-index:100000; overflow-y:auto; padding:16px; justify-content: center; align-items: center; }
 
         .toast {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: linear-gradient(90deg, #7e22ce, #db2777); color: white; padding: 14px 28px; border-radius: 40px; 
-            font-size: 15px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.4);
+            background: linear-gradient(90deg, #7e22ce, #db2777); color: white; padding: 12px 24px; border-radius: 30px; 
+            font-size: 14px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.4);
             transition: transform .4s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff; font-weight: bold; white-space: nowrap;
         }
         .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
 
-        /* แถบเมนูด้านล่างสุดแอป (Bottom Nav) */
+        /* --- แถบเมนูด้านล่างสุด (Bottom Nav แบบสลับหน้า) --- */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0; z-index: 9990;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(217, 70, 239, 0.2); padding: 8px 16px 20px;
+            background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(217, 70, 239, 0.2); padding: 6px 12px 18px;
             display: flex; justify-content: space-between; align-items: center;
-            max-width: 480px; margin: 0 auto; border-radius: 1.5rem 1.5rem 0 0;
+            max-width: 480px; margin: 0 auto; border-radius: 1.2rem 1.2rem 0 0;
             box-shadow: 0 -10px 30px rgba(139, 92, 246, 0.15);
         }
         .nav-item {
-            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-            color: #d8b4fe; cursor: pointer; transition: all 0.2s; font-size: 20px;
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+            color: #9ca3af; cursor: pointer; transition: all 0.2s; font-size: 18px;
         }
-        .nav-item:hover { color: #d946ef; transform: translateY(-2px); }
+        .nav-item:hover { color: #d946ef; }
         .nav-item.active { color: #d946ef; }
         .nav-item.active .nav-icon-bg {
             background: #fdf4ff; border: 1px solid #fae8ff; box-shadow: 0 2px 5px rgba(217, 70, 239, 0.1);
         }
         .nav-icon-bg {
-            width: 40px; height: 40px; border-radius: 50%;
+            width: 36px; height: 36px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             border: 1px solid transparent; transition: all 0.3s;
         }
-        .nav-text { font-size: 11px; font-weight: bold; }
+        .nav-text { font-size: 10px; font-weight: bold; }
         
         .nav-cart-btn { position: relative; }
         .nav-cart-badge {
-            position: absolute; top: 0px; right: 8px; background: #ec4899; color: white;
-            font-size: 11px; font-weight: bold; width: 18px; height: 18px; border-radius: 50%;
+            position: absolute; top: -2px; right: 6px; background: #ec4899; color: white;
+            font-size: 10px; font-weight: bold; width: 17px; height: 17px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; border: 2px solid white;
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .nav-cart-badge.pop { transform: scale(1.5); }
 
-        /* ระบบ Drag & Drop ของแอดมิน */
+        /* จัดการหน้าย่อย (Multi-pages) */
+        .sub-page { display: none; }
+        .sub-page.active { display: block; animation: fadeIn 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ระบบ Drag & Drop */
         .draggable-item { cursor: grab; transition: opacity 0.2s; }
         .draggable-item:active { cursor: grabbing; }
         .draggable-item.dragging { opacity: 0.5; background: #fae8ff; border: 2px dashed #d946ef; }
         
-        /* สติ๊กกี้เมนูหมวดหมู่ */
         .sticky-tabs {
             position: sticky; top: 10px; z-index: 40;
-            padding: 5px 15px; margin: 0 -15px 15px -15px;
+            padding: 2px 10px; margin: 0 -10px 12px -10px;
         }
     </style>
 </head>
@@ -243,13 +240,13 @@
     <div class="magic-element text-2xl text-pink-200" style="left: 75%; animation-duration: 14s; animation-delay: 3s;">✦</div>
     <div class="magic-element text-xl text-blue-200"  style="left: 55%; animation-duration: 11s; animation-delay: 5s;">⭐</div>
 
-    <!-- หน้าต่าง Loading แบบเวทมนตร์ -->
+    <!-- หน้าต่าง Loading -->
     <div id="loading-overlay" class="fixed inset-0 bg-[#1e0b3b]/85 backdrop-blur-md z-[99999] hidden flex-col items-center justify-center transition-opacity">
         <div class="text-7xl animate-bounce mb-6 filter drop-shadow-[0_0_20px_rgba(251,191,36,0.8)]">🔮</div>
         <div class="text-[#fbbf24] font-bold text-xl tracking-wide font-seasons drop-shadow-md" id="loading-text">กำลังโหลดเวทมนตร์...</div>
     </div>
 
-    <!-- แจ้งเตือน Toast ด้านบน -->
+    <!-- แจ้งเตือน Toast -->
     <div class="toast" id="toast">✨ ข้อความแจ้งเตือน ✨</div>
 
     <div class="app-container">
@@ -257,73 +254,280 @@
         <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">🔮</button>
 
         <!-- ================= แบนเนอร์ด้านบนขอบมน ================= -->
-        <div class="banner-bg h-[200px]"></div>
+        <div class="banner-bg"></div>
 
-        <!-- ================= พื้นที่เนื้อหาสีสว่าง (ดีไซน์เว็บรีวิว) ================= -->
+        <!-- ================= พื้นที่เนื้อหาสีสว่าง ================= -->
         <div class="content-bg px-4">
             
-            <!-- โลโก้คาบเส้น & ชื่อร้าน -->
+            <!-- โลโก้คาบเส้น & ชื่อร้านไล่สีวิ้งวับ -->
             <div class="hero-logo-wrapper">
                 <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='โลโก้.png'">
             </div>
             
-            <div class="mt-3 mb-6">
-                <h1 class="text-[26px] mb-0 font-seasons font-bold text-[#c026d3] w-full" id="display-shop-name">Ah Tao Mu-space</h1>
-                <div class="text-[12px] font-bold text-gray-500 mt-1">ศูนย์รวมดูดวง วอลเปเปอร์ และทำเว็บไซต์ ✨</div>
+            <div class="mt-2 mb-4">
+                <h1 class="text-[25px] mb-0 font-seasons font-bold animated-gradient-text glow-text w-full" id="display-shop-name">Ah Tao Mu-space</h1>
+                <div class="text-[11px] font-bold text-gray-500 mt-0.5" id="display-slogan-title">ศูนย์รวมดูดวง วอลเปเปอร์ และทำเว็บไซต์ ✨</div>
             </div>
 
-            <!-- ================= แท็บหมวดหมู่ (Tabs) ================= -->
-            <div class="sticky-tabs bg-[rgba(253,244,255,0.9)] backdrop-blur-md rounded-2xl">
-                <div class="flex gap-2 justify-center">
-                    <button class="tab-btn w-1/3 active" id="btn-tab-1" onclick="switchTab(1)">
-                        <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                        <span class="font-bold text-[12px]">ดูดวง & คอล</span>
-                    </button>
-                    <button class="tab-btn w-1/3" id="btn-tab-2" onclick="switchTab(2)">
-                        <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <span class="font-bold text-[12px]">วอลเปเปอร์</span>
-                    </button>
-                    <button class="tab-btn w-1/3" id="btn-tab-3" onclick="switchTab(3)">
-                        <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
-                        <span class="font-bold text-[12px]">ทำเว็บไซต์</span>
-                    </button>
+            <!-- โน้ตวิ่ง (Marquee) -->
+            <div class="mb-3 max-w-[380px] mx-auto bg-[#fdf4ff] border border-[#fae8ff] rounded-lg py-1 px-2 shadow-sm">
+                <marquee id="display-marquee" scrollamount="4" class="text-[12px] font-bold text-[#9333ea]">✨ ยินดีต้อนรับสู่ AhTao Mu-Space พื้นที่ฮีลใจของคุณ ✨</marquee>
+            </div>
+
+            <!-- ================= SUB-PAGE 1: หน้าหลัก (เลือกสินค้า + 3 สเต็ป) ================= -->
+            <div id="subpage-home" class="sub-page active">
+                
+                <!-- แท็บหมวดหมู่ (Sticky Tabs) -->
+                <div class="sticky-tabs bg-[rgba(253,244,255,0.9)] backdrop-blur-md rounded-2xl">
+                    <div class="flex gap-2 justify-center">
+                        <button class="tab-btn w-1/3 active" id="btn-tab-1" onclick="switchTab(1)">
+                            <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <span class="font-bold text-[11px]">ดูดวง & คอล</span>
+                        </button>
+                        <button class="tab-btn w-1/3" id="btn-tab-2" onclick="switchTab(2)">
+                            <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
+                            <span class="font-bold text-[11px]">วอลเปเปอร์</span>
+                        </button>
+                        <button class="tab-btn w-1/3" id="btn-tab-3" onclick="switchTab(3)">
+                            <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
+                            <span class="font-bold text-[11px]">ทำเว็บไซต์</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3 สเต็ปวิธีใช้งานแบบกระชับ -->
+                <div class="card-main p-3.5 mb-4 text-left">
+                    <div class="text-center font-bold text-[#d946ef] text-[13px] mb-2.5 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-book-open"></i> 3 สเต็ปเสกเวทมนตร์ง่ายๆ
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <div class="step-card flex items-center gap-2.5 p-2 bg-[#fffcfd] rounded-xl border border-[#f3e8ff]">
+                            <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center font-bold text-xs shrink-0">1</div>
+                            <div class="text-[11px] text-gray-700 font-bold">กดปุ่ม <span class="bg-blue-500 text-white px-1.5 py-0.5 rounded-full text-[9px]">+</span> เลือกบริการที่ต้องการ</div>
+                        </div>
+                        <div class="step-card flex items-center gap-2.5 p-2 bg-[#fffcfd] rounded-xl border border-[#f3e8ff]">
+                            <div class="w-7 h-7 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-xs shrink-0">2</div>
+                            <div class="text-[11px] text-gray-700 font-bold">กด <span class="text-pink-500"><i class="fa-solid fa-cart-shopping"></i> ตะกร้า</span> ด้านล่าง เพื่อโอนเงิน & ให้ข้อมูล</div>
+                        </div>
+                        <div class="step-card flex items-center gap-2.5 p-2 bg-[#fffcfd] rounded-xl border border-[#f3e8ff]">
+                            <div class="w-7 h-7 rounded-full bg-purple-100 text-purple-500 flex items-center justify-center font-bold text-xs shrink-0">3</div>
+                            <div class="text-[11px] text-gray-700 font-bold">กด <span class="text-purple-600">🪄 สร้างข้อความ</span> คัดลอกและส่งแชทให้เลย!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- กล่องแสดงรายการสินค้า -->
+                <div id="products-wrapper" style="text-align:left;"></div>
+            </div>
+
+            <!-- ================= SUB-PAGE 2: หน้าตะกร้า & ฟอร์มกรอกข้อมูล ================= -->
+            <div id="subpage-cart" class="sub-page">
+                <div class="card-main p-4 mb-4 text-left">
+                    
+                    <!-- กรณีตะกร้าว่างเปล่า -->
+                    <div id="empty-cart-view" class="py-8 text-center hidden">
+                        <i class="fa-solid fa-basket-shopping text-5xl text-[#e9d5ff] mb-3"></i>
+                        <div class="text-[#c026d3] font-bold text-base mb-1">ตะกร้าเวทมนตร์ยังว่างอยู่เลยน้า 🥺</div>
+                        <div class="text-[12px] text-gray-500 mb-4">ลองกลับไปกดปุ่ม + เพื่อเลือกบริการดูก่อนนะคะ</div>
+                        <button onclick="switchSubPage('home', 1)" class="bg-[#fdf4ff] text-[#d946ef] border-2 border-[#d946ef] px-5 py-2 rounded-xl font-bold text-xs hover:bg-[#fae8ff]">กลับไปเลือกสินค้า</button>
+                    </div>
+
+                    <div id="checkout-scroll-area">
+                        <div class="purple-pill text-[15px] mb-3 shadow-sm inline-block">📦 ของในตะกร้าเวทมนตร์</div>
+                        <div id="cart-items-list" class="text-[13px] mb-3 px-1"></div>
+                        
+                        <div class="mb-4 bg-white p-2.5 rounded-xl border-2 dashed border-[#e9d5ff] transition-colors hover:border-[#d946ef]">
+                            <label class="text-[13px] text-[#7e22ce] cursor-pointer flex items-center gap-2 font-bold">
+                                <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#d946ef; width:18px; height:18px;"> 
+                                ⚡ เสกคิวเร่งด่วนพิเศษ (+59 บาท)
+                            </label>
+                        </div>
+
+                        <div class="border-2 border-[#d946ef] rounded-xl text-[15px] text-[#7e22ce] mb-5 text-center p-3 bg-white font-bold shadow-sm">
+                            ค่าครูรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#d946ef] text-[24px] mx-1">0</span> บาท
+                        </div>
+
+                        <div id="checkout-form-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-4 mt-2">
+                            <div class="purple-pill text-[15px] mb-3 shadow-sm inline-block">💳 โอนเงิน & ข้อมูลเวทมนตร์</div>
+                            
+                            <!-- กล่องบัญชี -->
+                            <div class="grid grid-cols-2 gap-2 mb-4">
+                                <div class="border-2 border-[#d946ef] rounded-xl shadow-sm p-2.5 text-center bg-white flex flex-col justify-between">
+                                    <div>
+                                        <div class="text-[10px] text-[#c026d3] font-bold mb-0.5">กสิกรไทย (KBank)</div>
+                                        <div class="text-[11px] text-[#7e22ce] font-bold leading-tight" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
+                                        <div class="text-[14px] tracking-wider text-[#d946ef] font-bold my-1" id="display-kbank-num">1961933834</div>
+                                    </div>
+                                    <button class="bg-gradient-to-r from-[#d946ef] to-[#c026d3] text-white w-full py-1 rounded-lg text-[11px] font-bold hover:opacity-90 mt-1" onclick="copyNum('kbank')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
+                                </div>
+                                <div class="border-2 border-[#1e3a8a] rounded-xl shadow-sm p-2.5 text-center bg-white flex flex-col justify-between">
+                                    <div>
+                                        <div class="text-[10px] text-[#1e3a8a] font-bold mb-0.5">TrueMoney Wallet</div>
+                                        <div class="text-[11px] text-[#7e22ce] font-bold leading-tight invisible">.</div> 
+                                        <div class="text-[14px] tracking-wider text-[#1e40af] font-bold my-1" id="display-wallet-num">0800172584</div>
+                                    </div>
+                                    <button class="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white w-full py-1 rounded-lg text-[11px] font-bold hover:opacity-90 mt-1" onclick="copyNum('wallet')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group bg-white p-2.5 rounded-xl border border-[#e9d5ff]" id="fg-confirm">
+                                <label class="text-[12px] text-[#7e22ce] cursor-pointer flex items-start gap-2 leading-relaxed mb-0 font-bold">
+                                    <input type="checkbox" id="confirm-pay" class="req-check shrink-0" style="accent-color:#d946ef; width:18px; height:18px; margin-top:2px;">
+                                    <span>ฉันโอนเงินค่าครูเรียบร้อยแล้ว ✨<br><span class="text-pink-500 text-[10px]">(ต้องแนบรูปสลิปในแชทให้แม่หมอด้วยนะคะ) *</span></span>
+                                </label>
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-2.5 mb-4">
+                                <div class="form-group mb-0" id="fg-date"><label class="text-xs">วันที่โอน *</label><input type="date" id="f-transfer-date" class="form-control req-field text-xs"></div>
+                                <div class="form-group mb-0" id="fg-time">
+                                    <label class="text-xs">เวลาที่โอน *</label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="time" id="f-transfer-time" class="form-control req-field text-xs" style="flex:1;">
+                                        <button type="button" onclick="setNowTime()" class="bg-[#fdf4ff] text-[#d946ef] border-2 border-[#d946ef] px-2.5 py-[8px] rounded-xl text-[11px] font-bold shadow-sm whitespace-nowrap">⏳ โอนเมื่อกี้</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4" id="fg-name">
+                                <label class="text-xs">ชื่อเล่น / แอคเคาท์ติดต่อ (จำเป็น) *</label>
+                                <input type="text" id="f-name" class="form-control req-field text-xs" placeholder="เช่น น้องฟ้า / IG: fah_sky">
+                            </div>
+
+                            <!-- ฟอร์มรูปแบบการรับทำนาย -->
+                            <div id="form-chat-options" style="display:none; background:#fffcfd; padding:14px; border-radius:0.8rem; border:2px dashed #e9d5ff; margin-bottom:14px;">
+                                <div class="purple-pill text-[13px] mb-3 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
+                                <div class="form-group" id="delivery-type-group">
+                                    <label class="text-xs">เลือกรูปแบบการรับงาน *</label>
+                                    <div class="flex gap-4 mt-1.5" id="delivery-radio-container">
+                                        <label class="flex items-center gap-1.5 cursor-pointer font-bold text-[#7e22ce] text-xs"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#d946ef;"> แบบพิมพ์</label>
+                                        <label class="flex items-center gap-1.5 cursor-pointer font-bold text-[#7e22ce] text-xs" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#d946ef;"> แบบอัดเสียง</label>
+                                    </div>
+                                    <div id="delivery-lock-note" class="text-[10px] text-pink-500 font-bold mt-1.5" style="display:none;">🔒 รายการนี้จำกัดเฉพาะ "แบบพิมพ์" เท่านั้นค่ะ</div>
+                                </div>
+                                <div class="form-group mb-0 bg-white p-2.5 rounded-lg border border-[#e9d5ff]" id="card-option-group">
+                                    <label class="flex items-center gap-1.5 cursor-pointer text-[#7e22ce] mb-0 font-bold text-xs">
+                                        <input type="checkbox" id="f-card-opt" style="accent-color:#d946ef;"> รับหน้าไพ่ด้วย
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- ฟอร์มข้อมูลส่วนตัว -->
+                            <div id="form-personal" style="display:none; background:#fffcfd; padding:14px; border-radius:0.8rem; border:2px dashed #e9d5ff; margin-bottom:14px;">
+                                <div class="purple-pill text-[13px] mb-3 inline-block">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
+                                <div class="form-group" id="fg-status">
+                                    <label class="text-xs">สถานะความสัมพันธ์ *</label>
+                                    <select id="f-status" class="form-control text-xs">
+                                        <option value="">-- เลือกสถานะ --</option><option value="โสด">โสด</option><option value="มีแฟนแล้ว">มีแฟนแล้ว</option><option value="คุยอยู่ / ดูใจ">คุยอยู่ / ดูใจ</option><option value="แอบชอบ">แอบชอบ</option><option value="มือที่III">มือที่ III</option><option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="form-group" id="fg-age"><label class="text-xs">อายุ (ปี) *</label><input type="number" id="f-age" class="form-control text-xs" placeholder="เช่น 24"></div>
+                                    <div class="form-group" id="fg-day">
+                                        <label class="text-xs">เกิดวัน *</label>
+                                        <select id="f-day" class="form-control text-xs"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2" id="field-month-year-box">
+                                    <div class="form-group mb-0" id="fg-month"><label class="text-xs">เดือนเกิด *</label><select id="f-month" class="form-control text-xs"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
+                                    <div class="form-group mb-0"><label class="text-xs">ปี พ.ศ. (ไม่บังคับ)</label><input type="number" id="f-year" class="form-control text-xs" placeholder="เช่น 2545"></div>
+                                </div>
+                            </div>
+
+                            <!-- ฟอร์มคำถาม -->
+                            <div id="form-questions" style="display:none; background:#fffcfd; padding:14px; border-radius:0.8rem; border:2px dashed #e9d5ff; margin-bottom:14px;">
+                                <div class="purple-pill text-[13px] mb-3 inline-block">💬 คำถามที่อยากถามไพ่</div>
+                                <div id="dynamic-questions"></div>
+                            </div>
+
+                            <!-- ฟอร์มวอลเปเปอร์ -->
+                            <div id="form-wall" style="display:none; background:#fffcfd; padding:14px; border-radius:0.8rem; border:2px dashed #e9d5ff; margin-bottom:14px;">
+                                <div class="purple-pill text-[13px] mb-3 inline-block">🎨 ข้อมูลเสกวอลเปเปอร์</div>
+                                <div class="form-group"><label class="text-xs">ชื่อที่ใส่ในวอล (ไม่บังคับ)</label><input type="text" id="f-wall-name" class="form-control text-xs" placeholder="เช่น Mook / May / หรือเว้นว่าง"></div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="form-group mb-0" id="fg-wall-day"><label class="text-xs">วันเกิด (จ.-อา.) *</label><select id="f-wall-day" class="form-control text-xs dyn-req"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select></div>
+                                    <div class="form-group mb-0" id="fg-wall-date"><label class="text-xs">วันที่ (1-31) *</label><select id="f-wall-date" class="form-control text-xs dyn-req"><option value="">-- วันที่ --</option><script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script></select></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="form-group mb-0" id="fg-wall-month"><label class="text-xs">เดือนเกิด *</label><select id="f-wall-month" class="form-control text-xs dyn-req"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
+                                    <div class="form-group mb-0" id="fg-wall-year"><label class="text-xs">ปีเกิด (พ.ศ.) *</label><input type="number" id="f-wall-year" class="form-control text-xs dyn-req" placeholder="เช่น 2545"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="form-group mb-0" id="fg-wall-zodiac"><label class="text-xs">ปีนักษัตร *</label><select id="f-wall-zodiac" class="form-control text-xs dyn-req"><option value="">-- นักษัตร --</option><option value="ชวด">ชวด (หนู)</option><option value="ฉลู">ฉลู (วัว)</option><option value="ขาล">ขาล (เสือ)</option><option value="เถาะ">เถาะ (กระต่าย)</option><option value="มะโรง">มะโรง (งูใหญ่)</option><option value="มะเส็ง">มะเส็ง (งูเล็ก)</option><option value="มะเมีย">มะเมีย (ม้า)</option><option value="มะแม">มะแม (แพะ)</option><option value="วอก">วอก (ลิง)</option><option value="ระกา">ระกา (ไก่)</option><option value="จอ">จอ (หมา)</option><option value="กุน">กุน (หมู)</option></select></div>
+                                    <div class="form-group mb-0" id="fg-wall-color"><label class="text-xs">สีที่ชอบ *</label><input type="text" id="f-wall-color" class="form-control text-xs dyn-req" placeholder="สีถูกโฉลก"></div>
+                                </div>
+                                <div class="form-group mt-2" id="fg-wall-main"><label class="text-xs">เรื่องที่ต้องการเสริมหลัก *</label><input type="text" id="f-wall-main" class="form-control text-xs dyn-req" placeholder="เช่น การเงิน, ความรัก"></div>
+                                <div id="wall-extra-container"></div>
+                            </div>
+
+                            <!-- ฟอร์มนัดหมาย -->
+                            <div id="form-appt" style="display:none; background:#fffcfd; padding:14px; border-radius:0.8rem; border:2px dashed #e9d5ff; margin-bottom:14px;">
+                                <div class="purple-pill text-[13px] mb-3 inline-block">📅 เวลานัดหมายเวทมนตร์ (สำหรับคอล)</div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="form-group mb-0" id="fg-appt-date"><label class="text-xs">วันที่จอง *</label><input type="date" id="f-appt-date" class="form-control text-xs dyn-req"></div>
+                                    <div class="form-group mb-0" id="fg-appt-time"><label class="text-xs">เวลาที่จอง *</label><input type="time" id="f-appt-time" class="form-control text-xs dyn-req" onchange="calculateEndTime()"></div>
+                                </div>
+                                <div id="end-time-display" class="mt-3 text-[11px] text-[#db2777] font-bold text-center bg-[#fce7f3] p-2 rounded-lg border border-[#fbcfe8]" style="display:none;"></div>
+                            </div>
+
+                            <!-- ฟอร์มรับทำเว็บไซต์ -->
+                            <div id="form-web" style="display:none; background:#fffcfd; padding:14px; border-radius:0.8rem; border:2px dashed #e9d5ff; margin-bottom:14px;">
+                                <div class="purple-pill text-[13px] mb-3 inline-block">💻 ข้อมูลรับทำเว็บไซต์</div>
+                                <div class="form-group mb-0" id="fg-web-brief"><label class="text-xs">ชื่อร้าน / รูปแบบเว็บไซต์ *</label><textarea id="f-web-brief" class="form-control text-xs dyn-req" rows="2" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ"></textarea></div>
+                            </div>
+
+                            <!-- 🪄 ปุ่มส่งข้อมูล -->
+                            <button id="btn-submit-order" class="btn-action mt-2 py-3.5 w-full text-[16px]" onclick="generateSummaryAndSend()">🪄 สร้างข้อความ (เพื่อคัดลอกส่งแชท)</button>
+                        </div>
+
+                        <!-- 🚨 โซนแจ้งเตือนใหญ่หลังเสกข้อความเสร็จ -->
+                        <div id="summary-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-5 mt-2 text-left" style="display:none;">
+                            <div class="text-[20px] text-[#d946ef] font-bold mb-2 text-center">✨ ข้อความพร้อมแล้ว! ✨</div>
+                            
+                            <div class="text-[13px] text-pink-600 font-bold mb-4 mt-3 text-center bg-[#fdf2f8] p-3 rounded-xl border-2 border-dashed border-pink-300 leading-relaxed">
+                                <i class="fa-solid fa-triangle-exclamation text-lg mb-1"></i><br>
+                                (ระบบแค่สร้างข้อความให้นะคะ ยังไม่ได้ส่งน้า)<br>
+                                <span class="text-[11px] text-gray-700">รบกวนลูกค้ากดปุ่มด้านล่าง เพื่อไปเปิดแชท ➡ แล้วกด <span class="text-pink-600 text-[13px]">"วาง (Paste)"</span> พร้อมแนบรูปสลิปให้แม่หมอด้วยนะคะ 📸💖</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="summary-text" class="form-control" rows="7" readonly style="font-size:11px; background:#fff; border-color:#d946ef; line-height:1.5;"></textarea>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 gap-2.5">
+                                <button class="bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white py-2.5 rounded-xl font-bold text-[12px] shadow-md flex items-center justify-center gap-1.5" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-base"></i> ก๊อปปี้แล้วไปเปิด Messenger</button>
+                                <button class="bg-gradient-to-b from-[#059669] to-[#10b981] text-white py-2.5 rounded-xl font-bold text-[12px] shadow-md flex items-center justify-center gap-1.5" onclick="sendSummary('line')"><i class="fa-brands fa-line text-base"></i> ก๊อปปี้แล้วไปเปิด LINE</button>
+                                <button class="bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white py-2.5 rounded-xl font-bold text-[12px] shadow-md flex items-center justify-center gap-1.5" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-base"></i> ก๊อปปี้แล้วไปเปิด IG</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
-            <!-- ================= 3 สเต็ปวิธีใช้งานง่ายๆ ================= -->
-            <div class="card-main p-4 mb-6 text-left">
-                <div class="text-center font-bold text-[#d946ef] text-[14px] mb-3 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-book-open"></i> 3 สเต็ปเสกเวทมนตร์ง่ายๆ
-                </div>
-                <div class="flex flex-col gap-2">
-                    <div class="step-card flex items-center gap-3 p-2.5">
-                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center font-bold text-sm shrink-0">1</div>
-                        <div class="text-[12px] text-gray-700 font-bold">กดปุ่ม <span class="bg-gradient-to-r from-[#0ea5e9] to-[#3b82f6] text-white px-2 py-0.5 rounded-full text-[10px]">+</span> เลือกบริการที่ต้องการ</div>
-                    </div>
-                    <div class="step-card flex items-center gap-3 p-2.5">
-                        <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center font-bold text-sm shrink-0">2</div>
-                        <div class="text-[12px] text-gray-700 font-bold">กด <span class="text-pink-500"><i class="fa-solid fa-cart-shopping"></i> ตะกร้า</span> ด้านล่าง เพื่อโอนเงิน & ให้ข้อมูล</div>
-                    </div>
-                    <div class="step-card flex items-center gap-3 p-2.5">
-                        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-500 flex items-center justify-center font-bold text-sm shrink-0">3</div>
-                        <div class="text-[12px] text-gray-700 font-bold">กด <span class="text-purple-600">🪄 สร้างข้อความ</span> คัดลอกและส่งแชทให้เลย!</div>
+            <!-- ================= SUB-PAGE 3: หน้าติดต่อ ================= -->
+            <div id="subpage-contact" class="sub-page">
+                <div class="card-main p-5 mb-4 text-center">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-sm"><i class="fa-solid fa-headset"></i></div>
+                    <h2 class="text-[#c026d3] text-[18px] font-bold mb-4">ช่องทางติดต่อแม่หมอ</h2>
+                    <div class="flex flex-col gap-3">
+                        <a id="contact-link-fb" href="#" target="_blank" class="bg-[#1877F2] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-xs shadow-md"><i class="fa-brands fa-facebook-f text-lg"></i> Facebook Page</a>
+                        <a id="contact-link-line" href="#" target="_blank" class="bg-[#00B900] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-xs shadow-md"><i class="fa-brands fa-line text-lg"></i> Line Official</a>
+                        <a id="contact-link-ig" href="#" target="_blank" class="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-xs shadow-md"><i class="fa-brands fa-instagram text-lg"></i> Instagram</a>
+                        <a id="contact-link-discord" href="#" target="_blank" class="bg-[#5865F2] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 text-xs shadow-md"><i class="fa-brands fa-discord text-lg"></i> Discord Community</a>
                     </div>
                 </div>
             </div>
-
-            <!-- ================= กล่องแสดงรายการสินค้า ================= -->
-            <div id="products-wrapper" style="text-align:left;"></div>
 
         </div>
     </div>
 
-    <!-- ================= แถบเมนูด้านล่างสุดแอป (Bottom Nav) ================= -->
+    <!-- ================= แถบเมนูด้านล่างสุด (Bottom Nav แบบสลับหน้า) ================= -->
     <div class="bottom-nav">
-        <div class="nav-item active" onclick="closeCheckoutModal(); switchTab(1);" id="nav-bottom-1">
+        <div class="nav-item active" onclick="switchSubPage('home', 1)" id="nav-bottom-1">
             <div class="nav-icon-bg"><i class="fa-solid fa-house"></i></div>
             <span class="nav-text">หน้าหลัก</span>
         </div>
-        <div class="nav-item nav-cart-btn" onclick="openCheckoutModal()" id="nav-bottom-2">
+        <div class="nav-item nav-cart-btn" onclick="switchSubPage('cart', 2)" id="nav-bottom-2">
             <div class="nav-icon-bg"><i class="fa-solid fa-cart-shopping"></i></div>
             <div id="nav-cart-badge" class="nav-cart-badge hidden">0</div>
             <span class="nav-text">ตะกร้า</span>
@@ -332,271 +536,76 @@
             <div class="nav-icon-bg"><i class="fa-solid fa-star"></i></div>
             <span class="nav-text">ดูรีวิว</span>
         </div>
-        <div class="nav-item" onclick="openContactModal()" id="nav-bottom-4">
-            <div class="nav-icon-bg"><i class="fa-solid fa-comment-dots"></i></div>
+        <div class="nav-item" onclick="switchSubPage('contact', 4)" id="nav-bottom-4">
+            <div class="nav-icon-bg"><i class="fa-solid fa-address-book"></i></div>
             <span class="nav-text">ติดต่อ</span>
-        </div>
-    </div>
-
-    <!-- ================= Modal ช่องทางติดต่อ ================= -->
-    <div id="contact-modal" class="modal-overlay">
-        <div class="bg-white rounded-[2rem] p-6 w-full max-w-[350px] shadow-2xl relative text-center">
-            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-gray-400 text-2xl hover:text-pink-500"><i class="fa-solid fa-xmark"></i></button>
-            <div class="w-16 h-16 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-3 shadow-sm"><i class="fa-solid fa-headset"></i></div>
-            <h2 class="text-[#c026d3] text-[20px] font-bold mb-4">ช่องทางติดต่อแม่หมอ</h2>
-            <div class="flex flex-col gap-3">
-                <a id="modal-link-fb" href="#" target="_blank" class="bg-[#1877F2] text-white py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 decoration-none shadow-md"><i class="fa-brands fa-facebook-f text-xl"></i> Facebook Page</a>
-                <a id="modal-link-line" href="#" target="_blank" class="bg-[#00B900] text-white py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 decoration-none shadow-md"><i class="fa-brands fa-line text-2xl"></i> Line Official</a>
-                <a id="modal-link-ig" href="#" target="_blank" class="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 decoration-none shadow-md"><i class="fa-brands fa-instagram text-2xl"></i> Instagram</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= Modal ตะกร้าสินค้าและฟอร์ม ================= -->
-    <div id="checkout-modal-overlay" class="modal-overlay items-end sm:items-center px-0 sm:px-4 pb-[80px] sm:pb-0">
-        <div class="checkout-popup w-full max-w-[500px] h-[85vh] sm:h-auto sm:max-h-[85vh] rounded-t-[2rem] sm:rounded-[2rem] p-5 overflow-y-auto relative shadow-[0_0_30px_rgba(217,70,239,0.3)] custom-scrollbar">
-            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 bg-white text-[#d946ef] border-2 border-[#e9d5ff] w-9 h-9 rounded-full flex items-center justify-center font-bold hover:bg-[#d946ef] hover:text-white transition-colors z-50 text-lg shadow-sm"><i class="fa-solid fa-xmark"></i></button>
-            
-            <!-- กรณีตะกร้าว่างเปล่า -->
-            <div id="empty-cart-view" class="py-10 text-center hidden mt-6">
-                <i class="fa-solid fa-basket-shopping text-6xl text-[#e9d5ff] mb-4"></i>
-                <div class="text-[#c026d3] font-bold text-lg mb-2">ตะกร้าเวทมนตร์ยังว่างอยู่เลยน้า 🥺</div>
-                <div class="text-[13px] text-gray-500 mb-6">ลองกลับไปกดปุ่ม + เพื่อเลือกบริการ<br>ดูก่อนนะคะแม่หมอรออยู่ ✨</div>
-                <button onclick="closeCheckoutModal()" class="bg-[#fdf4ff] text-[#d946ef] border-2 border-[#d946ef] px-6 py-2.5 rounded-xl font-bold hover:bg-[#fae8ff]">กลับไปเลือกสินค้า</button>
-            </div>
-
-            <div id="checkout-scroll-area">
-                <div class="purple-pill text-[16px] mb-4 shadow-sm inline-block">📦 ของในตะกร้าเวทมนตร์</div>
-                <div id="cart-items-list" class="text-[14px] mb-4 text-left px-2"></div>
-                
-                <div class="mb-5 bg-white p-3 rounded-2xl border-2 dashed border-[#e9d5ff] transition-colors hover:border-[#d946ef] text-left">
-                    <label class="text-[14px] text-[#7e22ce] cursor-pointer flex items-center gap-2 font-bold">
-                        <input type="checkbox" id="urgent-queue" onchange="updateCartTotal()" style="accent-color:#d946ef; width:20px; height:20px;"> 
-                        ⚡ เสกคิวเร่งด่วนพิเศษ (+59 บาท)
-                    </label>
-                </div>
-
-                <div class="border-2 border-[#d946ef] rounded-xl text-[16px] text-[#7e22ce] mb-6 text-center p-4 bg-white font-bold shadow-md">
-                    ค่าครูรวมทั้งสิ้น: <span id="cart-total-price" class="text-[#d946ef] text-[28px] mx-1">0</span> บาท
-                </div>
-
-                <div id="checkout-form-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left">
-                    <div class="purple-pill text-[16px] mb-4 shadow-sm inline-block">💳 โอนเงิน & ข้อมูลเวทมนตร์</div>
-                    
-                    <div class="grid grid-cols-2 gap-3 mb-5">
-                        <div class="border-2 border-[#d946ef] rounded-xl shadow-[2px_2px_0px_#d946ef] p-3 text-center bg-white flex flex-col justify-between">
-                            <div>
-                                <div class="text-[11px] text-[#c026d3] font-bold mb-1">กสิกรไทย (KBank)</div>
-                                <div class="text-[12px] text-[#7e22ce] font-bold leading-tight" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
-                                <div class="text-[16px] tracking-wider text-[#d946ef] font-bold my-1" id="display-kbank-num">1961933834</div>
-                            </div>
-                            <button class="bg-gradient-to-r from-[#d946ef] to-[#c026d3] text-white w-full py-1.5 rounded-lg text-[12px] font-bold hover:opacity-90 mt-1" onclick="copyNum('kbank')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
-                        </div>
-                        <div class="border-2 border-[#1e3a8a] rounded-xl shadow-[2px_2px_0px_#1e3a8a] p-3 text-center bg-white flex flex-col justify-between">
-                            <div>
-                                <div class="text-[11px] text-[#1e3a8a] font-bold mb-1">TrueMoney Wallet</div>
-                                <div class="text-[12px] text-[#7e22ce] font-bold leading-tight invisible">.</div> 
-                                <div class="text-[16px] tracking-wider text-[#1e40af] font-bold my-1" id="display-wallet-num">0800172584</div>
-                            </div>
-                            <button class="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white w-full py-1.5 rounded-lg text-[12px] font-bold hover:opacity-90 mt-1" onclick="copyNum('wallet')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group bg-white p-3 rounded-xl border border-[#e9d5ff] transition-colors hover:border-[#d946ef]" id="fg-confirm">
-                        <label class="text-[13px] text-[#7e22ce] cursor-pointer flex items-start gap-2 leading-relaxed mb-0 font-bold">
-                            <input type="checkbox" id="confirm-pay" class="req-check shrink-0" style="accent-color:#d946ef; width:20px; height:20px; margin-top:2px;">
-                            <span>ฉันโอนเงินค่าครูเรียบร้อยแล้ว ✨<br><span class="text-pink-500 text-[11px]">(ต้องแนบรูปสลิปในแชทให้แม่หมอด้วยนะคะ) *</span></span>
-                        </label>
-                    </div>
-
-                    <div class="grid grid-cols-1 gap-3 mb-5">
-                        <div class="form-group mb-0" id="fg-date"><label>วันที่โอน *</label><input type="date" id="f-transfer-date" class="form-control req-field text-sm"></div>
-                        <div class="form-group mb-0" id="fg-time">
-                            <label>เวลาที่โอน *</label>
-                            <div class="flex items-center gap-2">
-                                <input type="time" id="f-transfer-time" class="form-control req-field text-sm" style="flex:1;">
-                                <button type="button" onclick="setNowTime()" class="bg-[#fdf4ff] text-[#d946ef] border-2 border-[#d946ef] px-3 py-[10px] rounded-xl text-[12px] font-bold shadow-sm hover:bg-[#d946ef] hover:text-white transition-colors whitespace-nowrap">⏳ โอนเมื่อกี้</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-5" id="fg-name">
-                        <label>ชื่อเล่น / แอคเคาท์ติดต่อ (จำเป็น) *</label>
-                        <input type="text" id="f-name" class="form-control req-field" placeholder="เช่น น้องฟ้า / IG: fah_sky">
-                    </div>
-
-                    <!-- ฟอร์มรูปแบบการรับทำนาย -->
-                    <div id="form-chat-options" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
-                        <div class="purple-pill text-[14px] mb-4 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
-                        <div class="form-group" id="delivery-type-group">
-                            <label class="text-[13px]">เลือกรูปแบบการรับงาน *</label>
-                            <div class="flex gap-4 mt-2" id="delivery-radio-container">
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce] text-[13px]"><input type="radio" name="delivery_type" value="พิมพ์" checked onchange="toggleDeliveryOptions()" style="accent-color:#d946ef; width:18px; height:18px;"> แบบพิมพ์</label>
-                                <label class="flex items-center gap-2 cursor-pointer font-bold text-[#7e22ce] text-[13px]" id="audio-option-label"><input type="radio" name="delivery_type" value="อัดเสียง" onchange="toggleDeliveryOptions()" style="accent-color:#d946ef; width:18px; height:18px;"> แบบอัดเสียง</label>
-                            </div>
-                            <div id="delivery-lock-note" class="text-[11px] text-pink-500 font-bold mt-2" style="display:none;">🔒 รายการนี้จำกัดเฉพาะ "แบบพิมพ์" เท่านั้นค่ะ</div>
-                        </div>
-                        <div class="form-group mb-0 bg-white p-3 rounded-lg border border-[#e9d5ff]" id="card-option-group">
-                            <label class="flex items-center gap-2 cursor-pointer text-[#7e22ce] mb-0 font-bold text-[13px]">
-                                <input type="checkbox" id="f-card-opt" style="width:18px; height:18px; accent-color:#d946ef;"> รับหน้าไพ่ด้วย
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- ฟอร์มข้อมูลส่วนตัว -->
-                    <div id="form-personal" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
-                        <div class="purple-pill text-[14px] mb-4 inline-block">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
-                        <div class="form-group" id="fg-status">
-                            <label class="text-[13px]">สถานะความสัมพันธ์ *</label>
-                            <select id="f-status" class="form-control text-sm">
-                                <option value="">-- เลือกสถานะ --</option><option value="โสด">โสด</option><option value="มีแฟนแล้ว">มีแฟนแล้ว</option><option value="คุยอยู่ / ดูใจ">คุยอยู่ / ดูใจ</option><option value="แอบชอบ">แอบชอบ</option><option value="มือที่III">มือที่ III</option><option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="form-group" id="fg-age"><label class="text-[13px]">อายุ (ปี) *</label><input type="number" id="f-age" class="form-control text-sm" placeholder="เช่น 24"></div>
-                            <div class="form-group" id="fg-day">
-                                <label class="text-[13px]">เกิดวัน *</label>
-                                <select id="f-day" class="form-control text-sm"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3" id="field-month-year-box">
-                            <div class="form-group mb-0" id="fg-month"><label class="text-[13px]">เดือนเกิด *</label><select id="f-month" class="form-control text-sm"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
-                            <div class="form-group mb-0"><label class="text-[13px]">ปี พ.ศ. (ไม่บังคับ)</label><input type="number" id="f-year" class="form-control text-sm" placeholder="เช่น 2545"></div>
-                        </div>
-                    </div>
-
-                    <!-- ฟอร์มคำถาม -->
-                    <div id="form-questions" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
-                        <div class="purple-pill text-[14px] mb-4 inline-block">💬 คำถามที่อยากถามไพ่</div>
-                        <div id="dynamic-questions"></div>
-                    </div>
-
-                    <!-- ฟอร์มวอลเปเปอร์ -->
-                    <div id="form-wall" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
-                        <div class="purple-pill text-[14px] mb-4 inline-block">🎨 ข้อมูลเสกวอลเปเปอร์</div>
-                        <div class="form-group"><label class="text-[13px]">ชื่อที่ใส่ในวอล (ไม่บังคับ)</label><input type="text" id="f-wall-name" class="form-control text-sm" placeholder="เช่น Mook / May / หรือเว้นว่าง"></div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="form-group mb-0" id="fg-wall-day"><label class="text-[13px]">วันเกิด (จ.-อา.) *</label><select id="f-wall-day" class="form-control text-sm dyn-req"><option value="">-- วัน --</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option></select></div>
-                            <div class="form-group mb-0" id="fg-wall-date"><label class="text-[13px]">วันที่ (1-31) *</label><select id="f-wall-date" class="form-control text-sm dyn-req"><option value="">-- วันที่ --</option><script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script></select></div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3 mt-3">
-                            <div class="form-group mb-0" id="fg-wall-month"><label class="text-[13px]">เดือนเกิด *</label><select id="f-wall-month" class="form-control text-sm dyn-req"><option value="">-- เดือน --</option><option value="มกราคม">มกราคม</option><option value="กุมภาพันธ์">กุมภาพันธ์</option><option value="มีนาคม">มีนาคม</option><option value="เมษายน">เมษายน</option><option value="พฤษภาคม">พฤษภาคม</option><option value="มิถุนายน">มิถุนายน</option><option value="กรกฎาคม">กรกฎาคม</option><option value="สิงหาคม">สิงหาคม</option><option value="กันยายน">กันยายน</option><option value="ตุลาคม">ตุลาคม</option><option value="พฤศจิกายน">พฤศจิกายน</option><option value="ธันวาคม">ธันวาคม</option></select></div>
-                            <div class="form-group mb-0" id="fg-wall-year"><label class="text-[13px]">ปีเกิด (พ.ศ.) *</label><input type="number" id="f-wall-year" class="form-control text-sm dyn-req" placeholder="เช่น 2545"></div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3 mt-3">
-                            <div class="form-group mb-0" id="fg-wall-zodiac"><label class="text-[13px]">ปีนักษัตร *</label><select id="f-wall-zodiac" class="form-control text-sm dyn-req"><option value="">-- นักษัตร --</option><option value="ชวด">ชวด (หนู)</option><option value="ฉลู">ฉลู (วัว)</option><option value="ขาล">ขาล (เสือ)</option><option value="เถาะ">เถาะ (กระต่าย)</option><option value="มะโรง">มะโรง (งูใหญ่)</option><option value="มะเส็ง">มะเส็ง (งูเล็ก)</option><option value="มะเมีย">มะเมีย (ม้า)</option><option value="มะแม">มะแม (แพะ)</option><option value="วอก">วอก (ลิง)</option><option value="ระกา">ระกา (ไก่)</option><option value="จอ">จอ (หมา)</option><option value="กุน">กุน (หมู)</option></select></div>
-                            <div class="form-group mb-0" id="fg-wall-color"><label class="text-[13px]">สีที่ชอบ *</label><input type="text" id="f-wall-color" class="form-control text-sm dyn-req" placeholder="เผื่อตรงกับสีถูกโฉลก"></div>
-                        </div>
-                        <div class="form-group mt-3" id="fg-wall-main"><label class="text-[13px]">เรื่องที่ต้องการเสริมหลัก (1 เรื่อง) *</label><input type="text" id="f-wall-main" class="form-control text-sm dyn-req" placeholder="เช่น การเงิน, ความรัก, การงาน"></div>
-                        <div id="wall-extra-container"></div>
-                    </div>
-
-                    <!-- ฟอร์มนัดหมาย -->
-                    <div id="form-appt" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
-                        <div class="purple-pill text-[14px] mb-4 inline-block">📅 เวลานัดหมายเวทมนตร์ (สำหรับคอล)</div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="form-group mb-0" id="fg-appt-date"><label class="text-[13px]">วันที่จอง *</label><input type="date" id="f-appt-date" class="form-control text-sm dyn-req"></div>
-                            <div class="form-group mb-0" id="fg-appt-time"><label class="text-[13px]">เวลาที่จอง *</label><input type="time" id="f-appt-time" class="form-control text-sm dyn-req" onchange="calculateEndTime()"></div>
-                        </div>
-                        <div id="end-time-display" class="mt-4 text-[12px] text-[#db2777] font-bold text-center bg-[#fce7f3] p-2.5 rounded-lg border border-[#fbcfe8]" style="display:none;"></div>
-                    </div>
-
-                    <!-- ฟอร์มรับทำเว็บไซต์ -->
-                    <div id="form-web" style="display:none; background:#fffcfd; padding:18px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
-                        <div class="purple-pill text-[14px] mb-4 inline-block">💻 ข้อมูลรับทำเว็บไซต์</div>
-                        <div class="form-group mb-0" id="fg-web-brief"><label class="text-[13px]">ชื่อร้าน / รูปแบบเว็บไซต์คร่าวๆ *</label><textarea id="f-web-brief" class="form-control text-sm dyn-req" rows="3" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ (จากนั้นบรีฟต่อในแชทแอดมิน)"></textarea></div>
-                    </div>
-
-                    <!-- 🪄 ปุ่มส่งข้อมูล (เปลี่ยนคำสั่งให้เคลียร์) 🪄 -->
-                    <button id="btn-submit-order" class="btn-action mt-4 py-4 w-full text-[18px] shadow-[0_4px_15px_rgba(217,70,239,0.4)]" onclick="generateSummaryAndSend()">🪄 สร้างข้อความ (เพื่อคัดลอกส่งแชท)</button>
-                </div>
-
-                <!-- 🚨 โซนแจ้งเตือนใหญ่หลังเสกข้อความเสร็จ 🚨 -->
-                <div id="summary-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-2 text-left" style="display:none;">
-                    <div class="text-[22px] text-[#d946ef] font-bold mb-2 text-center drop-shadow-sm">✨ ข้อความพร้อมแล้ว! ✨</div>
-                    
-                    <div class="text-[14px] text-pink-600 font-bold mb-5 mt-4 text-center bg-[#fdf2f8] p-3.5 rounded-xl border-2 border-dashed border-pink-300 shadow-sm animate-pulse leading-relaxed">
-                        <i class="fa-solid fa-triangle-exclamation text-xl mb-1"></i><br>
-                        (ระบบแค่สร้างข้อความให้นะคะ ยังไม่ได้ส่งน้า)<br>
-                        <span class="text-[13px] text-gray-700">รบกวนลูกค้ากดปุ่มด้านล่าง เพื่อไปเปิดแชท ➡ แล้วกด <span class="text-pink-600 text-[15px]">"วาง (Paste)"</span> พร้อมแนบรูปสลิปให้แม่หมอด้วยนะคะ 📸💖</span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="summary-text" class="form-control" rows="8" readonly style="font-size:12px; background:#fff; border-color:#d946ef; line-height:1.6;"></textarea>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <button class="bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white py-3 rounded-xl font-bold text-[12px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-lg"></i> ก๊อปปี้แล้วไปเปิด Messenger</button>
-                        <button class="bg-gradient-to-b from-[#059669] to-[#10b981] text-white py-3 rounded-xl font-bold text-[12px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('line')"><i class="fa-brands fa-line text-lg"></i> ก๊อปปี้แล้วไปเปิด LINE</button>
-                        <button class="bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white py-3 rounded-xl font-bold text-[12px] shadow-md hover:scale-[1.03] transition-transform flex flex-col items-center justify-center gap-1" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-lg"></i> ก๊อปปี้แล้วไปเปิด IG</button>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 
     <!-- ================= Admin Modal (ระบบหลังบ้าน) ================= -->
     <div id="admin-modal" class="modal-overlay pb-[80px]">
-        <div class="bg-white rounded-[1.5rem] p-6 w-full max-w-lg border-4 border-[#d946ef] shadow-[0_0_20px_rgba(217,70,239,0.5)] relative max-h-[85vh] flex flex-col text-left">
-            <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-3 mb-4">
-                <h2 class="text-[#c026d3] m-0 text-xl font-bold">🔮 ระบบหลังบ้าน (Admin)</h2>
-                <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-400 text-3xl cursor-pointer hover:text-pink-500">&times;</button>
+        <div class="bg-white rounded-[1.5rem] p-5 w-full max-w-lg border-4 border-[#d946ef] shadow-2xl relative max-h-[85vh] flex flex-col text-left">
+            <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-2.5 mb-3">
+                <h2 class="text-[#c026d3] m-0 text-lg font-bold">🔮 ระบบหลังบ้าน (Admin)</h2>
+                <button onclick="closeAdmin()" class="bg-transparent border-none text-gray-400 text-2xl cursor-pointer hover:text-pink-500">&times;</button>
             </div>
             
-            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-4 space-y-4">
-                <!-- โซน 1 ตั้งค่าร้าน -->
-                <div class="bg-[#faf5ff] rounded-2xl border-2 border-[#e9d5ff] overflow-hidden shadow-sm">
-                    <button onclick="toggleAccordion('acc-settings')" class="w-full p-4 flex justify-between items-center bg-[#fdf4ff] hover:bg-[#fae8ff] transition-colors cursor-pointer border-none font-bold text-[#9333ea] text-[15px]">
-                        <span>📝 1. ตั้งค่าข้อมูลร้านทั่วไป</span>
+            <div id="admin-content" class="flex-1 overflow-y-auto pr-2 mb-3 space-y-3">
+                <div class="bg-[#faf5ff] rounded-xl border-2 border-[#e9d5ff] overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('acc-settings')" class="w-full p-3.5 flex justify-between items-center bg-[#fdf4ff] hover:bg-[#fae8ff] transition-colors cursor-pointer border-none font-bold text-[#9333ea] text-sm">
+                        <span>📝 1. ตั้งค่าข้อมูลร้านทั่วไป & ลิงก์</span>
                         <i id="icon-acc-settings" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div id="acc-settings" class="p-4 bg-white border-t border-[#e9d5ff] space-y-3" style="display:none;">
-                        <div class="form-group mb-0"><label class="text-xs">ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ลิงก์ Instagram</label><input type="text" id="cfg-igLink" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ชื่อบัญชี กสิกร</label><input type="text" id="cfg-kbankName" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">เลขบัญชี กสิกร</label><input type="text" id="cfg-kbankNum" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">เบอร์ TrueMoney</label><input type="text" id="cfg-walletNum" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ลิงก์ตัวอย่าง วอลเปเปอร์</label><input type="text" id="cfg-sampleWall" class="form-control py-2 text-sm"></div>
-                        <div class="form-group mb-0"><label class="text-xs">ลิงก์ตัวอย่าง เว็บไซต์</label><input type="text" id="cfg-sampleWeb" class="form-control py-2 text-sm"></div>
+                    <div id="acc-settings" class="p-3 bg-white border-t border-[#e9d5ff] space-y-2.5" style="display:none;">
+                        <div class="form-group mb-0"><label class="text-[11px]">ชื่อร้าน</label><input type="text" id="cfg-shopName" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">คำโปรโมทใต้ชื่อร้าน</label><input type="text" id="cfg-slogan" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ข้อความวิ่ง (Marquee)</label><input type="text" id="cfg-marquee" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์เว็บรีวิวลูกค้า</label><input type="text" id="cfg-reviewLink" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์ Facebook</label><input type="text" id="cfg-fbLink" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์ Line</label><input type="text" id="cfg-lineLink" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์ Instagram</label><input type="text" id="cfg-igLink" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์ Discord</label><input type="text" id="cfg-discordLink" class="form-control py-1.5 text-xs" placeholder="https://discord.gg/..."></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ชื่อบัญชี กสิกร</label><input type="text" id="cfg-kbankName" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">เลขบัญชี กสิกร</label><input type="text" id="cfg-kbankNum" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">เบอร์ TrueMoney</label><input type="text" id="cfg-walletNum" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์ตัวอย่าง วอลเปเปอร์</label><input type="text" id="cfg-sampleWall" class="form-control py-1.5 text-xs"></div>
+                        <div class="form-group mb-0"><label class="text-[11px]">ลิงก์ตัวอย่าง เว็บไซต์</label><input type="text" id="cfg-sampleWeb" class="form-control py-1.5 text-xs"></div>
                     </div>
                 </div>
 
-                <!-- โซน 2 จัดการสินค้า (Drag & Drop) -->
-                <div class="bg-[#faf5ff] rounded-2xl border-2 border-[#e9d5ff] overflow-hidden shadow-sm">
-                    <button onclick="toggleAccordion('acc-products')" class="w-full p-4 flex justify-between items-center bg-[#fdf4ff] hover:bg-[#fae8ff] transition-colors cursor-pointer border-none font-bold text-[#9333ea] text-[15px]">
-                        <span>📦 2. จัดการสินค้า (แตะค้างแล้วลากได้เลย)</span>
+                <div class="bg-[#faf5ff] rounded-xl border-2 border-[#e9d5ff] overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('acc-products')" class="w-full p-3.5 flex justify-between items-center bg-[#fdf4ff] hover:bg-[#fae8ff] transition-colors cursor-pointer border-none font-bold text-[#9333ea] text-sm">
+                        <span>📦 2. จัดการสินค้า (แตะค้างแล้วลากได้)</span>
                         <i id="icon-acc-products" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
-                    <div id="acc-products" class="p-4 bg-white border-t border-[#e9d5ff] space-y-4" style="display:none;">
-                        <div class="text-[12px] text-pink-500 mb-2 font-bold bg-pink-50 p-2 rounded-lg border border-pink-100 text-center">💡 ทริค: "แตะค้าง" ตรงปุ่ม ☰ แล้วลากขึ้นลากลงเพื่อสลับตำแหน่งรายการได้เลยค่ะ!</div>
-                        <div id="admin-products-list" class="space-y-4"></div>
+                    <div id="acc-products" class="p-3 bg-white border-t border-[#e9d5ff] space-y-3" style="display:none;">
+                        <div class="text-[11px] text-pink-500 font-bold bg-pink-50 p-2 rounded-lg border border-pink-100 text-center">💡 ทริค: "แตะค้าง" ตรงปุ่ม ☰ แล้วลากขึ้นลงเพื่อสลับตำแหน่งรายการได้เลยค่ะ!</div>
+                        <div id="admin-products-list" class="space-y-3"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="flex gap-2 border-t-2 dashed border-[#e9d5ff] pt-4">
-                <button onclick="saveAdmin()" class="btn-action m-0 flex-[2] text-[15px]">💾 บันทึกการตั้งค่า</button>
-                <button onclick="resetAdmin()" class="btn-action m-0 flex-1 !bg-gray-400 !shadow-none text-[15px]">⚠️ รีเซ็ต</button>
+            <div class="flex gap-2 border-t-2 dashed border-[#e9d5ff] pt-3">
+                <button onclick="saveAdmin()" class="btn-action m-0 flex-[2] text-sm py-3">💾 บันทึกการตั้งค่า</button>
+                <button onclick="resetAdmin()" class="btn-action m-0 flex-1 !bg-gray-400 !shadow-none text-sm py-3">⚠️ รีเซ็ต</button>
             </div>
         </div>
     </div>
 
-    <!-- ================= SCRIPTING (JAVASCRIPT) ================= -->
+    <!-- ================= SCRIPTING ================= -->
     <script>
-    /* --- โซนตั้งค่าระบบหลัก --- */
     const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
     const ADMIN_PASS = "1164";
 
     let shopSettings = {
         shopName: "Ah Tao Mu-space",
+        slogan: "ศูนย์รวมดูดวง วอลเปเปอร์ และทำเว็บไซต์ ✨",
+        marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space พื้นที่ฮีลใจของคุณ ✨",
         reviewLink: "#",
-        fbLink: "https://www.facebook.com/profile.php?id=61594504356531", // เฟสบุ๊คใหม่
+        fbLink: "https://www.facebook.com/profile.php?id=61594504356531",
         lineLink: "https://lin.ee/WgEAeFx",
         igLink: "https://www.instagram.com/artaoty2",
+        discordLink: "",
         kbankName: "ธนพร เจิมเฟื่องฟู",
         kbankNum: "1961933834",
         walletNum: "0800172584",
@@ -604,7 +613,6 @@
         sampleWebLink: ""
     };
 
-    // หมวดหมู่ลบสายคอลออก เหลือแค่ 3 Tab
     const defaultData = [
         { tab: 1, category: "ดูดวง", title: "🔮 ดูดวงทั่วไป (แชท)", items: [ 
             { name: "Yes or No!! (1 คำถาม)", price: 9 }, 
@@ -658,16 +666,13 @@
     let minChatPrice = 999;
     let wallAddCount = 0;
 
-    /* --- โซนเริ่มต้นระบบ --- */
     document.addEventListener('DOMContentLoaded', async () => {
         try {
             productData = JSON.parse(JSON.stringify(defaultData));
             
-            // Cart Persistence (จำตะกร้า)
-            const savedCart = localStorage.getItem('muSpaceCartV7');
+            const savedCart = localStorage.getItem('muSpaceCartV8');
             if (savedCart) { currentCart = JSON.parse(savedCart); updateCartBadge(); }
 
-            // ตั้งค่าวันที่และเวลาปัจจุบันในฟอร์ม
             const today = new Date();
             const dateStr = today.toISOString().split('T')[0];
             const timeStr = today.toTimeString().substring(0, 5);
@@ -675,7 +680,6 @@
             if(document.getElementById('f-transfer-date')) document.getElementById('f-transfer-date').value = dateStr;
             if(document.getElementById('f-transfer-time')) document.getElementById('f-transfer-time').value = timeStr;
             
-            // โหลดข้อมูลเก่าที่เคยกรอก (เพื่อให้ลูกค้าไม่ต้องพิมพ์ใหม่ซ้ำๆ)
             try {
                 const savedData = localStorage.getItem('muSpaceUserData');
                 if (savedData) {
@@ -687,15 +691,14 @@
                     if(p.month) document.getElementById('f-month').value = p.month;
                     if(p.year) document.getElementById('f-year').value = p.year;
                 }
-                const localSettings = localStorage.getItem('muSpaceSettingsV7');
+                const localSettings = localStorage.getItem('muSpaceSettingsV8');
                 if (localSettings) shopSettings = JSON.parse(localSettings);
-                const localProd = localStorage.getItem('muSpaceProductsV7');
+                const localProd = localStorage.getItem('muSpaceProductsV8');
                 if (localProd) productData = JSON.parse(localProd);
-            } catch(e) { console.warn("Local storage clear."); }
+            } catch(e) {}
             
             applySettingsToDOM();
 
-            // ดึง API ป้องกันหน้าขาว
             fetch(API_URL + "?action=getData")
                 .then(res => res.json())
                 .then(result => {
@@ -707,37 +710,65 @@
                         applySettingsToDOM();
                         if(activeTab > 0) renderProducts(); 
                     }
-                }).catch(e => console.log("Offline mode active"));
+                }).catch(e => console.log("Offline mode"));
 
-            switchTab(1); // บังคับเข้าหน้าดูดวงเป็นหน้าแรก
-        } catch (err) { console.error("Init Error Protected:", err); }
+            switchTab(1);
+        } catch (err) { console.error("Init Error:", err); }
     });
 
-    /* --- โซนระบบแสดงผล UI --- */
     function applySettingsToDOM() {
         try {
             document.getElementById('display-shop-name').textContent = shopSettings.shopName;
-            document.getElementById('modal-link-fb').href = shopSettings.fbLink;
-            document.getElementById('modal-link-line').href = shopSettings.lineLink;
-            document.getElementById('modal-link-ig').href = shopSettings.igLink || '#';
+            document.getElementById('display-slogan-title').textContent = shopSettings.slogan;
+            document.getElementById('display-marquee').textContent = shopSettings.marquee;
+            
+            document.getElementById('contact-link-fb').href = shopSettings.fbLink;
+            document.getElementById('contact-link-line').href = shopSettings.lineLink;
+            document.getElementById('contact-link-ig').href = shopSettings.igLink || '#';
+            
+            const discBtn = document.getElementById('contact-link-discord');
+            if(shopSettings.discordLink && shopSettings.discordLink.trim() !== "") {
+                discBtn.href = shopSettings.discordLink;
+                discBtn.style.display = 'flex';
+            } else {
+                discBtn.style.display = 'none';
+            }
+
             document.getElementById('display-kbank-name').textContent = shopSettings.kbankName;
             document.getElementById('display-kbank-num').textContent = shopSettings.kbankNum;
             document.getElementById('display-wallet-num').textContent = shopSettings.walletNum;
         } catch(e) {}
     }
 
-    // ฟังก์ชันเปลี่ยนแท็บหมวดหมู่
     function switchTab(tabId) {
         activeTab = tabId;
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         if (tabId > 0) {
             document.getElementById('btn-tab-' + tabId).classList.add('active');
             renderProducts();
-            updateBottomNav(1);
         }
     }
 
-    // ฟังก์ชันเปลี่ยนสถานะเมนูด้านล่าง
+    function switchSubPage(pageName, navIdx) {
+        document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+        document.getElementById('subpage-' + pageName).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateBottomNav(navIdx);
+
+        if (pageName === 'cart') {
+            if (currentCart.length === 0) {
+                document.getElementById('empty-cart-view').style.display = 'block';
+                document.getElementById('checkout-scroll-area').style.display = 'none';
+            } else {
+                document.getElementById('empty-cart-view').style.display = 'none';
+                document.getElementById('checkout-scroll-area').style.display = 'block';
+                document.getElementById('summary-area').style.display = 'none';
+                document.getElementById('checkout-form-area').style.display = 'block';
+                updateCartTotal();
+            }
+        }
+    }
+
     function updateBottomNav(index) {
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         const activeNav = document.getElementById('nav-bottom-' + index);
@@ -755,37 +786,25 @@
         }
     }
 
-    function openContactModal() {
-        updateBottomNav(4);
-        document.getElementById('contact-modal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    function closeContactModal() {
-        document.getElementById('contact-modal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-        updateBottomNav(1);
-    }
-
     function showToast(msg) { 
         const t = document.getElementById('toast'); t.textContent = msg; 
         t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 3000); 
     }
 
-    /* --- โซนตะกร้าสินค้าและการแสดงรายการ --- */
     function renderProducts() {
         const wrapper = document.getElementById('products-wrapper');
         let html = '';
         const itemsToRender = productData.filter(d => d.tab === activeTab);
         
         itemsToRender.forEach((group, gIdx) => {
-            html += `<div class="card-main p-4 mb-5">
-                        <div class="bg-[#fdf4ff] text-[#c026d3] font-bold text-[14px] px-3 py-1.5 rounded-lg mb-3 inline-block border border-[#fae8ff] shadow-sm">${group.title}</div>`;
+            html += `<div class="card-main p-3.5 mb-4">
+                        <div class="bg-[#fdf4ff] text-[#c026d3] font-bold text-[13px] px-2.5 py-1 rounded-lg mb-2.5 inline-block border border-[#fae8ff] shadow-sm">${group.title}</div>`;
             
             if (group.category === "วอลเปเปอร์" && shopSettings.sampleWallLink) {
-                html += `<a href="${shopSettings.sampleWallLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fdf4ff] border-2 border-dashed border-[#d946ef] text-[#c026d3] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#fae8ff] text-[13px] transition-colors decoration-none">🖼️ ดูตัวอย่างวอลเปเปอร์คลิกที่นี่</a>`;
+                html += `<a href="${shopSettings.sampleWallLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fdf4ff] border-2 border-dashed border-[#d946ef] text-[#c026d3] rounded-xl py-2.5 mb-3 font-bold shadow-sm hover:bg-[#fae8ff] text-[12px] transition-colors decoration-none">🖼️ ดูตัวอย่างวอลเปเปอร์คลิกที่นี่</a>`;
             }
             if (group.category === "รับทำเว็บไซต์" && shopSettings.sampleWebLink) {
-                html += `<a href="${shopSettings.sampleWebLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fdf4ff] border-2 border-dashed border-[#d946ef] text-[#c026d3] rounded-xl py-3 mb-4 font-bold shadow-sm hover:bg-[#fae8ff] text-[13px] transition-colors decoration-none">💻 ดูตัวอย่างเว็บไซต์คลิกที่นี่</a>`;
+                html += `<a href="${shopSettings.sampleWebLink}" target="_blank" class="flex items-center justify-center gap-2 bg-[#fdf4ff] border-2 border-dashed border-[#d946ef] text-[#c026d3] rounded-xl py-2.5 mb-3 font-bold shadow-sm hover:bg-[#fae8ff] text-[12px] transition-colors decoration-none">💻 ดูตัวอย่างเว็บไซต์คลิกที่นี่</a>`;
             }
 
             group.items.forEach((item, iIdx) => {
@@ -793,15 +812,15 @@
                 let badgeHtml = '';
                 
                 if (item.badge && item.badge.text) {
-                    badgeHtml = `<span style="background-color:${item.badge.bg}; color:${item.badge.color}; border: 1px solid${item.badge.color}30;" class="text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm tracking-wide">${item.badge.emoji}${item.badge.text}</span>`;
+                    badgeHtml = `<span style="background-color:${item.badge.bg}; color:${item.badge.color}; border: 1px solid${item.badge.color}30;" class="text-[9px] px-1.5 py-0.5 rounded-md ml-1 font-bold whitespace-nowrap shadow-sm">${item.badge.emoji}${item.badge.text}</span>`;
                 } else if (item.name.includes('15 นาที')) {
-                    badgeHtml = '<span class="bg-red-100 text-red-600 border border-red-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">🔥 ขายดี</span>';
+                    badgeHtml = '<span class="bg-red-100 text-red-600 border border-red-200 text-[9px] px-1.5 py-0.5 rounded-md ml-1 font-bold whitespace-nowrap">🔥 ขายดี</span>';
                 }
 
-                html += `<div class="flex justify-between items-center py-3 border-b border-dashed border-[#e9d5ff] hover:bg-purple-50/50 transition-colors rounded-lg px-2">
-                            <span class="text-[13px] text-gray-700 flex-1 pr-2 leading-relaxed flex flex-wrap items-center font-bold">${item.name}${badgeHtml}</span>
+                html += `<div class="flex justify-between items-center py-2.5 border-b border-dashed border-[#e9d5ff] hover:bg-purple-50/50 transition-colors rounded-lg px-1.5">
+                            <span class="text-[12px] text-gray-700 flex-1 pr-2 leading-relaxed flex flex-wrap items-center font-bold">${item.name}${badgeHtml}</span>
                             <div class="flex items-center gap-2 shrink-0">
-                                <span class="text-[#d946ef] font-bold text-[15px]">${item.price}.-</span>
+                                <span class="text-[#d946ef] font-bold text-[14px]">${item.price}.-</span>
                                 <div class="relative">
                                     <button class="btn-add" onclick="addToCart(this, '${safeName}', ${item.price}, '${group.category}')">+</button>
                                 </div>
@@ -811,7 +830,6 @@
             html += `</div>`;
         });
         wrapper.innerHTML = html;
-        wrapper.style.display = 'block';
     }
 
     function addToCart(btnElement, name, price, category) {
@@ -823,14 +841,12 @@
         updateCartBadge();
         saveCartLocally();
 
-        // เล่นแอนิเมชันเด้ง +1 มินิๆ
         const miniToast = document.createElement('div');
         miniToast.className = 'mini-toast';
         miniToast.innerText = '+1';
         btnElement.parentElement.appendChild(miniToast);
         setTimeout(() => miniToast.remove(), 800);
 
-        // ทำให้ปุ่มตะกร้าแอปด้านล่างเด้ง
         const badge = document.getElementById('nav-cart-badge');
         badge.classList.add('pop');
         setTimeout(() => badge.classList.remove('pop'), 300);
@@ -846,7 +862,7 @@
     }
 
     function saveCartLocally() {
-        localStorage.setItem('muSpaceCartV7', JSON.stringify(currentCart));
+        localStorage.setItem('muSpaceCartV8', JSON.stringify(currentCart));
     }
 
     function updateCartBadge() {
@@ -856,34 +872,15 @@
         else badge.classList.add('hidden');
     }
 
-    function openCheckoutModal() {
-        updateBottomNav(2);
-        document.getElementById('checkout-modal-overlay').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        if(currentCart.length === 0) { 
-            document.getElementById('empty-cart-view').style.display = 'block';
-            document.getElementById('checkout-scroll-area').style.display = 'none';
-        } else {
-            document.getElementById('empty-cart-view').style.display = 'none';
-            document.getElementById('checkout-scroll-area').style.display = 'block';
-            document.getElementById('summary-area').style.display = 'none';
-            document.getElementById('checkout-form-area').style.display = 'block';
-            updateCartTotal();
-        }
-    }
-
-    function closeCheckoutModal() {
-        document.getElementById('checkout-modal-overlay').style.display = 'none';
-        document.body.style.overflow = 'auto';
-        updateBottomNav(1); // กลับไป active หน้าหลัก
-    }
-
     function updateCartTotal() {
         const listEl = document.getElementById('cart-items-list');
         const totalEl = document.getElementById('cart-total-price');
         
-        if (currentCart.length === 0) { closeCheckoutModal(); return; }
+        if (currentCart.length === 0) { 
+            document.getElementById('empty-cart-view').style.display = 'block';
+            document.getElementById('checkout-scroll-area').style.display = 'none';
+            return; 
+        }
 
         let html = ''; let subtotal = 0;
         hasChat = hasPhone = hasWall = hasChart = hasWeb = false; 
@@ -891,9 +888,9 @@
 
         currentCart.forEach((item, index) => {
             subtotal += item.price;
-            html += `<div class="flex justify-between mb-2 border-b dashed border-[#e9d5ff] pb-2 text-[14px] text-gray-700 font-bold items-center hover:bg-white rounded-lg px-1">
+            html += `<div class="flex justify-between mb-2 border-b dashed border-[#e9d5ff] pb-2 text-[13px] text-gray-700 font-bold items-center hover:bg-white rounded-lg px-1">
                 <span class="flex-1">- ${item.name}</span> 
-                <span class="text-[#d946ef] font-bold whitespace-nowrap">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-400 cursor-pointer ml-1 hover:scale-125 transition-transform"><i class="fa-solid fa-circle-xmark"></i></button></span>
+                <span class="text-[#d946ef] font-bold whitespace-nowrap">${item.price}.- <button onclick="removeItem(${index})" class="bg-transparent border-none text-red-400 cursor-pointer ml-1 hover:scale-125"><i class="fa-solid fa-circle-xmark"></i></button></span>
             </div>`;
             
             if (item.category === 'โทรดูดวง') hasPhone = true;
@@ -916,13 +913,12 @@
 
         if (document.getElementById('urgent-queue').checked) {
             subtotal += 59;
-            html += `<div class="flex justify-between mt-3 text-[#d946ef] text-[14px] font-bold bg-[#fdf4ff] p-2 rounded-lg border border-[#fae8ff]"><span>⚡ เสกคิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
+            html += `<div class="flex justify-between mt-2 text-[#d946ef] text-[13px] font-bold bg-[#fdf4ff] p-2 rounded-lg border border-[#fae8ff]"><span>⚡ เสกคิวเร่งด่วนพิเศษ</span> <span>+59.-</span></div>`;
         }
         listEl.innerHTML = html; totalEl.textContent = subtotal; 
         setupDynamicForm();
     }
 
-    /* --- โซนแบบฟอร์มอัตโนมัติ (ไม่รวน 100%) --- */
     function setupDynamicForm() {
         const needPersonal = hasChat || hasPhone;
         const formPersonal = document.getElementById('form-personal');
@@ -953,10 +949,10 @@
             dQuestionsDiv.innerHTML = '';
             if (totalChatQuestions > 0) {
                 for(let i=1; i<=totalChatQuestions; i++) {
-                    dQuestionsDiv.innerHTML += `<div class="form-group" id="fg-q${i}"><label class="text-[12px]">คำถามที่ ${i} *</label><textarea class="form-control text-sm dyn-q dyn-req" rows="2"></textarea></div>`;
+                    dQuestionsDiv.innerHTML += `<div class="form-group" id="fg-q${i}"><label class="text-[11px]">คำถามที่ ${i} *</label><textarea class="form-control text-xs dyn-q dyn-req" rows="2"></textarea></div>`;
                 }
             } else {
-                dQuestionsDiv.innerHTML = `<div class="form-group mb-0" id="fg-q1"><label class="text-[12px]">คำถาม / รายละเอียดเพิ่มเติม *</label><textarea class="form-control text-sm dyn-q dyn-req" rows="3"></textarea></div>`;
+                dQuestionsDiv.innerHTML = `<div class="form-group mb-0" id="fg-q1"><label class="text-[11px]">คำถาม / รายละเอียดเพิ่มเติม *</label><textarea class="form-control text-xs dyn-q dyn-req" rows="3"></textarea></div>`;
             }
         }
 
@@ -968,9 +964,9 @@
         wallExtraBox.innerHTML = '';
         if(hasWall && wallAddCount > 0) {
             for(let i=1; i<=wallAddCount; i++) {
-                wallExtraBox.innerHTML += `<div class="form-group mt-3 mb-0" id="fg-wx${i}">
-                    <label class="text-[12px]">เรื่องที่ต้องการเสริมเพิ่ม #${i} *</label>
-                    <input type="text" class="form-control text-sm dyn-req wall-extra-inp" placeholder="เช่น การเงิน, เสน่ห์เมตตา">
+                wallExtraBox.innerHTML += `<div class="form-group mt-2.5 mb-0" id="fg-wx${i}">
+                    <label class="text-[11px]">เรื่องที่ต้องการเสริมเพิ่ม #${i} *</label>
+                    <input type="text" class="form-control text-xs dyn-req wall-extra-inp" placeholder="เช่น การเงิน, เสน่ห์เมตตา">
                 </div>`;
             }
         }
@@ -1022,9 +1018,7 @@
         showToast('⏳ เสกเวลาปัจจุบันให้แล้วค่ะ!');
     }
 
-    // --- โซน Smart Validation (สั่นเตือน+เลื่อนจอ) ---
     function validateForm() {
-        // ล้างสถานะ Error เก่าทิ้งก่อน
         document.querySelectorAll('.error-shake').forEach(el => el.classList.remove('error-shake'));
 
         if (!document.getElementById('confirm-pay').checked) { 
@@ -1046,7 +1040,7 @@
         });
 
         document.querySelectorAll('.dyn-req').forEach(el => {
-            if (el.offsetWidth > 0 && el.offsetHeight > 0) { // เช็คว่ามองเห็นบนจอ
+            if (el.offsetWidth > 0 && el.offsetHeight > 0) {
                 if(!el.value.trim()) { 
                     el.classList.add('error-shake'); 
                     if(!firstErrorEl) firstErrorEl = el;
@@ -1062,7 +1056,6 @@
         return true;
     }
 
-    /* --- โซนเสกข้อความ (Logic สำคัญ ห้ามแก้!) --- */
     function generateSummaryAndSend() {
         if (!validateForm()) return;
         const btnSubmit = document.getElementById('btn-submit-order');
@@ -1159,7 +1152,6 @@
                 price: totalPrice
             };
             
-            // ส่งออเดอร์เข้า Google Sheets
             fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveOrder", order: orderData }) }).catch(e => console.log("Offline Post"));
 
             document.getElementById('summary-text').value = summary.trim();
@@ -1167,14 +1159,12 @@
             document.getElementById('summary-area').style.display = 'block';
             document.getElementById('checkout-scroll-area').scrollIntoView({ behavior: 'smooth' });
 
-            // ล้างตะกร้าเพราะเสร็จสิ้นแล้ว
             currentCart = [];
             saveCartLocally();
             updateCartBadge();
 
         } catch(e) {
             alert("โอ๊ะ! เวทมนตร์สะดุดเล็กน้อย กรุณาลองใหม่อีกครั้งค่ะ");
-            console.error(e);
         } finally {
             setTimeout(() => {
                 btnSubmit.disabled = false;
@@ -1201,7 +1191,7 @@
         }, 800); 
     }
 
-    // --- โซนระบบหลังบ้าน Admin (Drag & Drop) ---
+    // --- Admin ---
     function openAdmin() {
         const pass = prompt("🔒 กรุณากรอกรหัสผ่านหลังบ้าน (Admin Only):");
         if (pass === ADMIN_PASS) { renderAdminPanel(); document.getElementById('admin-modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; } 
@@ -1219,10 +1209,13 @@
     function renderAdminPanel() {
         try {
             document.getElementById('cfg-shopName').value = shopSettings.shopName;
+            document.getElementById('cfg-slogan').value = shopSettings.slogan;
+            document.getElementById('cfg-marquee').value = shopSettings.marquee;
             document.getElementById('cfg-reviewLink').value = shopSettings.reviewLink || "#";
             document.getElementById('cfg-fbLink').value = shopSettings.fbLink;
             document.getElementById('cfg-lineLink').value = shopSettings.lineLink;
             document.getElementById('cfg-igLink').value = shopSettings.igLink || "";
+            document.getElementById('cfg-discordLink').value = shopSettings.discordLink || "";
             document.getElementById('cfg-kbankName').value = shopSettings.kbankName;
             document.getElementById('cfg-kbankNum').value = shopSettings.kbankNum;
             document.getElementById('cfg-walletNum').value = shopSettings.walletNum;
@@ -1231,32 +1224,32 @@
 
             let html = ``;
             productData.forEach((group, gIdx) => {
-                html += `<div class="bg-white p-4 rounded-xl mb-4 border-2 border-[#e9d5ff] shadow-sm">
-                            <h5 class="m-0 text-[14px] font-bold text-[#c026d3] mb-3 border-b border-[#f3e8ff] pb-1.5">หมวด: ${group.title}</h5>
+                html += `<div class="bg-white p-3 rounded-xl mb-3 border border-purple-100 shadow-sm">
+                            <h5 class="m-0 text-[13px] font-bold text-[#c026d3] mb-2.5 border-b border-purple-50 pb-1">หมวด: ${group.title}</h5>
                             <div id="drag-group-${gIdx}">`;
                 group.items.forEach((item, iIdx) => {
                     const badge = item.badge || { text: "", emoji: "", bg: "#fef08a", color: "#b45309" };
-                    html += `<div class="draggable-item p-3 bg-gray-50 rounded-lg mb-2 border border-gray-200 hover:border-[#d946ef]" 
+                    html += `<div class="draggable-item p-2.5 bg-gray-50 rounded-lg mb-2 border border-gray-200 hover:border-[#d946ef]" 
                                   draggable="true" 
                                   ondragstart="handleDragStart(event, ${gIdx}, ${iIdx})" 
                                   ondragover="handleDragOver(event)" 
                                   ondrop="handleDrop(event, ${gIdx}, ${iIdx})"
                                   ondragend="handleDragEnd(event)">
-                                <div class="flex gap-2 items-center mb-2">
-                                    <div class="cursor-move text-gray-400 hover:text-[#d946ef] p-1 text-xl" title="แตะค้างแล้วลากเพื่อสลับที่">☰</div>
-                                    <input type="text" class="form-control py-1.5 px-2.5 flex-[2] text-[13px] !bg-white" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
-                                    <input type="number" class="form-control py-1.5 px-2.5 flex-[1] text-[13px] !bg-white" value="${item.price}" id="price-${gIdx}-${iIdx}">
-                                    <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-lg w-8 h-8 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0">X</button>
+                                <div class="flex gap-2 items-center mb-1.5">
+                                    <div class="cursor-move text-gray-400 hover:text-[#d946ef] p-0.5 text-lg" title="แตะค้างแล้วลากเพื่อสลับที่">☰</div>
+                                    <input type="text" class="form-control py-1 px-2 flex-[2] text-xs !bg-white" value="${item.name.replace(/"/g, '&quot;')}" id="name-${gIdx}-${iIdx}">
+                                    <input type="number" class="form-control py-1 px-2 flex-[1] text-xs !bg-white" value="${item.price}" id="price-${gIdx}-${iIdx}">
+                                    <button onclick="deleteItem(${gIdx}, ${iIdx})" class="bg-red-400 text-white border-none rounded-md w-7 h-7 text-xs font-bold cursor-pointer hover:bg-red-500 shrink-0">X</button>
                                 </div>
-                                <div class="flex flex-wrap gap-2 items-center pl-8 text-xs text-gray-600">
-                                    แท็ก: <input type="text" placeholder="คำ (เช่น แนะนำ)" class="border rounded px-1.5 py-1 w-20" id="b-text-${gIdx}-${iIdx}" value="${badge.text}">
-                                    อิโมจิ: <input type="text" placeholder="⭐" class="border rounded px-1.5 py-1 w-12 text-center" id="b-emoji-${gIdx}-${iIdx}" value="${badge.emoji}">
-                                    สีพื้น: <input type="color" class="w-6 h-6 p-0 border-none rounded cursor-pointer" id="b-bg-${gIdx}-${iIdx}" value="${badge.bg}">
-                                    สีฟอนต์: <input type="color" class="w-6 h-6 p-0 border-none rounded cursor-pointer" id="b-color-${gIdx}-${iIdx}" value="${badge.color}">
+                                <div class="flex flex-wrap gap-1.5 items-center pl-6 text-[11px] text-gray-600">
+                                    แท็ก: <input type="text" placeholder="แนะนำ" class="border rounded px-1 py-0.5 w-16 text-xs" id="b-text-${gIdx}-${iIdx}" value="${badge.text}">
+                                    อิโมจิ: <input type="text" placeholder="⭐" class="border rounded px-1 py-0.5 w-10 text-center text-xs" id="b-emoji-${gIdx}-${iIdx}" value="${badge.emoji}">
+                                    สีพื้น: <input type="color" class="w-5 h-5 p-0 border-none rounded cursor-pointer" id="b-bg-${gIdx}-${iIdx}" value="${badge.bg}">
+                                    สีฟอนต์: <input type="color" class="w-5 h-5 p-0 border-none rounded cursor-pointer" id="b-color-${gIdx}-${iIdx}" value="${badge.color}">
                                 </div>
                             </div>`;
                 });
-                html += `</div><button onclick="addItem(${gIdx})" class="w-full bg-[#fdf4ff] border border-dashed border-[#d946ef] text-[#c026d3] py-2 rounded-lg text-[13px] font-bold mt-2 hover:bg-[#fae8ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
+                html += `</div><button onclick="addItem(${gIdx})" class="w-full bg-[#fdf4ff] border border-dashed border-[#d946ef] text-[#c026d3] py-1.5 rounded-lg text-xs font-bold mt-2 hover:bg-[#fae8ff] cursor-pointer">+ เพิ่มรายการ</button></div>`;
             });
             document.getElementById('admin-products-list').innerHTML = html;
         } catch(e) { console.error("Admin Render Error:", e); }
@@ -1264,7 +1257,7 @@
 
     let dragSrcData = null;
     function handleDragStart(e, gIdx, iIdx) {
-        updateDataFromDOM(); // เซฟข้อมูลที่พิมพ์ค้างไว้ก่อนเริ่มลาก
+        updateDataFromDOM();
         dragSrcData = { gIdx, iIdx };
         e.currentTarget.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
@@ -1287,10 +1280,13 @@
     function updateDataFromDOM() {
         try {
             shopSettings.shopName = document.getElementById('cfg-shopName').value;
+            shopSettings.slogan = document.getElementById('cfg-slogan').value;
+            shopSettings.marquee = document.getElementById('cfg-marquee').value;
             shopSettings.reviewLink = document.getElementById('cfg-reviewLink').value;
             shopSettings.fbLink = document.getElementById('cfg-fbLink').value;
             shopSettings.lineLink = document.getElementById('cfg-lineLink').value;
             shopSettings.igLink = document.getElementById('cfg-igLink').value;
+            shopSettings.discordLink = document.getElementById('cfg-discordLink').value;
             shopSettings.kbankName = document.getElementById('cfg-kbankName').value;
             shopSettings.kbankNum = document.getElementById('cfg-kbankNum').value;
             shopSettings.walletNum = document.getElementById('cfg-walletNum').value;
@@ -1313,11 +1309,11 @@
                     } else { item.badge = null; }
                 });
             });
-        } catch(e) { console.error("Update DOM Error:", e); }
+        } catch(e) {}
     }
 
     function addItem(gIdx) { updateDataFromDOM(); productData[gIdx].items.push({name: "บริการใหม่", price: 0, badge: null}); renderAdminPanel(); }
-    function deleteItem(gIdx, iIdx) { if(confirm("ต้องการลบรายการเวทมนตร์นี้ใช่ไหมคะ?")){ updateDataFromDOM(); productData[gIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
+    function deleteItem(gIdx, iIdx) { if(confirm("ต้องการลบรายการนี้ใช่ไหมคะ?")){ updateDataFromDOM(); productData[gIdx].items.splice(iIdx, 1); renderAdminPanel(); } }
 
     async function saveAdmin() {
         updateDataFromDOM();
@@ -1325,8 +1321,8 @@
             document.getElementById('loading-text').innerText = "กำลังเซฟตำราเวทมนตร์...";
             document.getElementById('loading-overlay').style.display = 'flex';
             
-            localStorage.setItem('muSpaceSettingsV7', JSON.stringify(shopSettings));
-            localStorage.setItem('muSpaceProductsV7', JSON.stringify(productData));
+            localStorage.setItem('muSpaceSettingsV8', JSON.stringify(shopSettings));
+            localStorage.setItem('muSpaceProductsV8', JSON.stringify(productData));
             
             const payload = { action: "saveAdminData", settings: shopSettings, products: productData };
             await fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
@@ -1343,7 +1339,7 @@
 
     function resetAdmin() {
         if(confirm("แน่ใจนะว่าจะรีเซ็ตกลับเป็นค่าเริ่มต้นของระบบ (ล้างทั้งหมด)?")) {
-            localStorage.removeItem('muSpaceSettingsV7'); localStorage.removeItem('muSpaceProductsV7'); location.reload();
+            localStorage.removeItem('muSpaceSettingsV8'); localStorage.removeItem('muSpaceProductsV8'); location.reload();
         }
     }
     </script>
