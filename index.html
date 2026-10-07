@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhTao Mu-Space 🔮✨</title>
+    
+    <!-- เพิ่ม Social Preview (Meta Tags) -->
+    <meta property="og:title" content="AhTao Mu-Space 🔮✨">
+    <meta property="og:description" content="ศูนย์รวมดูดวง วอลเปเปอร์ และทำเว็บไซต์">
+    <meta property="og:image" content="Ahtao Mu-space พื้นขาว.png">
+    <meta property="og:url" content="ลิงก์เว็บของคุณ">
+    <meta property="og:type" content="website">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,28 +72,26 @@
             padding-bottom: 110px;
         }
 
-        /* 🔮 ปรับแบนเนอร์ให้สูงขึ้นและขอบมนสวยงามเหมือนแบบ */
         .banner-bg {
             background-image: url('แบนเนอร์.PNG');
             background-size: cover; background-position: center;
             position: relative;
             border-radius: 0 0 45px 45px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            height: 250px; /* เพิ่มความสูงรับกับภาพแบนเนอร์ใหญ่ */
+            height: 250px; 
         }
         .banner-bg::after {
             content: ''; position: absolute; inset: 0; border-radius: 0 0 45px 45px;
             background: linear-gradient(180deg, rgba(46, 16, 101, 0.05) 0%, rgba(46, 16, 101, 0.5) 100%);
         }
 
-        /* 🌸 ปรับกรอบโลโก้คาบเส้นให้ใหญ่ขึ้น ละมุนขึ้น ขอบขาวหนา */
         .hero-logo-wrapper {
             width: 130px; height: 130px; background-color: white;
             border-radius: 50%; border: 5px solid #ffffff;
             box-shadow: 0 8px 25px rgba(147, 51, 234, 0.25);
             margin: 0 auto; position: relative; z-index: 20;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
-            margin-top: -65px; /* ดึงขึ้นไปคาบเส้นพอดี */
+            margin-top: -65px; 
         }
 
         .content-bg {
@@ -93,7 +99,7 @@
             backdrop-filter: blur(10px);
             border-radius: 40px 40px 0 0;
             min-height: 600px;
-            margin-top: -80px; /* ขยับพื้นที่เนื้อหาขึ้นไปรับโลโก้ */
+            margin-top: -80px; 
             padding-top: 85px;
             position: relative; z-index: 10;
         }
@@ -110,15 +116,18 @@
             background: #ffffff; border: 2px solid #fae8ff; color: #7e22ce;
             border-radius: 1rem; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center;
             line-height: 1.2; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            width: 100%;
         }
         .tab-btn .icon-box {
             width: 36px; height: 36px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
             font-size: 16px; margin-bottom: 4px; transition: all 0.3s;
         }
-        #btn-tab-1 .icon-box { background: #fffbeb; color: #f59e0b; }
-        #btn-tab-2 .icon-box { background: #f0fdf4; color: #10b981; }
-        #btn-tab-3 .icon-box { background: #eff6ff; color: #3b82f6; }
+        /* กำหนดสีไอคอนแท็บ */
+        .tab-btn:nth-child(1) .icon-box { background: #fffbeb; color: #f59e0b; }
+        .tab-btn:nth-child(2) .icon-box { background: #f0fdf4; color: #10b981; }
+        .tab-btn:nth-child(3) .icon-box { background: #eff6ff; color: #3b82f6; }
+        .tab-btn:nth-child(4) .icon-box { background: #fdf2f8; color: #ec4899; }
         
         .tab-btn.active {
             border-color: #d946ef; color: #c026d3; transform: translateY(-2px);
@@ -215,7 +224,6 @@
 </head>
 <body class="antialiased text-center relative">
 
-    <!-- 🌟 ไอคอนลอยเวทมนตร์ 🌟 -->
     <div class="magic-element text-4xl text-yellow-300" style="left: 15%; top: 5%; animation-duration: 12s;">✦</div>
     <div class="magic-element text-3xl text-blue-300" style="left: 85%; top: 10%; animation-duration: 15s; animation-delay: 2s;">🌙</div>
     <div class="magic-element text-5xl text-pink-300" style="left: 45%; top: 15%; animation-duration: 18s; animation-delay: 4s;">✨</div>
@@ -223,60 +231,39 @@
     <div class="magic-element text-3xl text-pink-200" style="left: 75%; top: 25%; animation-duration: 14s; animation-delay: 3s;">✦</div>
     <div class="magic-element text-2xl text-blue-200" style="left: 55%; top: 5%; animation-duration: 11s; animation-delay: 5s;">⭐</div>
 
-    <!-- หน้าต่าง Loading -->
-    <div id="loading-overlay" class="fixed inset-0 bg-[#1e0b3b]/85 backdrop-blur-md z-[99999] flex flex-col items-center justify-center transition-opacity">
-        <div class="text-7xl animate-bounce mb-6 filter drop-shadow-[0_0_20px_rgba(251,191,36,0.8)]">🔮</div>
-        <div class="text-[#fbbf24] font-bold text-xl tracking-wide font-seasons drop-shadow-md" id="loading-text">กำลังโหลดเวทมนตร์...</div>
-    </div>
+    <!-- ลบหน้าจอ Loading ออกแล้ว -->
 
     <!-- แจ้งเตือน Toast -->
     <div class="toast" id="toast">✨ ข้อความแจ้งเตือน ✨</div>
 
     <div class="app-container">
 
-        <!-- ================= แบนเนอร์ด้านบนขอบมน ================= -->
         <div class="banner-bg"></div>
 
-        <!-- ================= พื้นที่เนื้อหาสีสว่าง ================= -->
         <div class="content-bg px-4">
             
-            <!-- โลโก้คาบเส้น & ชื่อร้านไล่สีวิ้งวับ -->
             <div class="hero-logo-wrapper">
-                <img src="https://i.ibb.co/Hn7xNbx/Ahtao-Mu-space.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/130'">
+                <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/130'">
             </div>
             
             <div class="mt-3 mb-4">
                 <h1 class="text-[25px] mb-0 font-seasons font-bold animated-gradient-text glow-text w-full" id="display-shop-name">Ah Tao Mu-space</h1>
-                <div class="text-[12px] font-medium text-gray-500 mt-1" id="display-slogan-title">กำลังดึงข้อมูลเวทมนตร์...</div>
+                <div class="text-[12px] font-medium text-gray-500 mt-1" id="display-slogan-title">ศูนย์รวมดูดวง วอลเปเปอร์ และทำเว็บไซต์ ✨</div>
             </div>
 
-            <!-- โน้ตวิ่ง (Marquee) -->
             <div class="mb-3 max-w-[380px] mx-auto bg-[#fdf4ff] border border-[#fae8ff] rounded-lg py-1.5 px-2 shadow-sm">
                 <marquee id="display-marquee" scrollamount="4" class="text-[12px] font-medium text-[#9333ea]">✨ ยินดีต้อนรับสู่ AhTao Mu-Space พื้นที่ฮีลใจของคุณ ✨</marquee>
             </div>
 
-            <!-- ================= SUB-PAGE 1: หน้าหลัก (เลือกสินค้า + 3 สเต็ป) ================= -->
             <div id="subpage-home" class="sub-page active">
                 
-                <!-- แท็บหมวดหมู่ (Sticky Tabs) -->
+                <!-- แท็บหมวดหมู่ (ดึงข้อมูลมาสร้างอัตโนมัติ) -->
                 <div class="sticky-tabs bg-[rgba(253,244,255,0.95)] backdrop-blur-md rounded-2xl">
-                    <div class="flex gap-2 justify-center">
-                        <button class="tab-btn w-1/3 active" id="btn-tab-Tab 1: ดูดวง & คอล" onclick="switchTab('Tab 1: ดูดวง & คอล')">
-                            <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                            <span class="font-medium text-[11px]">ดูดวง & คอล</span>
-                        </button>
-                        <button class="tab-btn w-1/3" id="btn-tab-Tab 2: วอลเปเปอร์" onclick="switchTab('Tab 2: วอลเปเปอร์')">
-                            <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
-                            <span class="font-medium text-[11px]">วอลเปเปอร์</span>
-                        </button>
-                        <button class="tab-btn w-1/3" id="btn-tab-Tab 3: ทำเว็บไซต์" onclick="switchTab('Tab 3: ทำเว็บไซต์')">
-                            <div class="icon-box"><i class="fa-solid fa-laptop-code"></i></div>
-                            <span class="font-medium text-[11px]">ทำเว็บไซต์</span>
-                        </button>
+                    <div class="flex gap-2 justify-center" id="dynamic-tabs-container">
+                        <!-- ปุ่มแท็บจะถูกสร้างที่นี่อัตโนมัติตามที่มีใน Google Sheet -->
                     </div>
                 </div>
 
-                <!-- 3 สเต็ปวิธีใช้งานแบบกระชับ -->
                 <div class="card-main p-3.5 mb-4 text-left">
                     <div class="text-center font-bold text-[#d946ef] text-[13px] mb-3 flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-book-open"></i> 3 สเต็ปเสกเวทมนตร์ง่ายๆ
@@ -297,15 +284,13 @@
                     </div>
                 </div>
 
-                <!-- กล่องแสดงรายการสินค้า (Dynamic Rendering) -->
                 <div id="products-wrapper" style="text-align:left;"></div>
             </div>
 
-            <!-- ================= SUB-PAGE 2: หน้าตะกร้า & ฟอร์มกรอกข้อมูล ================= -->
+            <!-- หน้าตะกร้า -->
             <div id="subpage-cart" class="sub-page">
                 <div class="card-main p-4 mb-4 text-left">
                     
-                    <!-- กรณีตะกร้าว่างเปล่า -->
                     <div id="empty-cart-view" class="py-8 text-center hidden">
                         <i class="fa-solid fa-basket-shopping text-5xl text-[#e9d5ff] mb-3"></i>
                         <div class="text-[#c026d3] font-bold text-base mb-1">ตะกร้าเวทมนตร์ยังว่างอยู่เลยน้า 🥺</div>
@@ -331,21 +316,20 @@
                         <div id="checkout-form-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-4 mt-2">
                             <div class="purple-pill text-[15px] mb-4 shadow-sm inline-block">💳 โอนเงิน & ข้อมูลเวทมนตร์</div>
                             
-                            <!-- กล่องบัญชี -->
                             <div class="grid grid-cols-2 gap-3 mb-5">
                                 <div class="border-2 border-[#d946ef] rounded-xl shadow-sm p-3 text-center bg-white flex flex-col justify-between">
                                     <div>
                                         <div class="text-[11px] text-[#c026d3] font-bold mb-1">กสิกรไทย (KBank)</div>
-                                        <div class="text-[12px] text-[#7e22ce] font-medium leading-tight" id="display-kbank-name">-</div>
-                                        <div class="text-[15px] tracking-wider text-[#d946ef] font-bold my-1.5" id="display-kbank-num">-</div>
+                                        <div class="text-[12px] text-[#7e22ce] font-medium leading-tight" id="display-kbank-name">ธนพร เจิมเฟื่องฟู</div>
+                                        <div class="text-[15px] tracking-wider text-[#d946ef] font-bold my-1.5" id="display-kbank-num">1961933834</div>
                                     </div>
                                     <button class="bg-gradient-to-r from-[#d946ef] to-[#c026d3] text-white w-full py-1.5 rounded-lg text-[11px] font-bold hover:opacity-90 mt-1" onclick="copyNum('kbank')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
                                 </div>
                                 <div class="border-2 border-[#1e3a8a] rounded-xl shadow-sm p-3 text-center bg-white flex flex-col justify-between">
                                     <div>
                                         <div class="text-[11px] text-[#1e3a8a] font-bold mb-1">TrueMoney Wallet</div>
-                                        <div class="text-[12px] text-[#7e22ce] font-medium leading-tight invisible">.</div> 
-                                        <div class="text-[15px] tracking-wider text-[#1e40af] font-bold my-1.5" id="display-wallet-num">-</div>
+                                        <div class="text-[12px] text-[#7e22ce] font-medium leading-tight">ธนพร เจิมเฟื่องฟู</div> 
+                                        <div class="text-[15px] tracking-wider text-[#1e40af] font-bold my-1.5" id="display-wallet-num">0800172584</div>
                                     </div>
                                     <button class="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white w-full py-1.5 rounded-lg text-[11px] font-bold hover:opacity-90 mt-1" onclick="copyNum('wallet')"><i class="fa-regular fa-copy"></i> คัดลอก</button>
                                 </div>
@@ -374,7 +358,6 @@
                                 <input type="text" id="f-name" class="form-control req-field text-[13px]" placeholder="เช่น น้องฟ้า / IG: fah_sky">
                             </div>
 
-                            <!-- ฟอร์มรูปแบบการรับทำนาย -->
                             <div id="form-chat-options" style="display:none; background:#fffcfd; padding:16px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                                 <div class="purple-pill text-[14px] mb-4 inline-block">🔮 รูปแบบการรับคำทำนาย</div>
                                 <div class="form-group" id="delivery-type-group">
@@ -392,7 +375,6 @@
                                 </div>
                             </div>
 
-                            <!-- ฟอร์มข้อมูลส่วนตัว -->
                             <div id="form-personal" style="display:none; background:#fffcfd; padding:16px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                                 <div class="purple-pill text-[14px] mb-4 inline-block">💖 ข้อมูลส่วนตัวพื้นฐาน</div>
                                 <div class="form-group" id="fg-status">
@@ -414,13 +396,11 @@
                                 </div>
                             </div>
 
-                            <!-- ฟอร์มคำถาม -->
                             <div id="form-questions" style="display:none; background:#fffcfd; padding:16px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                                 <div class="purple-pill text-[14px] mb-4 inline-block">💬 คำถามที่อยากถามไพ่</div>
                                 <div id="dynamic-questions"></div>
                             </div>
 
-                            <!-- ฟอร์มวอลเปเปอร์ -->
                             <div id="form-wall" style="display:none; background:#fffcfd; padding:16px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                                 <div class="purple-pill text-[14px] mb-4 inline-block">🎨 ข้อมูลเสกวอลเปเปอร์</div>
                                 <div class="form-group"><label class="text-[13px]">ชื่อที่ใส่ในวอล (ไม่บังคับ)</label><input type="text" id="f-wall-name" class="form-control text-[13px]" placeholder="เช่น Mook / May / หรือเว้นว่าง"></div>
@@ -440,7 +420,6 @@
                                 <div id="wall-extra-container"></div>
                             </div>
 
-                            <!-- ฟอร์มนัดหมาย -->
                             <div id="form-appt" style="display:none; background:#fffcfd; padding:16px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                                 <div class="purple-pill text-[14px] mb-4 inline-block">📅 เวลานัดหมายเวทมนตร์ (สำหรับคอล)</div>
                                 <div class="grid grid-cols-2 gap-3">
@@ -450,24 +429,22 @@
                                 <div id="end-time-display" class="mt-4 text-[12px] text-[#db2777] font-medium text-center bg-[#fce7f3] p-2.5 rounded-lg border border-[#fbcfe8]" style="display:none;"></div>
                             </div>
 
-                            <!-- ฟอร์มรับทำเว็บไซต์ -->
                             <div id="form-web" style="display:none; background:#fffcfd; padding:16px; border-radius:1rem; border:2px dashed #e9d5ff; margin-bottom:16px;">
                                 <div class="purple-pill text-[14px] mb-4 inline-block">💻 ข้อมูลรับทำเว็บไซต์</div>
                                 <div class="form-group mb-0" id="fg-web-brief"><label class="text-[13px]">ชื่อร้าน / รูปแบบเว็บไซต์ *</label><textarea id="f-web-brief" class="form-control text-[13px] dyn-req" rows="3" placeholder="ระบุชื่อร้าน และรูปแบบคร่าวๆ"></textarea></div>
                             </div>
 
-                            <!-- 🪄 ปุ่มส่งข้อมูล -->
                             <button id="btn-submit-order" class="btn-action mt-3 py-4 w-full text-[16px]" onclick="generateSummaryAndSend()">🪄 สร้างข้อความ (เพื่อคัดลอกส่งแชท)</button>
                         </div>
 
-                        <!-- 🚨 โซนแจ้งเตือนใหญ่หลังเสกข้อความเสร็จ -->
+                        <!-- แจ้งเตือน + กล่องข้อความสุดท้าย -->
                         <div id="summary-area" class="border-t-2 border-dashed border-[#d8b4fe] pt-6 mt-4 text-left" style="display:none;">
                             <div class="text-[22px] text-[#d946ef] font-bold mb-2 text-center">✨ ข้อความพร้อมแล้ว! ✨</div>
                             
                             <div class="text-[13px] text-pink-600 font-medium mb-5 mt-4 text-center bg-[#fdf2f8] p-4 rounded-xl border-2 border-dashed border-pink-300 leading-relaxed">
                                 <i class="fa-solid fa-triangle-exclamation text-xl mb-2"></i><br>
                                 <span class="font-bold">(ระบบแค่สร้างข้อความให้นะคะ ยังไม่ได้ส่งน้า)</span><br>
-                                <span class="text-[12px] text-gray-700">รบกวนลูกค้ากดปุ่มด้านล่าง เพื่อไปเปิดแชท ➡ แล้วกด <span class="text-pink-600 text-[14px] font-bold">"วาง (Paste)"</span> พร้อมแนบรูปสลิปให้แม่หมอด้วยนะคะ 📸💖</span>
+                                <span class="text-[12px] text-gray-700">ระบบคัดลอกข้อความให้เรียบร้อยแล้วนะคะ!<br>ลูกค้าสามารถเลื่อนลงไป <b>กดเลือกแอปด้านล่างได้เลย</b><br>พอแอปเด้งเปิดขึ้นมา ให้กด <span class="text-pink-600 text-[14px] font-bold">"วาง (Paste)"</span><br>ข้อความ แล้วส่งพร้อมสลิปให้แม่หมอได้เลยค่ะ 📸💖</span>
                             </div>
                             
                             <div class="form-group mb-4">
@@ -475,9 +452,9 @@
                             </div>
                             
                             <div class="grid grid-cols-1 gap-3">
-                                <button class="bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white py-3 rounded-xl font-bold text-[13px] shadow-md flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-lg"></i> ก๊อปปี้แล้วไปเปิด Messenger</button>
-                                <button class="bg-gradient-to-b from-[#059669] to-[#10b981] text-white py-3 rounded-xl font-bold text-[13px] shadow-md flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-lg"></i> ก๊อปปี้แล้วไปเปิด LINE</button>
-                                <button class="bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white py-3 rounded-xl font-bold text-[13px] shadow-md flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-lg"></i> ก๊อปปี้แล้วไปเปิด IG</button>
+                                <button class="bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white py-3 rounded-xl font-bold text-[13px] shadow-md flex items-center justify-center gap-2" onclick="sendSummary('fb')"><i class="fa-brands fa-facebook-messenger text-lg"></i> ไปเปิด Messenger (กดวางข้อความได้เลย)</button>
+                                <button class="bg-gradient-to-b from-[#059669] to-[#10b981] text-white py-3 rounded-xl font-bold text-[13px] shadow-md flex items-center justify-center gap-2" onclick="sendSummary('line')"><i class="fa-brands fa-line text-lg"></i> ไปเปิด LINE (กดวางข้อความได้เลย)</button>
+                                <button class="bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white py-3 rounded-xl font-bold text-[13px] shadow-md flex items-center justify-center gap-2" onclick="sendSummary('ig')"><i class="fa-brands fa-instagram text-lg"></i> ไปเปิด IG (กดวางข้อความได้เลย)</button>
                             </div>
                         </div>
 
@@ -485,7 +462,6 @@
                 </div>
             </div>
 
-            <!-- ================= SUB-PAGE 3: หน้าติดต่อ ================= -->
             <div id="subpage-contact" class="sub-page">
                 <div class="card-main p-6 mb-4 text-center">
                     <div class="w-16 h-16 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm"><i class="fa-solid fa-headset"></i></div>
@@ -502,7 +478,6 @@
         </div>
     </div>
 
-    <!-- ================= แถบเมนูด้านล่างสุด ================= -->
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchSubPage('home', 1)" id="nav-bottom-1">
             <div class="nav-icon-bg"><i class="fa-solid fa-house"></i></div>
@@ -523,20 +498,28 @@
         </div>
     </div>
 
-    <!-- ================= SCRIPTING ================= -->
     <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
 
     let shopSettings = {};
-    let productData = []; // เก็บข้อมูลสินค้าดิบๆ จาก API
-    let groupedProducts = {}; // จัดกลุ่มสินค้าตาม Tab และ Category อัตโนมัติ
+    let productData = []; 
+    let groupedProducts = {}; 
     let currentCart = [];
-    let activeTab = "Tab 1: ดูดวง & คอล"; // ตั้งค่าเริ่มต้นให้ตรงกับชื่อแท็บในชีต
+    let activeTab = ""; 
+    let tabNamesList = []; // เก็บชื่อแท็บทั้งหมดที่เจอในชีต
 
     let hasChat = false, hasPhone = false, hasWall = false, hasChart = false, hasWeb = false;
     let totalChatQuestions = 0;
     let minChatPrice = 999;
     let wallAddCount = 0;
+
+    // ไอคอนสำหรับปุ่มแท็บ
+    const tabIcons = [
+        '<i class="fa-solid fa-wand-magic-sparkles"></i>',
+        '<i class="fa-solid fa-mobile-screen"></i>',
+        '<i class="fa-solid fa-laptop-code"></i>',
+        '<i class="fa-solid fa-star"></i>'
+    ];
 
     document.addEventListener('DOMContentLoaded', async () => {
         try {
@@ -563,7 +546,6 @@
                 }
             } catch(e) {}
 
-            // ดึงข้อมูลจริงจาก API (Google Sheet)
             fetch(API_URL + "?action=getData")
                 .then(res => res.json())
                 .then(result => {
@@ -573,32 +555,56 @@
                     }
                     if (result && result.products) {
                         productData = result.products;
-                        groupProductsData(); // จัดกลุ่มข้อมูล
-                        switchTab("Tab 1: ดูดวง & คอล"); // Render หน้าแรก
+                        groupProductsData(); 
+                        generateTabButtons(); 
+                        if(tabNamesList.length > 0) {
+                            switchTab(tabNamesList[0]); 
+                        }
                     }
-                    document.getElementById('loading-overlay').style.display = 'none'; // ปิดหน้าต่างโหลด
                 })
                 .catch(e => {
                     console.log("Error fetching data:", e);
-                    document.getElementById('loading-text').innerText = "เกิดข้อผิดพลาดในการโหลดข้อมูล";
-                    setTimeout(() => { document.getElementById('loading-overlay').style.display = 'none'; }, 2000);
                 });
 
         } catch (err) { console.error("Init Error:", err); }
     });
 
-    // ฟังก์ชันจัดกลุ่มสินค้าตาม แท็บ และ หมวดหมู่
     function groupProductsData() {
         groupedProducts = {};
+        tabNamesList = [];
         productData.forEach(item => {
-            if (!groupedProducts[item.tab]) {
-                groupedProducts[item.tab] = {};
+            const tabName = item.tab ? item.tab.trim() : "สินค้าอื่นๆ";
+            
+            if (!tabNamesList.includes(tabName)) {
+                tabNamesList.push(tabName);
             }
-            if (!groupedProducts[item.tab][item.category]) {
-                groupedProducts[item.tab][item.category] = [];
+
+            if (!groupedProducts[tabName]) {
+                groupedProducts[tabName] = {};
             }
-            groupedProducts[item.tab][item.category].push(item);
+            if (!groupedProducts[tabName][item.category]) {
+                groupedProducts[tabName][item.category] = [];
+            }
+            groupedProducts[tabName][item.category].push(item);
         });
+    }
+
+    function generateTabButtons() {
+        const container = document.getElementById('dynamic-tabs-container');
+        let html = '';
+        tabNamesList.forEach((tabName, index) => {
+            // ดึงชื่อแท็บมาแสดงแบบสั้นลง (ตัดคำว่า Tab x: ออก ถ้ามี)
+            let displayName = tabName.replace(/^Tab \d+:\s*/i, '');
+            let icon = tabIcons[index % tabIcons.length];
+
+            html += `
+            <button class="tab-btn" id="btn-tab-${index}" onclick="switchTab('${tabName}', ${index})">
+                <div class="icon-box">${icon}</div>
+                <span class="font-medium text-[11px]">${displayName}</span>
+            </button>
+            `;
+        });
+        container.innerHTML = html;
     }
 
     function applySettingsToDOM() {
@@ -611,7 +617,6 @@
             document.getElementById('contact-link-line').href = shopSettings.lineLink || "#";
             document.getElementById('contact-link-ig').href = shopSettings.igLink || "#";
             
-            // ซ่อน/แสดง ปุ่ม Discord ถ้าไม่มีลิงก์
             const discBtn = document.getElementById('contact-link-discord');
             if(shopSettings.discordLink && shopSettings.discordLink.trim() !== "") {
                 discBtn.href = shopSettings.discordLink;
@@ -626,12 +631,11 @@
         } catch(e) {}
     }
 
-    function switchTab(tabName) {
+    function switchTab(tabName, index = 0) {
         activeTab = tabName;
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         
-        // ทำให้ปุ่มที่ถูกเลือก Active
-        const activeBtn = document.getElementById('btn-tab-' + tabName);
+        const activeBtn = document.getElementById('btn-tab-' + index);
         if(activeBtn) activeBtn.classList.add('active');
         
         renderProducts();
@@ -679,7 +683,6 @@
         t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 3000); 
     }
 
-    // ฟังก์ชัน Render สินค้าดึงจาก API ล้วนๆ
     function renderProducts() {
         const wrapper = document.getElementById('products-wrapper');
         let html = '';
@@ -691,26 +694,22 @@
             return;
         }
 
-        // วนลูปสร้างแต่ละหมวดหมู่ (Category)
         for (const [categoryName, items] of Object.entries(categoriesInTab)) {
             html += `<div class="card-main p-4 mb-4">
                         <div class="bg-[#fdf4ff] text-[#c026d3] font-bold text-[14px] px-3 py-1.5 rounded-lg mb-3 inline-block border border-[#fae8ff] shadow-sm">${categoryName}</div>`;
             
-            // วนลูปสร้างสินค้าในหมวดหมู่นั้นๆ
             items.forEach((item, iIdx) => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 let badgeHtml = '';
                 let descHtml = '';
                 
-                // ถ้าระบุป้ายกำกับมา
+                // แก้ปัญหาอิโมจิเบิ้ล: ไม่ดึง item.icon มาต่อกับ text แล้ว
                 if (item.badge && item.badge.trim() !== "") {
-                    const bg = item.badgeBg || "#fef08a"; // สีเริ่มต้นถ้าไม่ได้ใส่
+                    const bg = item.badgeBg || "#fef08a"; 
                     const color = item.badgeColor || "#b45309";
-                    const icon = item.icon || "✨";
-                    badgeHtml = `<span style="background-color:${bg}; color:${color}; border: 1px solid ${color}30;" class="text-[10px] px-2 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">${icon} ${item.badge}</span>`;
+                    badgeHtml = `<span style="background-color:${bg}; color:${color}; border: 1px solid ${color}30;" class="text-[10px] px-2 py-0.5 rounded-md ml-1.5 font-bold whitespace-nowrap shadow-sm">${item.badge}</span>`;
                 }
 
-                // ถ้ามีคำอธิบาย
                 if (item.description && item.description.trim() !== "") {
                     descHtml = `<div class="text-[11px] text-gray-400 mt-1 pl-1 line-clamp-2 w-full leading-tight font-light">${item.description}</div>`;
                 }
@@ -743,8 +742,7 @@
             if(currentAddCount >= 5) { alert('⚠️ เพิ่มเรื่องเสริมได้สูงสุด 5 เรื่องต่อบิลนะคะ'); return; }
         }
         
-        // เช็คว่าสินค้านี้จัดอยู่ในกลุ่มฟอร์มไหน เพื่อดึงฟอร์มให้ถูกต้อง
-        let formType = 'ดูดวง'; // Default
+        let formType = 'ดูดวง';
         if (tabName.includes('โทร') || categoryName.includes('โทร')) formType = 'โทรดูดวง';
         if (tabName.includes('วอลเปเปอร์')) formType = 'วอลเปเปอร์';
         if (tabName.includes('เว็บไซต์')) formType = 'รับทำเว็บไซต์';
@@ -808,7 +806,6 @@
             if (item.category === 'โทรดูดวง') hasPhone = true;
             else if (item.category === 'รับทำเว็บไซต์') hasWeb = true;
             else if (item.category === 'วอลเปเปอร์') {
-                // เช็คว่ามีวอลที่ต้องเก็บข้อมูลไหม
                 hasWall = true; 
                 if(item.name.includes('เพิ่มเรื่อง') || item.name.includes('+39')) wallAddCount++;
             }
@@ -1065,7 +1062,6 @@
                 price: totalPrice
             };
             
-            // ยิงข้อมูลออเดอร์ไปเซฟลงชีต Orders
             fetch(API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "saveOrder", order: orderData }) }).catch(e => console.log("Offline Post"));
 
             document.getElementById('summary-text').value = summary.trim();
@@ -1088,9 +1084,9 @@
     }
 
     function copyText(text) {
-        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => showToast('📋 คัดลอกสำเร็จแล้ว! อย่าลืมกดวางนะคะ'));
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => showToast('📋 คัดลอกสำเร็จแล้ว! กดปุ่มเปิดแอปด้านล่างได้เลย'));
         else {
-            const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('📋 คัดลอกสำเร็จแล้ว! อย่าลืมกดวางนะคะ');
+            const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); showToast('📋 คัดลอกสำเร็จแล้ว! กดปุ่มเปิดแอปด้านล่างได้เลย');
         }
     }
     function copyNum(type) { if(type === 'kbank') copyText(shopSettings.kbankNum); if(type === 'wallet') copyText(shopSettings.walletNum); }
